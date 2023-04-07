@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html mode="dark" style="width:100vw; height:100vh; overflow:hidden;">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Curse">
+        <meta name="description" content="Casino profit heatmap">
+        <title>Texture pack creator</title>
+        <link rel="icon" type="image/png" href="/minecraft/pack.png">
+        <link rel="stylesheet" href="index.css">
+        <script src="/index.js"></script>
+        <!--#region bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--#endregion-->
+        <style>
+            html {
+                --fileExpW:26vw;
+                --toolBarH:8vh;
+                --viewsW:var(--toolBarH);
+                --borderWidth:4px;
+                --backgroundColor:#111111;
+                --borderColor:#222222;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="fileExp"></div>
+        <div id="container1">
+            <div id="toolBar"></div>
+            <div id="container2">
+                <div id="views"></div>
+                <div id="editor">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eject-fill" viewBox="0 0 16 16">
+                        <path d=""/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
