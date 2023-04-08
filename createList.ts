@@ -1,4 +1,5 @@
 import fs from "fs";
+const imageSize = require('image-size');
 
 var json:data = {};
 interface data {
@@ -9,13 +10,35 @@ async function readdir(dirname:string,name:string) {
     var object:data = {};
     return new Promise<any>((resolve)=>{
         fs.promises.readdir(dirname)
-        .then(async(data:string[]|string[][])=>{
-            data = data.map((el:any)=>([el,dirname.replace(__dirname,"")+"/"+el]));
+        .then(async(data:any)=>{
+            data = data.map((el:any)=>{
+                const fullPath = dirname.replace(__dirname,"")+"/"+el;
+                var fileExt = el.split(".");
+                const fileName = fileExt.shift();
+                fileExt = ((fileExt.length>0)?".":"")+fileExt.join(".");
+                
+                var properties:{[key:string]:string|number} = {};
+                if (fileExt == ".png") {
+                    imageSize(__dirname+fullPath, function (err:any, dimensions:{[key:string]:number}) {
+                        if (err) { console.log(err); return; }
+                        properties["width"] = dimensions.width;
+                        properties["height"] = dimensions.height;
+                    });
+                }
+                const output = {
+                    "name":fileName,
+                    "path":fullPath,
+                    "extention":fileExt,
+                    "properties":properties
+                }
+                //{name,path,extention,properties}
+                return output;
+            });
             var promises:Promise<any>[] = []
             for (let i:number = 0; i < data.length; i++) {
-                var stat:fs.Stats = await fs.promises.stat(dirname+"/"+data[i][0]);
+                var stat:fs.Stats = await fs.promises.stat(dirname+"/"+data[i].name+data[i].extention);
                 if (stat.isDirectory()) {
-                    promises.push(readdir(dirname+"/"+data[i][0],data[i][0]));
+                    promises.push(readdir(dirname+"/"+data[i].name,data[i].name));
                     delete data[i];
                 }
             }

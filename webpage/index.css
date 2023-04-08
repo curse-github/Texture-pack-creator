@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Monocraft;
+    src: url(/MonocraftBetterBrackets.ttf);
+}
 img {
     image-rendering: pixelated;
 }
@@ -5,6 +9,7 @@ body {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+    font-family: Monocraft !important;
 }
 html[mode="dark"] body {
     background-color:var(--backgroundColor);
@@ -16,44 +21,61 @@ html[mode="light"] body {
 }
 
 /*#region fileExp*/
-#fileExp {
-    width:calc(var(--fileExpW) - calc(var(--borderWidth) * 2));                                     height:calc(100vh - calc(var(--borderWidth) * 2));
+div#fileExp   {
+    width:var(--fileExpW);                                     height:100vh;
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 
     overflow-y: scroll;
     overflow-x:clip;
 }
-#fileExp * {
+div#fileExp * {
     overflow-x:clip;
 }
-a, a:visited {
+a, a:visited  {
     color:cornflowerblue;
     text-decoration: none;
 }
 div.collapsable[collapsed=false] { max-height:100%; }
 div.collapsable[collapsed=true] { max-height:1.5em; overflow-y:hidden; }
-div.collapsable[collapsed=true] > div > svg { display:inline-block; transform:rotate(0.5turn); }
+div.collapsable[collapsed=false] > div > svg { display:inline-block; transform:rotate(0.5turn); }
 /*#endregion*/
 
-#toolBar {
-    width:calc(calc(100vw - var(--fileExpW)) - calc(var(--borderWidth) * 2));                       height:calc(var(--toolBarH) - calc(var(--borderWidth) * 2));
+div#toolBarParent {
+    width:calc(100vw - var(--fileExpW));                       height:var(--toolBarH);
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 }
-#views   {
-    width:calc(var(--viewsW) - calc(var(--borderWidth) * 2));                                       height:calc(calc(100vh - var(--toolBarH)) - calc(var(--borderWidth) * 2));
+div#views   {
+    width:var(--viewsW);                                       height:calc(100vh - var(--toolBarH));
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 }
-#editor  {
-    width:calc(calc(100vw - calc(var(--viewsW) + var(--fileExpW))) - calc(var(--borderWidth) * 2)); height:calc(calc(100vh - var(--toolBarH)) - calc(var(--borderWidth) * 2));
-    display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
+/*#region editor*/
+div#editorParent {
+    width:calc(100vw - calc(var(--viewsW) + var(--fileExpW))); height:calc(100vh - var(--toolBarH));
+    display:flex; flex-direction:column; var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 }
+div#fileTabs, div#fileTabs blk {
+    background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth);
+}
+div#fileTabs { display:block; border-bottom-style: double;}
+div#fileTabs > blk.tab {
+    display:inline-block; border-right-style: double;
+    border-top: solid calc(var(--borderWidth) / 2) var(--borderColor); border-bottom: solid calc(var(--borderWidth) / 2) var(--borderColor);
+    margin: bottom 1px;
+}
+div#fileTabs > blk.tab[selected="true"], div#fileTabs > blk.tab[selected="true"]>blk { background-color:var(--borderColor); }
+button.closeButton {
+    background-color:rgba(255,255,255,0);
+    border:none;
+} button.closeButton:active { border:none; }
+div#editor { display:flex; flex: 1; justify-content: center; align-items: center; }
+/*#endregion*/
 
-body        {
+body           {
     width:100vw;                         height:100vh;                         display:flex; flex-direction: row;    margin:0px;
 }
-#container1 {
+div#container1 {
     width:calc(100vw - var(--fileExpW)); height:100vh;                         display:flex; flex-direction: column; margin:0px;
 }
-#container2 {
+div#container2 {
     width:calc(100vw - var(--fileExpW)); height:calc(100vh - var(--toolBarH)); display:flex; flex-direction: row;    margin:0px;
 }

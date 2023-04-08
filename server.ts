@@ -7,6 +7,7 @@ var pages:{[key:string]:any} = {
     "/index.css"      :(req:any,res:any,send:any)=>send("/webpage/index.css"  ),
     "/index.js"       :(req:any,res:any,send:any)=>send("/webpage/index.js"   ),
     "/sorts/all.json" :(req:any,res:any,send:any)=>send(                      ),
+    "/MonocraftBetterBrackets.ttf" :(req:any,res:any,send:any)=>send(         )
 }
 Object.keys(pages).forEach((i) => {
     app.get(i, (req:any, res:any) => {

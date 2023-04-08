@@ -25,13 +25,18 @@
     <body>
         <div id="fileExp"></div>
         <div id="container1">
-            <div id="toolBar"></div>
+            <div id="toolBarParent">
+                <div id="searchBar"></div>
+                <div id="toolBar"></div>
+            </div>
             <div id="container2">
                 <div id="views"></div>
-                <div id="editor">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eject-fill" viewBox="0 0 16 16">
-                        <path d=""/>
-                    </svg>
+
+                <div id="editorParent">
+                    <div id="fileTabs"></div>
+                    <div id="editor">
+                        <img src="" id="canvas">
+                    </div>
                 </div>
             </div>
         </div>
