@@ -66,7 +66,14 @@ function openFile(file) {
     file = JSON.parse(decodeURIComponent(file));
     const {name,path,extention,properties} = file;
     for (let i = 0; i < opened.length; i++) {
-        if (opened[i].name == name && opened[i].extention == extention && JSON.stringify(opened[i].properties) == JSON.stringify(properties)) return;
+        if (opened[i].name == name && opened[i].path == path && opened[i].extention == extention && JSON.stringify(opened[i].properties) == JSON.stringify(properties)) {
+            for(let j = 0; j < fileTabs.children.length; j++) {
+                if (decodeURIComponent(fileTabs.children[j].id) == opened[i].path) {
+                    selectTab(fileTabs.children[j]);
+                }
+            }
+            return;
+        }
     }
     if (extention == ".png") {
         opened.push(file);
