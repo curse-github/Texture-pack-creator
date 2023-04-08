@@ -30,16 +30,33 @@ function closeFile(tab) {
         if (opened[i].path == id) {
             delete opened[i];
             if (opened.length > 1) {
-                if(i==opened.length-1) {i-=1; activeIndex = i; }
-                else { activeIndex = i; i++; }
-                for(let j = 0; j < fileTabs.children.length; j++) {
-                    const tab = fileTabs.children[j]
-                    const val = (decodeURIComponent(tab.id) == opened[i].path)
-                    tab.setAttribute("selected",val);
-                    
+                if (tab.getAttribute("selected")=="true") {
+                    if(i==opened.length-1) {i-=1; activeIndex = i; }
+                    else { activeIndex = i; i++; }
+                    for(let j = 0; j < fileTabs.children.length; j++) {
+                        const tab = fileTabs.children[j];
+                        const val = (decodeURIComponent(tab.id) == opened[i].path);
+                        tab.setAttribute("selected",val);
+                    }
+                    opened = opened.filter((el)=>(el!=null&&el!=undefined));
+                } else {
+                    opened = opened.filter((el)=>(el!=null&&el!=undefined));
+                    for(let j = 0; j < fileTabs.children.length; j++) {
+                        const tempTab = fileTabs.children[j];
+                        if (tempTab.getAttribute("selected")=="true") {
+                            for(let l = 0; l < opened.length; l++) {
+                                if(decodeURIComponent(tempTab.id) == opened[l].path) {
+                                    activeIndex=l;
+                                    console.log(opened[activeIndex]);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
                 }
-                opened = opened.filter((el)=>(el!=null&&el!=undefined))
-            } else { activeIndex = -1; }
+            } else { activeIndex = -1; opened = opened.filter((el)=>(el!=null&&el!=undefined)); }
+            
         }
     }
     tab.parentElement.removeChild(tab);
@@ -68,8 +85,18 @@ function openFile(file) {
 function updateCanvas() {
     if (activeIndex != -1) {
         const {name,path,extention,properties} = opened[activeIndex];
+        var height;
+        var width;
+        if (properties.width >= properties.height) {
+            height = Math.min(256,editor.clientWidth/properties.width*properties.height-7.5);
+            width = height*properties.width/properties.height;
+        } else {// properties.height > properties.width
+            width = Math.min(256,editor.clientHeight/properties.height*properties.width-7.5);
+            height = width*properties.height/properties.width;
+        }
+
         canvas.setAttribute("src",path);
-        canvas.setAttribute("style","height:256px;width:"+256*properties.width/properties.height+"px");
+        canvas.setAttribute("style","height:"+height+"px;width:"+width+"px");
     } else { canvas.setAttribute("src",""); canvas.setAttribute("style","height:0px;width:0px");}
 }
 

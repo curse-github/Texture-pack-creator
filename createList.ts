@@ -56,6 +56,5 @@ async function readdir(dirname:string,name:string) {
         });
     });
 }
-
-async function run() { json = (await readdir(__dirname+"/minecraft",""))[1]; fs.promises.writeFile(__dirname+"/sorts/all.json", JSON.stringify(json,null,2)).catch(err=>console.log("err2: " + err)); }
+async function run() { console.clear(); console.log("start"); json = (await readdir(__dirname+"/minecraft",""))[1]; fs.promises.writeFile(__dirname+"/sorts/all.json", JSON.stringify(json,null,2)).catch(err=>console.log("err2: " + err)); }
 run();
