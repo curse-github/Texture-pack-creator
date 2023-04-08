@@ -29,7 +29,7 @@ function closeFile(tab) {
     for(let i = 0; i < opened.length; i++) {
         if (opened[i].path == id) {
             delete opened[i];
-            if (openFile.length != 0) {
+            if (opened.length > 1) {
                 if(i==opened.length-1) {i-=1; activeIndex = i; }
                 else { activeIndex = i; i++; }
                 for(let j = 0; j < fileTabs.children.length; j++) {
@@ -66,9 +66,11 @@ function openFile(file) {
     updateCanvas();
 }
 function updateCanvas() {
-    const {name,path,extention,properties} = opened[activeIndex];
-    canvas.setAttribute("src",path);
-    canvas.setAttribute("style","height:256px;width:"+256*properties.width/properties.height+"px");
+    if (activeIndex != -1) {
+        const {name,path,extention,properties} = opened[activeIndex];
+        canvas.setAttribute("src",path);
+        canvas.setAttribute("style","height:256px;width:"+256*properties.width/properties.height+"px");
+    } else { canvas.setAttribute("src",""); canvas.setAttribute("style","height:0px;width:0px");}
 }
 
 var opened = [];
