@@ -7,23 +7,73 @@ async function fetchJsonPromise(url,input) {
 }
 
 /**
- * collapses or un-collapses folder
- * @date 4/6/2023
+ *  collapses or un-collapses folder
+ *  @date 4/6/2023
  *
- * @param folder
- */
+ *  @param folder
+ */ 
 function toggleCollapse(folder) {
     const val = folder.parentElement.getAttribute("collapsed")=="false";
     folder.parentElement.setAttribute("collapsed",val);
 }
 
+//general "icon" svg
+//usage: Icon.replace("PATH","[your svg path]")
+const Icon = "<svg fill=\"currentColor\" style=\"width:1em;height:1em;\"><path d=\"PATH\"></path></svg>";
+
+//svg icon for x to close tab
+const Xpath = "M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z";
+const Xicon = Icon.replace("PATH",Xpath);
+//svg icon for arrow to collapse folder
+const arrowPath = "M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z";
+const arrowIcon = Icon.replace("PATH",arrowPath);
+
 /**
- * given a "blk.tab" element it selects the 
- * file and displays it on the canvas.
- * @date 4/7/2023
+ *  It will create a tab for the correspoding file passed in.
+ *  @date 4/7/2023
  *
- * @param tab element passed in
- */
+ *  @param file file to open
+ */ 
+function openFile(file) {
+    file = JSON.parse(decodeURIComponent(file));
+    const {name,path,extention,properties} = file;
+    //checks that the file is not already open
+    for (let i = 0; i < opened.length; i++) {
+        if (opened[i].name == name && opened[i].path == path && opened[i].extention == extention && JSON.stringify(opened[i].properties) == JSON.stringify(properties)) {
+            //if it find a tab matching the file switch to that tab
+            for(let j = 0; j < fileTabs.children.length; j++) {
+                if (decodeURIComponent(fileTabs.children[j].id) == opened[i].path) {
+                    selectTab(fileTabs.children[j]);
+                }
+            }
+            return;
+        }
+    }
+    //if file extention is a png
+    if (extention == ".png") {
+        //add file to opened list
+        opened.push(file);
+        //create tab html element
+        let tab = document.createElement("blk"); tab.className = "tab"; tab.id = encodeURIComponent(path); tab.setAttribute("selected",false);
+        let text = document.createElement("blk"); text.innerHTML = spaces.two+name+spaces.one; text.setAttribute("onclick","selectTab(this.parentElement)");
+        let button = document.createElement("button"); button.setAttribute("type","button"); button.className  = "closeButton"; button.setAttribute("onclick","closeTab(this.parentElement)");  button.innerHTML = Xicon;
+        text = tab.appendChild(text); button = tab.appendChild(button);
+        //append it to parent
+        tab  = fileTabs.appendChild(tab);
+        //set tab as current active tab
+        selectTab(tab);
+    } else {
+        console.log("currently unsupported \""+extention+"\" file");
+    }
+    updateCanvas();
+}
+/**
+ *  given a "blk.tab" element it selects the 
+ *  file and displays it on the canvas.
+ *  @date 4/7/2023
+ *
+ *  @param tab element passed in
+ */ 
 function selectTab(tab) {
     //loop through all tabs and set to not selected
     const allTabs = fileTabs.children;
@@ -35,20 +85,19 @@ function selectTab(tab) {
     //set the activeIndex variable correctly
     for(let i = 0; i < opened.length; i++) {
         if (opened[i].path == decodeURIComponent(tab.id)) {
-            activeIndex = i;break;
+            activeIndex = i; break;
         }
     }
     updateCanvas();
 }
-
 /**
- * Given a "blk.tab" element it closes out the tab.
- * If it was the active tab it selects the next tab it finds.
- * @date 4/7/2023
+ *  Given a "blk.tab" element it closes out the tab.
+ *  If it was the active tab it selects the next tab it finds.
+ *  @date 4/7/2023
  *
- * @param tab element passed in
- */
-function closeFile(tab) {
+ *  @param tab element passed in
+ */ 
+function closeTab(tab) {
     //loop through currently opened files
     const id = decodeURIComponent(tab.id);
     for(let i = 0; i < opened.length; i++) {
@@ -56,7 +105,7 @@ function closeFile(tab) {
         if (opened[i].path == id) {
             delete opened[i];
             if (opened.length > 1) {
-                //if more files are still open seitch to first file it finds
+                //if more files are still open
                 if (tab.getAttribute("selected")=="true") {
                     //if it is the currently opened tab get closest file
                     //and set activeIndex
@@ -82,7 +131,6 @@ function closeFile(tab) {
                                 if(decodeURIComponent(tempTab.id) == opened[l].path) {
                                     //set activeIndex
                                     activeIndex=l;
-                                    console.log(opened[activeIndex]);
                                     break;
                                 }
                             }
@@ -94,7 +142,6 @@ function closeFile(tab) {
                 //if it is the last file open set activeIndex to -1
                 activeIndex = -1; opened = opened.filter((el)=>(el!=null&&el!=undefined));
             }
-            
         }
     }
     //delete tab and refresh canvas
@@ -102,60 +149,10 @@ function closeFile(tab) {
     updateCanvas();
 }
 
-//general "icon" svg
-//usage: Icon.replace("PATH","[your svg path]")
-const Icon = "<svg fill=\"currentColor\" style=\"width:1em;height:1em;\"><path d=\"PATH\"></path></svg></i>";
-//svg icon for x to close tab
-const Xpath = "M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z";
-const Xicon = Icon.replace("PATH",Xpath);
-//svg icon for arrow to collapse folder
-const arrowPath = "M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z";
-const arrowIcon = Icon.replace("PATH",arrowPath);
-
 /**
- * It will create a tab for the correspoding file passed in.
- * @date 4/7/2023
- *
- * @param file file to open
- */
-function openFile(file) {
-    file = JSON.parse(decodeURIComponent(file));
-    const {name,path,extention,properties} = file;
-    //checks that the file is not already open
-    for (let i = 0; i < opened.length; i++) {
-        if (opened[i].name == name && opened[i].path == path && opened[i].extention == extention && JSON.stringify(opened[i].properties) == JSON.stringify(properties)) {
-            //if it find a tab matching the file switch to that tab
-            for(let j = 0; j < fileTabs.children.length; j++) {
-                if (decodeURIComponent(fileTabs.children[j].id) == opened[i].path) {
-                    selectTab(fileTabs.children[j]);
-                }
-            }
-            return;
-        }
-    }
-    //if file extention is a png
-    if (extention == ".png") {
-        //add file to opened list
-        opened.push(file);
-        //create tab html element
-        let tab = document.createElement("blk"); tab.className = "tab"; tab.id = encodeURIComponent(path); tab.setAttribute("selected",false);
-        let text = document.createElement("blk"); text.innerHTML = spaces.two+name+extention+spaces.one; text.setAttribute("onclick","selectTab(this.parentElement)");
-        let button = document.createElement("button"); button.setAttribute("type","button"); button.className  = "closeButton"; button.setAttribute("onclick","closeFile(this.parentElement)");  button.innerHTML = Xicon;
-        text = tab.appendChild(text); button = tab.appendChild(button);
-        //append it to parent
-        tab  = fileTabs.appendChild(tab);
-        //set tab as current active tab
-        selectTab(tab);
-    } else {
-        console.log("currently unsupported \""+extention+"\" file");
-    }
-    updateCanvas();
-}
-
-/**
- * updated the canvas to the state of the currently opened file
- * @date 4/7/2023
- */
+ *  updated the canvas to the state of the currently opened file
+ *  @date 4/7/2023
+ */ 
 function updateCanvas() {
     //if there is a file currently open
     if (activeIndex != -1) {
@@ -179,14 +176,39 @@ function updateCanvas() {
 
 var opened = [];
 var activeIndex = -1;
+//variable to set which sort is being used
+var sortType = "all";
 
+var fileExpParent;
+var searchBar;
 var fileExp;
-var editor;
 var fileTabs;
+
+var editorParent;
+var editor;
 var canvas;
 
 const spaces = {one:"&nbsp;",two:"&ensp;",four:"&emsp;"}
 const TAB=spaces.four+spaces.two;// equivilent to 6 spaces gap
+
+
+/**
+ *  returns a boolean of if the string matches the current search
+ *  @date 4/7/23
+ *  @returns boolean
+ */
+function containsSearch(str) {
+    if (searchBar.value.trim() == "") return true;
+    var contains = true;
+    const splt = searchBar.value.split(",").map(el=>el.trim());
+    for(let i = 0; i < splt.length; i++) {
+        const part = splt[i];
+        if (part == null || part == undefined || part == "") continue;
+        const tempContains = part.startsWith("!")?(!(str.toLowerCase()).includes(part.toLowerCase().substring(1))):(str.toLowerCase()).includes(part.toLowerCase())
+        contains = contains&&tempContains;
+    }
+    return contains;
+}
 
 /**
  * runs all code
@@ -194,38 +216,53 @@ const TAB=spaces.four+spaces.two;// equivilent to 6 spaces gap
  * @async
  */
 async function run() {
-    //get elements of screen
-    fileExp = document.getElementById("fileExp");
-    editor = document.getElementById("editor");
-    fileTabs = document.getElementById("fileTabs");
-    canvas = document.getElementById("canvas");
     //get data from server
-    fetchJsonPromise("/sorts/all.json").then(async(files) => {
+    fetchJsonPromise("/sorts/" + sortType + ".json").then(async(files) => {
         //function to procces a directory
         const Proccess = async([dirname,dir],tabs,path,final)=>{return new Promise(async(resolve)=>{
-            let Html = "<div class='collapsable' collapsed=true id='" + path + (final?("/"+dirname):"")+"'>"
-            Html += "<div onclick='toggleCollapse(this)'>"+TAB.repeat(tabs)+arrowIcon+dirname+"</div>"
+            let Html = "<div class='collapsable' collapsed="+((searchBar.value=="")&&!final)+" id='" + path + (final?("/"+dirname):"")+"'>";
+            Html += "<div onclick='toggleCollapse(this)'>"+TAB.repeat(tabs)+arrowIcon+dirname+"</div>";
             //run fuction recursively to process sub-directories
+            var foundAny = false;
             if (dir.directories != null && dir.directories != undefined && Object.entries(dir.directories).length > 0) {
                 let directoriesEntries = Object.entries(dir.directories);
                 for(let i = 0; i < directoriesEntries.length; i++) {
                     let folder = directoriesEntries[i];
-                    Html+=await Proccess(folder,tabs+1,path+"/"+folder[0],false);
+                    const [add, foundFile] = await Proccess(folder,tabs+1,path+"/"+folder[0],false);
+                    if (foundFile) { Html += add; foundAny = true;}
                 }
             }
             //append all single files
-            if (dir.files != null && dir.files != undefined && dir.files.length > 0) dir.files.forEach((file)=>{
+            if (dir.files != null && dir.files != undefined && dir.files.length > 0) { dir.files.forEach((file)=>{
                 const {name,path,extention,properties} = file;
-                Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+extention+"</div>"
-            });
+                if (containsSearch(name)) {
+                    Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+"</div>";
+                    foundAny = true;
+                }
+            }); }
             //return data
-            resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
+            resolve([Html+(final?("<br>".repeat(3)):"")+"</div>",foundAny]);
         });}
         //set file explorer html to file system generated above
-        fileExp.innerHTML = await Proccess(["textures",files.directories.assets.directories.textures],0,"minecraft/assets",true);
-        //un-collapse first directory
-        toggleCollapse(document.getElementById("minecraft/assets/textures").firstChild)
+        fileExp.innerHTML = "";
+        const [add, foundFile] = await Proccess(["textures",files.directories.assets.directories.textures],0,"minecraft/assets",true);
+        if (foundFile) fileExp.innerHTML = add;
     });
 }
 //run the "run" function when the page is finished loading
-window.onload = async()=>{run();}
+window.onload = async()=>{
+    //get elements of screen
+    fileExpParent = document.getElementById("fileExpParent");
+    searchBar     = document.querySelector("div#searchBar > input[type='text']" );
+    searchBar.setAttribute("oninput","run()");
+    fileExp       = document.getElementById("fileExp"      );
+
+    editorParent  = document.getElementById("editorParent" );
+    fileTabs      = document.getElementById("fileTabs"     );
+    editor        = document.getElementById("editor"       );
+    canvas        = document.getElementById("canvas"       );
+    //disables right click centext menu
+    fileExpParent.addEventListener('contextmenu', event => event.preventDefault());
+    editorParent.addEventListener('contextmenu', event => event.preventDefault());
+    run();
+}

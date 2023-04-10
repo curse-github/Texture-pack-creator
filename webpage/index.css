@@ -21,15 +21,37 @@ html[mode="light"] body {
 }
 
 /*#region fileExp*/
-div#fileExp   {
+div#fileExpParent   {
     width:var(--fileExpW);                                     height:100vh;
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
-
-    overflow-y: scroll;
+    --searchBarH:2em;
+}
+div#fileExp, div#fileExp * {
     overflow-x:clip;
 }
-div#fileExp * {
-    overflow-x:clip;
+div#fileExpParent > div {
+    width:var(--fileExpW);
+    display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
+}
+div#fileExpParent > div#searchBar {
+    height:var(--searchBarH); width:100%;
+    position:relative;
+}
+div#fileExpParent > div#searchBar > input[type="text"] {
+    width:87%;height:100%;
+    position:absolute;top:0;left:1%;
+    border-radius: 0px;
+    border-style:hidden;
+}
+div#fileExpParent > div#searchBar > button {
+    width:7%;height:100%;
+    position:absolute;top:0;left:92%;
+    border-radius: 0px;
+    border-style:hidden;
+}
+div#fileExpParent > div#fileExp {
+    overflow-y: scroll;
+    height:calc(100vh - var(--searchBarH));
 }
 a, a:visited  {
     color:cornflowerblue;
@@ -40,7 +62,7 @@ div.collapsable[collapsed=true] { max-height:1.5em; overflow-y:hidden; }
 div.collapsable[collapsed=false] > div > svg { display:inline-block; transform:rotate(0.5turn); }
 /*#endregion*/
 
-div#toolBarParent {
+div#toolBar {
     width:calc(100vw - var(--fileExpW));                       height:var(--toolBarH);
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 }

@@ -23,12 +23,15 @@
         </style>
     </head>
     <body>
-        <div id="fileExp"></div>
-        <div id="container1">
-            <div id="toolBarParent">
-                <div id="searchBar"></div>
-                <div id="toolBar"></div>
+        <div id="fileExpParent">
+            <div id="searchBar">
+                <input type="text" placeholder="search" spellcheck="false">
+                <button onclick="sortType=((sortType=='all')?'list':'all');run();"></button>
             </div>
+            <div id="fileExp"></div>
+        </div>
+        <div id="container1">
+            <div id="toolBar"></div>
             <div id="container2">
                 <div id="views"></div>
                 <div id="editorParent">
