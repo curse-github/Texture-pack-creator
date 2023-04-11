@@ -19,6 +19,7 @@
                 --borderWidth:4px;
                 --backgroundColor:#111111;
                 --borderColor:#222222;
+                --searchBarH:2em;
             }
         </style>
     </head>
@@ -26,7 +27,7 @@
         <div id="fileExpParent">
             <div id="searchBar">
                 <input type="text" placeholder="search" spellcheck="false">
-                <button onclick="sortType=((sortType=='all')?'list':'all');run();"></button>
+                <button onclick="structureType=((structureType=='regular')?'expanded':'regular');run();"></button>
             </div>
             <div id="fileExp"></div>
         </div>

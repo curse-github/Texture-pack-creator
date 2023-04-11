@@ -177,7 +177,7 @@ function updateCanvas() {
 var opened = [];
 var activeIndex = -1;
 //variable to set which sort is being used
-var sortType = "all";
+var structureType = "regular";
 
 var fileExpParent;
 var searchBar;
@@ -217,36 +217,74 @@ function containsSearch(str) {
  */
 async function run() {
     //get data from server
-    fetchJsonPromise("/sorts/" + sortType + ".json").then(async(files) => {
-        //function to procces a directory
-        const Proccess = async([dirname,dir],tabs,path,final)=>{return new Promise(async(resolve)=>{
-            let Html = "<div class='collapsable' collapsed="+((searchBar.value=="")&&!final)+" id='" + path + (final?("/"+dirname):"")+"'>";
-            Html += "<div onclick='toggleCollapse(this)'>"+TAB.repeat(tabs)+arrowIcon+dirname+"</div>";
-            //run fuction recursively to process sub-directories
-            var foundAny = false;
-            if (dir.directories != null && dir.directories != undefined && Object.entries(dir.directories).length > 0) {
-                let directoriesEntries = Object.entries(dir.directories);
-                for(let i = 0; i < directoriesEntries.length; i++) {
-                    let folder = directoriesEntries[i];
-                    const [add, foundFile] = await Proccess(folder,tabs+1,path+"/"+folder[0],false);
-                    if (foundFile) { Html += add; foundAny = true;}
-                }
-            }
-            //append all single files
-            if (dir.files != null && dir.files != undefined && dir.files.length > 0) { dir.files.forEach((file)=>{
-                const {name,path,extention,properties} = file;
-                if (containsSearch(name)) {
-                    Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+"</div>";
-                    foundAny = true;
-                }
-            }); }
-            //return data
-            resolve([Html+(final?("<br>".repeat(3)):"")+"</div>",foundAny]);
-        });}
-        //set file explorer html to file system generated above
+    fetchJsonPromise("/sorts/all.json").then(async(files) => {
         fileExp.innerHTML = "";
-        const [add, foundFile] = await Proccess(["textures",files.directories.assets.directories.textures],0,"minecraft/assets",true);
-        if (foundFile) fileExp.innerHTML = add;
+        const swtch = ({
+            "regular":async([dirname,dir],tabs,fullpath,final)=>{return new Promise(async(resolve)=>{
+                let Html = "<div class='collapsable' collapsed="+((searchBar.value=="")&&!final)+" id='"+fullpath+"'>";
+                Html += "<div onclick='toggleCollapse(this)'>"+TAB.repeat(tabs)+arrowIcon+dirname+"</div>";
+                //run fuction recursively to process sub-directories
+                var foundAny = false;
+                if (dir != null) {
+                    if (dir.directories != null && dir.directories != undefined && Object.entries(dir.directories).length > 0) {
+                        let directoriesEntries = Object.entries(dir.directories);
+                        for(let i = 0; i < directoriesEntries.length; i++) {
+                            let folder = directoriesEntries[i];
+                            const [add, foundFile] = await swtch[structureType](folder,tabs+1,fullpath+"/"+folder[0],false);
+                            //only add folder to html if it has a file that matched the search parameters
+                            if (foundFile) { Html += add; foundAny = true;}
+                        }
+                    }
+                    //append all single files
+                    if (dir.files != null && dir.files != undefined && dir.files.length > 0) { dir.files.forEach((file)=>{
+                        const {name,path,extention,properties} = file;
+                        if (containsSearch(name)) {
+                            Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+"</div>";
+                            foundAny = true;
+                        }
+                    }); }
+                }
+                //return data
+                //if its the first folder given dont return extra data
+                if (final) resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
+                else resolve([Html+(final?("<br>".repeat(3)):"")+"</div>",foundAny]);
+            });},
+            "expanded":async([dirname,dir],tabs,fullpath,final,parent)=>{return new Promise(async(resolve)=>{
+                parent = final?fullpath:parent;
+                let Html = "";
+                //if it's the first directory given create a folder header
+                if (final) {
+                    Html =  "<div class='collapsable' collapsed="+((searchBar.value=="")&&!final)+" id='"+fullpath+"'>";
+                    Html += "<div onclick='toggleCollapse(this)'>"+arrowIcon+dirname+"</div>";
+                }
+                if (dir != null) {
+                    if (dir.directories != null && Object.entries(dir.directories).length > 0) {
+                        const dirEntries = Object.entries(dir.directories);
+                        for(let i = 0; i < dirEntries.length; i++) {
+                            const entry = dirEntries[i];
+                            Html += await swtch[structureType](entry,0,fullpath+"/"+entry[0],false,parent);
+                        }
+                    }
+                    if (dir.files != null && dir.files.length > 0) {
+                        for(let i = 0; i < dir.files.length; i++) {
+                            const file = dir.files[i];
+                            const {name,path,extention,properties} = file;
+                            if (containsSearch(name)) {
+                                Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+path.replace(parent,"")+"</div>";
+                                foundAny = true;
+                            }
+                        }
+                    }
+                }
+                if (final) {
+                    resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
+                } else {
+                    resolve(Html);
+                }
+            });}
+        })
+        const out = (await swtch[structureType](["textures",files.directories.assets.directories.textures],0,"/minecraft/assets/textures",true));
+        fileExp.innerHTML = out;
     });
 }
 //run the "run" function when the page is finished loading
