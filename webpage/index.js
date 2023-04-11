@@ -27,6 +27,12 @@ const Xicon = Icon.replace("PATH",Xpath);
 //svg icon for arrow to collapse folder
 const arrowPath = "M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z";
 const arrowIcon = Icon.replace("PATH",arrowPath);
+//svg icon for arrow to collapse file structuere
+const collapsePath = "M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8Zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0Zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793Z";
+const collapseIcon = Icon.replace("PATH",collapsePath).replace(" style=\"width:1em;height:1em;\"","");
+//svg icon for arrow to expand file structuere
+const expandPath = "M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8ZM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2ZM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10Z";
+const expandIcon = Icon.replace("PATH",expandPath).replace(" style=\"width:1em;height:1em;\"","");
 
 /**
  *  It will create a tab for the correspoding file passed in.
@@ -200,7 +206,8 @@ const TAB=spaces.four+spaces.two;// equivilent to 6 spaces gap
 function containsSearch(str) {
     if (searchBar.value.trim() == "") return true;
     var contains = true;
-    const splt = searchBar.value.split(",").map(el=>el.trim());
+    //split apart individual parameters of search
+    const splt = searchBar.value.split(" ").map(el=>el.trim());
     for(let i = 0; i < splt.length; i++) {
         const part = splt[i];
         if (part == null || part == undefined || part == "") continue;
@@ -219,18 +226,19 @@ async function run() {
     //get data from server
     fetchJsonPromise("/sorts/all.json").then(async(files) => {
         fileExp.innerHTML = "";
-        const swtch = ({
+        const Proccess = ({
             "regular":async([dirname,dir],tabs,fullpath,final)=>{return new Promise(async(resolve)=>{
+                final = (final||(final==null));
                 let Html = "<div class='collapsable' collapsed="+((searchBar.value=="")&&!final)+" id='"+fullpath+"'>";
                 Html += "<div onclick='toggleCollapse(this)'>"+TAB.repeat(tabs)+arrowIcon+dirname+"</div>";
-                //run fuction recursively to process sub-directories
                 var foundAny = false;
                 if (dir != null) {
                     if (dir.directories != null && dir.directories != undefined && Object.entries(dir.directories).length > 0) {
+                        //run fuction recursively to process sub-directories
                         let directoriesEntries = Object.entries(dir.directories);
                         for(let i = 0; i < directoriesEntries.length; i++) {
                             let folder = directoriesEntries[i];
-                            const [add, foundFile] = await swtch[structureType](folder,tabs+1,fullpath+"/"+folder[0],false);
+                            const [add, foundFile] = await Proccess[structureType](folder,tabs+1,fullpath+"/"+folder[0],false);
                             //only add folder to html if it has a file that matched the search parameters
                             if (foundFile) { Html += add; foundAny = true;}
                         }
@@ -238,18 +246,19 @@ async function run() {
                     //append all single files
                     if (dir.files != null && dir.files != undefined && dir.files.length > 0) { dir.files.forEach((file)=>{
                         const {name,path,extention,properties} = file;
+                        //check that filename matches search parameters
                         if (containsSearch(name)) {
                             Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+"</div>";
                             foundAny = true;
                         }
                     }); }
                 }
-                //return data
                 //if its the first folder given dont return extra data
                 if (final) resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
                 else resolve([Html+(final?("<br>".repeat(3)):"")+"</div>",foundAny]);
             });},
             "expanded":async([dirname,dir],tabs,fullpath,final,parent)=>{return new Promise(async(resolve)=>{
+                final = (final||(final==null));
                 parent = final?fullpath:parent;
                 let Html = "";
                 //if it's the first directory given create a folder header
@@ -259,23 +268,27 @@ async function run() {
                 }
                 if (dir != null) {
                     if (dir.directories != null && Object.entries(dir.directories).length > 0) {
+                        //process nested directories
                         const dirEntries = Object.entries(dir.directories);
                         for(let i = 0; i < dirEntries.length; i++) {
                             const entry = dirEntries[i];
-                            Html += await swtch[structureType](entry,0,fullpath+"/"+entry[0],false,parent);
+                            //call function recursively
+                            Html += await Proccess[structureType](entry,0,fullpath+"/"+entry[0],false,parent);
                         }
                     }
                     if (dir.files != null && dir.files.length > 0) {
+                        //add all files from folder to html
                         for(let i = 0; i < dir.files.length; i++) {
                             const file = dir.files[i];
                             const {name,path,extention,properties} = file;
-                            if (containsSearch(name)) {
+                            //check that filename matches search parameters
+                            if (containsSearch(path.replace(parent,""))) {
                                 Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+path.replace(parent,"")+"</div>";
-                                foundAny = true;
                             }
                         }
                     }
                 }
+                //if its the final add end div tag to close parent folder
                 if (final) {
                     resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
                 } else {
@@ -283,8 +296,14 @@ async function run() {
                 }
             });}
         })
-        const out = (await swtch[structureType](["textures",files.directories.assets.directories.textures],0,"/minecraft/assets/textures",true));
+        //run Proccess function for coresponding structure type
+        //pass in directory to process, number of tabs, and full path to directory
+        const out = (await Proccess[structureType](["textures",files.directories.assets.directories.textures],0,"/minecraft/assets/textures"));
+        //set html of file explorer
         fileExp.innerHTML = out;
+        //set icon on expand button
+        if (structureType=="expanded") document.querySelector("div#fileExpParent > div#searchBar > button").innerHTML = collapseIcon;
+        else                           document.querySelector("div#fileExpParent > div#searchBar > button").innerHTML = expandIcon;
     });
 }
 //run the "run" function when the page is finished loading

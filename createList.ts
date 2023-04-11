@@ -80,9 +80,17 @@ async function allSort(dirname:string,name:string,final:boolean) {
 }
 async function run() {
     console.clear();
-    console.log("start");
+    const startTime = (new Date().getTime());
+    console.log("start: "+startTime+" ms");
+
     json = (await allSort(__dirname+"/minecraft","/minecraft",true));
-    console.log(json.directories!.assets.directories!.textures);
     fs.promises.writeFile(__dirname+"/sorts/all.json", JSON.stringify(json,null,2)).catch(err=>console.log("err2: " + err));
+
+    const endTime = (new Date().getTime());
+    console.log("end  : "+endTime+" ms");
+    const totalTime = endTime-startTime;
+    console.log("");
+    console.log("total: "+totalTime.toString().padEnd(7," ")+"milli-seconds");
+    console.log("or     "+(totalTime/1000).toString().padEnd(7," ")+"seconds");
 }
 run();
