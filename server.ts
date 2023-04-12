@@ -7,7 +7,9 @@ Object.entries({
     "/index.html"      :(req:any,res:any,send:any)=>send("/webpage/index.html" ),
     "/index.css"       :(req:any,res:any,send:any)=>send("/webpage/index.css"  ),
     "/index.js"        :(req:any,res:any,send:any)=>send("/webpage/index.js"   ),
-    "/MonocraftBetterBrackets.ttf" :(req:any,res:any,send:any)=>send(          )
+    "/MonocraftBetterBrackets.ttf" :(req:any,res:any,send:any)=>send(          ),
+    "/jszip.js"        :(req:any,res:any,send:any)=>send("/js/jszip.js"        ),
+    "/FileSaver.js"    :(req:any,res:any,send:any)=>send("/js/FileSaver.js"    ),
 }).forEach((entry) => {
     app.get(entry[0], (req:any, res:any) => {
         entry[1](req, res, ((page:string) => { res.sendFile(__dirname + (page != null ? page : entry[0]), "utf8"); }));

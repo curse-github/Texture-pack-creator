@@ -5,6 +5,26 @@ async function fetchJsonPromise(url,input) {
         .then((json)=>{resolve(json,input);});
     });
 }
+async function fetchPromise(url,input) {
+    return new Promise((resolve) => {
+        fetch(url,{})
+        .then((response)=>response.text())
+        .then((text)=>resolve(text,input));
+    });
+}
+function toDataURL(url) {return new Promise((resolve)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            resolve(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+});}
 
 /**
  *  collapses or un-collapses folder
@@ -34,6 +54,88 @@ const collapseIcon = Icon.replace("PATH",collapsePath).replace(" style=\"width:1
 const expandPath = "M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8ZM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2ZM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10Z";
 const expandIcon = Icon.replace("PATH",expandPath).replace(" style=\"width:1em;height:1em;\"","");
 
+
+/**
+ * gets the dataUrl base64 data from an file
+ * @date 4/12/2023
+ *
+ * @param file file to get base64 data from
+ */
+function getImageData(file) {
+    const {path,properties} = file;
+    var canv = document.createElement("canvas");
+    //create canvas with size of image
+    canv.width  = properties.width ;
+    canv.height = properties.height;
+    ctx = canv.getContext('2d');
+    ctx.drawImage(properties.img,0,0,properties.width,properties.height);
+    //set all modified pixels
+    const modificationFile = modified[path];
+    if (modificationFile != null && modificationFile != undefined) {
+        const fileData = modificationFile.pixels;
+        const pixelSize = Math.ceil(canv.width/properties.width);
+        if (fileData != null && fileData != undefined && fileData.length > 0) {
+            for (let x = 0; x < fileData.length; x++) {
+                const byY = fileData[x];
+                if (byY == null || byY == undefined || byY.length <= 0) continue;
+                for (let y = 0; y < byY.length; y++) {
+                    const color = byY[y];
+                    if (color == null || color == undefined) continue;
+                    //draw pixel to canvas
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x/properties.width*canv.width,y/properties.height*canv.height,pixelSize,pixelSize);
+                }
+            }
+        }
+    };
+    //convert canvas to base64 dataUrl
+    return canv.toDataURL()
+}
+/**
+ * Downloads the entire pack as a .zip
+ * @date 4/11/2023
+ *
+ * @param packname name for the file being downloaded
+ */
+async function downloadPack(packname) {
+    try {
+        packname = packname||"pack";
+        var zip = new JSZip();
+        var folders = {parent:zip};
+        modifiedEntries = Object.entries(modified);
+        for (let i = 0; i < modifiedEntries.length; i++) {
+            const [path,{pixels,file}] = modifiedEntries[i];
+            //if file is a png
+            if(file.extention == ".png"){
+                var split = path.split("/");
+                ongoingPath = "parent";
+                const filename = split.pop();//get rid of filename from end
+                split.shift();split.shift();//get rid of '' and 'minecraft' from front
+                //add all folders needed
+                for (let j = 0; j < split.length; j++) {
+                    const folder = split[j];
+                    if (folders[ongoingPath+"/"+folder] == null) {
+                        folders[ongoingPath+"/"+folder] = folders[ongoingPath].folder(folder);
+                    }
+                    ongoingPath+="/"+folder;
+                }
+                //add file
+                folders["parent/"+split.join("/")].file(filename, getImageData(file).replace("data:image/png;base64,",""), {base64: true});
+            }
+        }
+        //add "pack.png" and "pack.mcmeta" files
+        const packpng = await toDataURL("/minecraft/pack.png");
+        const mcmeta = await fetchPromise("/minecraft/pack.mcmeta");
+        zip.file("pack.png", packpng.replace("data:image/png;base64,",""), {base64: true});
+        zip.file("pack.mcmeta", mcmeta);
+        //generate zip and download it
+        const zipContent = await zip.generateAsync({type:"blob"});
+        saveAs(zipContent, packname+".zip");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 /**
  *  It will create a tab for the correspoding file passed in.
  *  @date 4/7/2023
@@ -45,7 +147,7 @@ function openFile(file) {
     const {name,path,extention,properties} = file;
     //checks that the file is not already open
     for (let i = 0; i < opened.length; i++) {
-        if (opened[i].name == name && opened[i].path == path && opened[i].extention == extention && JSON.stringify(opened[i].properties) == JSON.stringify(properties)) {
+        if (opened[i].name == name && opened[i].path == path && opened[i].extention == extention && opened[i].properties.width == properties.width && opened[i].properties.height == properties.height) {
             //if it find a tab matching the file switch to that tab
             for(let j = 0; j < fileTabs.children.length; j++) {
                 if (decodeURIComponent(fileTabs.children[j].id) == opened[i].path) {
@@ -57,6 +159,10 @@ function openFile(file) {
     }
     //if file extention is a png
     if (extention == ".png") {
+        //create img element to be used by canvas
+        properties.img = new Image();
+        properties.img.src = path;
+        properties.imgLoaded = false;
         //add file to opened list
         opened.push(file);
         //create tab html element
@@ -71,6 +177,7 @@ function openFile(file) {
     } else {
         console.log("currently unsupported \""+extention+"\" file");
     }
+    mouse=[-2,-2,0];
     updateCanvas();
 }
 /**
@@ -94,6 +201,7 @@ function selectTab(tab) {
             activeIndex = i; break;
         }
     }
+    mouse=[-2,-2,0];
     updateCanvas();
 }
 /**
@@ -152,6 +260,7 @@ function closeTab(tab) {
     }
     //delete tab and refresh canvas
     tab.parentElement.removeChild(tab);
+    mouse=[-2,-2,0];
     updateCanvas();
 }
 
@@ -159,10 +268,11 @@ function closeTab(tab) {
  *  updated the canvas to the state of the currently opened file
  *  @date 4/7/2023
  */ 
-function updateCanvas() {
+async function updateCanvas() {
     //if there is a file currently open
     if (activeIndex != -1) {
-        const {name,path,extention,properties} = opened[activeIndex];
+        const file = opened[activeIndex];
+        const {name,path,extention,properties} = file;
         let height;
         let width;
         //set the smaller side of texture to 256 and scale the other side to correct aspect ratio
@@ -174,15 +284,96 @@ function updateCanvas() {
             width = Math.min(256,editor.clientHeight/properties.height*properties.width-7.5);
             height = width*properties.height/properties.width;
         }
-        //set image src of canvas to file currently opened
-        canvas.setAttribute("src",path);
-        canvas.setAttribute("style","height:"+height+"px;width:"+width+"px");
-    } else { canvas.setAttribute("src",""); canvas.setAttribute("style","height:0px;width:0px");}
+        if (!properties.imgLoaded) {
+            await (new Promise((resolve)=>{properties.img.onload=(()=>{resolve()});}));
+            properties.imgLoaded=true;
+        }
+        canvas.width  = width;
+        canvas.height = height;
+        //disable image blur
+        canvasContext.imageSmoothingEnabled = false;
+        canvasContext.strokeStyle = "#FFFFFF";
+        //clear canvas
+        canvasContext.clearRect(0, 0, width, height);
+        //draw texture to canvas
+        canvasContext.drawImage(properties.img,0,0,width,height);
+        const pixelSize = Math.ceil(width/properties.width);
+
+        //error checking
+        const modificationFile = modified[path];
+        if (modificationFile != null && modificationFile != undefined) {
+            const fileData = modificationFile.pixels;
+            if (fileData != null && fileData != undefined && fileData.length > 0) {
+                for (let x = 0; x < fileData.length; x++) {
+                    const byY = fileData[x];
+                    if (byY == null || byY == undefined || byY.length <= 0) continue;
+                    for (let y = 0; y < byY.length; y++) {
+                        const color = byY[y];
+                        if (color == null || color == undefined) continue;
+                        //draw pixels from modified object
+                        canvasContext.fillStyle = color;
+                        canvasContext.fillRect(Math.floor(x/properties.width*width),Math.floor(y/properties.height*height),pixelSize,pixelSize);
+                    }
+                }
+            }
+        };
+        const pixelX = Math.floor((mouse[0]+0)/properties.width*width);
+        const pixelY = Math.floor((mouse[1]+0)/properties.height*height);
+        canvasContext.beginPath();
+        canvasContext.rect(pixelX,pixelY,pixelSize,pixelSize);
+        canvasContext.stroke();
+    } else {canvasContext.clearRect(0, 0, canvas.width, canvas.height);}
 }
+addEventListener("resize", updateCanvas);
+function onMouseUpdate(e) {
+    if (activeIndex == -1) return;
+    const file = opened[activeIndex];
+    const {path,properties} = file;
+
+    mouseX = parseInt(e.clientX - canvas.offsetLeft);
+    mouseY = parseInt(e.clientY - canvas.offsetTop);
+    mouse = [Math.floor(mouseX/canvas.width*properties.width),Math.floor(mouseY/canvas.height*properties.height),((e.buttons>0)?1:0)];
+    //if mouse is down
+    if (mouse[2]) {
+        modified[path] = modified[path]||{pixels:[], file:file};
+        modified[path].pixels[mouse[0]] = modified[path].pixels[mouse[0]]||[];
+        const val = penColor.value;
+        if (curTool=="pencil") {
+            //draw pixel at mouse pos
+            modified[path].pixels[mouse[0]][mouse[1]] = val;
+        } else if (curTool=="eraser") {
+            modified[path].pixels[mouse[0]][mouse[1]] = null;
+            //#region error check
+            //removes non modified textures from modified object
+            var allnull=true;
+            for (let i = 0; i < modified[path].pixels[mouse[0]].length; i++) { if (modified[path].pixels[mouse[0]][i] != null) { allnull=false; } }
+            if (allnull) {
+                delete modified[path].pixels[mouse[0]];
+                var allnull=true;
+                for (let i = 0; i < modified[path].pixels.length; i++) { if (modified[path].pixels[i] != null) { allnull=false; } }
+                if (allnull) {
+                    delete modified[path];
+                }
+            }
+            //#endregion
+        }
+    }
+    updateCanvas();
+}
+function setTool(tool) {
+    if (tool=="pencil" || tool=="eraser") {
+        const children = document.getElementById("tools").children;
+        for (let i = 0; i < children.length; i++) {
+            children[i].setAttribute("active",(children[i].id==tool));
+        }
+    } else { return; }
+    curTool=tool;
+}
+
 
 var opened = [];
 var activeIndex = -1;
-//variable to set which sort is being used
+var modified = {};
 var structureType = "regular";
 
 var fileExpParent;
@@ -193,10 +384,15 @@ var fileTabs;
 var editorParent;
 var editor;
 var canvas;
+var canvasContext;
+var img;
+mouse=[-2,-2,0];
+
+var penColor;
+var curTool = "pencil";
 
 const spaces = {one:"&nbsp;",two:"&ensp;",four:"&emsp;"}
 const TAB=spaces.four+spaces.two;// equivilent to 6 spaces gap
-
 
 /**
  *  returns a boolean of if the string matches the current search
@@ -298,7 +494,7 @@ async function run() {
         })
         //run Proccess function for coresponding structure type
         //pass in directory to process, number of tabs, and full path to directory
-        const out = (await Proccess[structureType](["textures",files.directories.assets.directories.textures],0,"/minecraft/assets/textures"));
+        const out = (await Proccess[structureType](["textures",files.directories.assets.directories.minecraft.directories.textures],0,"/minecraft/assets/minecraft/textures"));
         //set html of file explorer
         fileExp.innerHTML = out;
         //set icon on expand button
@@ -318,6 +514,14 @@ window.onload = async()=>{
     fileTabs      = document.getElementById("fileTabs"     );
     editor        = document.getElementById("editor"       );
     canvas        = document.getElementById("canvas"       );
+    canvasContext = canvas.getContext('2d');
+    canvas.onmousemove = onMouseUpdate;
+    canvas.onmousedown = onMouseUpdate;
+    canvas.onmouseup = onMouseUpdate;
+    canvas.onmouseleave = (e)=>{onMouseUpdate({clientX:-1,clientY:-1,buttons:0});}
+    
+    penColor      = document.getElementById("penColor"     );
+
     //disables right click centext menu
     fileExpParent.addEventListener('contextmenu', event => event.preventDefault());
     editorParent.addEventListener('contextmenu', event => event.preventDefault());

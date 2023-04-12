@@ -5,6 +5,9 @@
 img {
     image-rendering: pixelated;
 }
+button:focus-visible, button:focus {
+    outline-width: 0px !important;
+}
 body {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
@@ -19,8 +22,19 @@ html[mode="light"] body {
     background-color:#dddddd;
     color:black;
 }
+body           {
+    width:100vw;                         height:100vh;                         display:flex; flex-direction: row;    margin:0px;
+}
+div#container1 {
+    width:calc(100vw - var(--fileExpW)); height:100vh;                         display:flex; flex-direction: column; margin:0px;
+}
+div#container2 {
+    width:calc(100vw - var(--fileExpW)); height:calc(100vh - var(--toolBarH)); display:flex; flex-direction: row;    margin:0px;
+}
+
 
 /*#region fileExp*/
+
 div#fileExpParent   {
     width:var(--fileExpW);                                     height:100vh;
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
@@ -41,6 +55,8 @@ div#fileExpParent > div#searchBar > input[type="text"] {
     position:absolute;top:0;left:1%;
     border-radius: 3px;
     border-style:groove;
+    background-color: var(--borderColor);
+    color:white;
 }
 div#fileExpParent > div#searchBar > button {
     width:7%;height:100%;
@@ -50,10 +66,13 @@ div#fileExpParent > div#searchBar > button {
     border-style:groove;
     padding:0px;
     display:flex;align-items: center; justify-content: center;
+    background-color: var(--borderColor);
+    color:white;
 }
 div#fileExpParent > div#searchBar > button > svg {
     height:50%;aspect-ratio: 1;
     transform: translate(1px,0px);
+    transform:rotateX('90');
 }
 div#fileExpParent > div#fileExp {
     overflow-y: scroll;
@@ -66,17 +85,16 @@ a, a:visited  {
 div.collapsable[collapsed=false] { max-height:100%; }
 div.collapsable[collapsed=true] { max-height:1.5em; overflow-y:hidden; }
 div.collapsable[collapsed=false] > div > svg { display:inline-block; transform:rotate(0.5turn); }
+
 /*#endregion*/
 
-div#toolBar {
-    width:calc(100vw - var(--fileExpW));                       height:var(--toolBarH);
-    display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
-}
 div#views   {
     width:var(--viewsW);                                       height:calc(100vh - var(--toolBarH));
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
 }
+
 /*#region editor*/
+
 div#editorParent {
     width:calc(100vw - calc(var(--viewsW) + var(--fileExpW))); height:calc(100vh - var(--toolBarH));
     display:flex; flex-direction:column; border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
@@ -94,14 +112,48 @@ div#fileTabs > blk.tab[selected="true"], div#fileTabs > blk.tab[selected="true"]
 div#fileTabs > blk.tab > button.closeButton        { background-color:rgba(255,255,255,0); border:none; }
 div#fileTabs > blk.tab > button.closeButton:active { border:none; }
 div#editor { display:flex; flex: 1; justify-content: center; align-items: center; }
+
 /*#endregion*/
 
-body           {
-    width:100vw;                         height:100vh;                         display:flex; flex-direction: row;    margin:0px;
+/*#region toolbar*/
+
+div#toolBar {
+    width:calc(100vw - var(--fileExpW));                       height:var(--toolBarH);
+    display:flex; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
+    align-items: center;
 }
-div#container1 {
-    width:calc(100vw - var(--fileExpW)); height:100vh;                         display:flex; flex-direction: column; margin:0px;
+div#toolBar > input[type="color"] {
+    margin-left:2em;
+    height:50%;
+    aspect-ratio: 1;
+    background-color: var(--borderColor);
 }
-div#container2 {
-    width:calc(100vw - var(--fileExpW)); height:calc(100vh - var(--toolBarH)); display:flex; flex-direction: row;    margin:0px;
+div#toolBar > button#download {
+    margin-left:2em;
+    height:50%;
+    aspect-ratio: 1;
+    background-color: var(--borderColor);
+    color:white;
 }
+div#toolBar > button#download > svg {
+    height:50%;aspect-ratio: 1;
+}
+
+div#toolBar > div#tools {
+    margin-left:2em;
+}
+div#toolBar > div#tools > button {
+    height:50%;aspect-ratio: 1;
+    background-color: var(--borderColor);
+    color:white;
+    border-color:var(--borderColor);
+}
+div#toolBar > div#tools > button > svg {
+    transform: translate(0px, -2px);
+}
+div#toolBar > div#tools > button[active="true"] {
+    background-color: #101010;
+    color:white;
+}
+
+/*#endregion*/
