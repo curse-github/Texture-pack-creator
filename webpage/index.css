@@ -131,7 +131,7 @@ div#toolBar > button#download {
     margin-left:1em; margin-right:1em;
 }
 div#toolBar > div#tools {
-    height:100%; aspect-ratio: calc(1);
+    height:100%; aspect-ratio: calc(8 / 6);
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
     display:flex; flex-direction: row; justify-content: space-between; align-items: center;
 }

@@ -356,14 +356,15 @@ function onMouseUpdate(e) {
                     const bA = toolOptions.brush.penTransparency;
                     if (pixelsData[x][y] != null && pixelsData[x][y] != undefined) {
                         //get current pixel
-                        const pixel = pixelsData[x][y];
+                        var pixel = pixelsData[x][y];
                         const [r,g,b] = pixel[0];
                         const a = pixel[1];
                         //overlay with different transparencies
-                        pixelsData[x][y] = [[r*a*(1-bA)+bR*bA,g*a*(1-bA)+bG*bA,b*a*(1-bA)+bB*bA],a*(1-bA)+bA];
+                        pixel = [[r*a*(1-bA)+bR*bA,g*a*(1-bA)+bG*bA,b*a*(1-bA)+bB*bA],a*(1-bA)+bA];
                         //to the closest out of 255
-                        pixelsData[x][y][0].map(el=>Math.round(el*255)/255);
-                        pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*255)/255;
+                        pixel[0].map(el=>Math.round(el*255)/255);
+                        pixel[1] = Math.round(pixelsData[x][y][1]*255)/255;
+                        pixelsData[x][y] = pixel;
                         continue;
                     }
                     pixelsData[x][y] = [[bR,bG,bB],bA];
@@ -374,7 +375,7 @@ function onMouseUpdate(e) {
             const pixelsData = properties.imgData;
             const subtract = Math.floor(toolOptions.eraser.size/2-0.49);
             const add = toolOptions.eraser.size - subtract;
-            const hardness = toolOptions.eraser.eraserHardness;
+            const hardness = 1-toolOptions.eraser.eraserHardness;
             properties.modified = true;
             for (let x = mouse[0]-subtract; x < mouse[0]+add; x++) {
                 for (let y = mouse[1]-subtract; y < mouse[1]+add; y++) {
@@ -383,7 +384,7 @@ function onMouseUpdate(e) {
                     currentStroke.push([x,y]);
 
                     //to the closest out of 255
-                    if (pixelsData[x]!=null && pixelsData[x][y]!=null) { pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*(1-hardness)*255)/255; }
+                    if (pixelsData[x]!=null && pixelsData[x][y]!=null) { pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*hardness*255)/255; }
                 }
             }
             properties.imgData = pixelsData;
@@ -426,6 +427,14 @@ function setOption(tool, option, value) {
         value = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
     }
     toolOptions[tool][option] = value;
+}
+async function clearActiveImage() {
+    if (activeIndex == -1) return;
+    const file = changedData[opened[activeIndex]];
+    const properties = file.properties;
+    properties.modified = false;
+    properties.imgData = await getImageData(file);
+    updateCanvas();
 }
 
 /**
