@@ -30308,7 +30308,8 @@
                   "properties": {
                     "width": 16,
                     "height": 16
-                  }
+                  },
+                  "tags":["flower"]
                 },
                 {
                   "name": "amethyst_block.png",
@@ -30434,7 +30435,8 @@
                   "properties": {
                     "width": 16,
                     "height": 16
-                  }
+                  },
+                  "tags":["flower"]
                 },
                 {
                   "name": "bamboo_block_top.png",
@@ -31115,7 +31117,8 @@
                   "properties": {
                     "width": 16,
                     "height": 16
-                  }
+                  },
+                  "tags":["flower"]
                 },
                 {
                   "name": "blue_shulker_box.png",
@@ -32522,7 +32525,8 @@
                   "properties": {
                     "width": 16,
                     "height": 16
-                  }
+                  },
+                  "tags":["flower"]
                 },
                 {
                   "name": "dark_oak_door_bottom.png",
@@ -35834,7 +35838,8 @@
                   "properties": {
                     "width": 16,
                     "height": 16
-                  }
+                  },
+                  "tags":["flower"]
                 },
                 {
                   "name": "potatoes_stage0.png",
