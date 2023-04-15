@@ -1,10 +1,10 @@
 import fs from "fs";
 const imageSize = require('image-size');
 
-var json:data = {};
+
 interface data {
     directories?:{[key:string]:data};
-    files?:string[][];
+    files?:{[key:string]:(string|{[key:string]:(string|string[])})}[];
 }
 
 async function imageSizePromise(path:string) {
@@ -83,7 +83,41 @@ async function run() {
     const startTime = (new Date().getTime());
     console.log("start: "+startTime+" ms");
 
-    json = (await allSort(__dirname+"/minecraft","/minecraft",true));
+    //add all files to object
+    var json:data = (await allSort(__dirname+"/minecraft","/minecraft",true));
+
+    const tags:{[key:string]:{[key:string]:string[]}} = JSON.parse(""+(await fs.promises.readFile(__dirname+"/data/tags.json")));
+    const blocks:{[key:string]:string[]} = JSON.parse(""+(await fs.promises.readFile(__dirname+"/data/blocks.json")));
+    
+    //add tags
+    var tmp = json.directories!.assets.directories!.minecraft.directories!.textures.directories!;
+    //item tags
+    var itemFiles:{[key:string]:(string|{[key:string]:(string|string[])})}[] = tmp.item.files!
+    for (let i = 0; i < itemFiles.length; i++) {
+        const file = itemFiles[i];
+        if (!((file.name as string).endsWith(".png"))) continue;
+        const name = (file.name as string).split(".")[0];
+        const itemTags:string[] = tags.items[name];
+        if (itemTags) (itemFiles[i].properties as {[key:string]:string[]}).tags = itemTags;
+    }
+    tmp.item.files = itemFiles;
+    //block tags
+    var blockFiles:{[key:string]:(string|{[key:string]:(string|string[])})}[] = tmp.block.files!
+    for (let i = 0; i < blockFiles.length; i++) {
+        const file = blockFiles[i];
+        if (!((file.name as string).endsWith(".png"))) continue;
+        const name = (file.name as string).split(".")[0];
+        if (blocks[name]) {
+            (blockFiles[i].properties as {[key:string]:string[]}).blocks = blocks[name];
+            var blockTags:string[] = [];
+            for (let j = 0; j < blocks[name].length; j++) {
+                if(tags.blocks[blocks[name][j]]) tags.blocks[blocks[name][j]].forEach(el=>{if (!blockTags.includes(el)) { blockTags.push(el); }});
+            }
+            if (blockTags.length>0) (blockFiles[i].properties as {[key:string]:(string|string[])}).tags = blockTags;
+        }// else {console.log(name)}
+    }
+    tmp.block.files = blockFiles;
+    json.directories!.assets.directories!.minecraft.directories!.textures.directories! = tmp;
     fs.promises.writeFile(__dirname+"/sorts/all.json", JSON.stringify(json,null,2)).catch(err=>console.log("err2: " + err));
 
     const endTime = (new Date().getTime());

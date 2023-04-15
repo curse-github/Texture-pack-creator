@@ -442,15 +442,24 @@ async function clearActiveImage() {
  *  @date 4/7/23
  *  @returns boolean
  */
-function containsSearch(str) {
+function matchesSearch(str,file) {
     if (searchBar.value.trim() == "") return true;
+    str = str.toLowerCase();
     var contains = true;
     //split apart individual parameters of search
-    const splt = searchBar.value.split(" ").map(el=>el.trim());
+    var splt = searchBar.value.split(" ")
+    splt = splt.filter(part=>(part!=null&&part!=""))
+    splt = splt.map(part=>part.trim().toLowerCase());
     for(let i = 0; i < splt.length; i++) {
         const part = splt[i];
-        if (part == null || part == undefined || part == "") continue;
-        const tempContains = part.startsWith("!")?(!(str.toLowerCase()).includes(part.toLowerCase().substring(1))):(str.toLowerCase()).includes(part.toLowerCase())
+        var tempContains = false;
+        if (part.startsWith("!")) {
+            tempContains = !str.includes(part.replace("!",""))
+        } else if (part.startsWith("#")) {
+            tempContains = file.properties.tags!=null?(file.properties.tags.includes(part.replace("#",""))):(false);
+        } else {
+            tempContains = str.includes(part)
+        }
         contains = contains&&tempContains;
     }
     return contains;
@@ -486,7 +495,7 @@ async function run() {
                     if (dir.files != null && dir.files != undefined && dir.files.length > 0) { dir.files.forEach((file)=>{
                         const {name,path,extention,properties} = file;
                         //check that filename matches search parameters
-                        if (containsSearch(name)) {
+                        if (matchesSearch(name,file)) {
                             Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+name+"</div>";
                             foundAny = true;
                         }
@@ -521,7 +530,7 @@ async function run() {
                             const file = dir.files[i];
                             const {name,path,extention,properties} = file;
                             //check that filename matches search parameters
-                            if (containsSearch(path.replace(parent,""))) {
+                            if (matchesSearch(path.replace(parent,""),file)) {
                                 Html+="<div onclick=\"openFile('"+encodeURIComponent(JSON.stringify(file))+"','"+encodeURIComponent(path)+"')\">"+TAB.repeat(tabs+1)+path.replace(parent,"")+"</div>";
                             }
                         }

@@ -1,0 +1,6108 @@
+{
+  "blocks": {
+    "acacia_log": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "acacia_wood": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_acacia_log": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_acacia_wood": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "oak_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "spruce_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "birch_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "acacia_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "jungle_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "dark_oak_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "crimson_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "warped_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "mangrove_sign": [
+      "all_signs",
+      "signs",
+      "standing_signs",
+      "wall_post_override",
+      "axe"
+    ],
+    "oak_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "spruce_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "birch_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "acacia_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "jungle_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "dark_oak_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "crimson_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "warped_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "mangrove_wall_sign": [
+      "all_signs",
+      "signs",
+      "wall_post_override",
+      "wall_signs",
+      "axe"
+    ],
+    "deepslate": [
+      "ancient_city_replaceable",
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "deepslate_ore_replaceables",
+      "dripstone_replaceable_blocks",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "deepslate_bricks": [
+      "ancient_city_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "deepslate_tiles": [
+      "ancient_city_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "deepslate_brick_slab": [
+      "ancient_city_replaceable",
+      "slabs",
+      "pickaxe"
+    ],
+    "deepslate_tile_slab": [
+      "ancient_city_replaceable",
+      "slabs",
+      "pickaxe"
+    ],
+    "deepslate_brick_stairs": [
+      "ancient_city_replaceable",
+      "stairs",
+      "pickaxe"
+    ],
+    "deepslate_tile_wall": [
+      "ancient_city_replaceable",
+      "walls",
+      "pickaxe"
+    ],
+    "deepslate_brick_wall": [
+      "ancient_city_replaceable",
+      "walls",
+      "pickaxe"
+    ],
+    "cobbled_deepslate": [
+      "ancient_city_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "cracked_deepslate_bricks": [
+      "ancient_city_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "cracked_deepslate_tiles": [
+      "ancient_city_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "gray_wool": [
+      "ancient_city_replaceable",
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "grass_block": [
+      "animals_spawnable_on",
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "foxes_spawnable_on",
+      "frogs_spawnable_on",
+      "goats_spawnable_on",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "parrots_spawnable_on",
+      "rabbits_spawnable_on",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "valid_spawn",
+      "wolves_spawnable_on",
+      "shovel"
+    ],
+    "anvil": [
+      "anvil",
+      "pickaxe"
+    ],
+    "chipped_anvil": [
+      "anvil",
+      "pickaxe"
+    ],
+    "damaged_anvil": [
+      "anvil",
+      "pickaxe"
+    ],
+    "clay": [
+      "axolotls_spawnable_on",
+      "azalea_root_replaceable",
+      "big_dripleaf_placeable",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "small_dripleaf_placeable",
+      "shovel"
+    ],
+    "snow_block": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "foxes_spawnable_on",
+      "goats_spawnable_on",
+      "rabbits_spawnable_on",
+      "snow",
+      "wolves_spawnable_on",
+      "shovel"
+    ],
+    "powder_snow": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "inside_step_sound_blocks",
+      "snow"
+    ],
+    "dirt": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "convertable_to_mud",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "podzol": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "foxes_spawnable_on",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "mushroom_grow_block",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "valid_spawn",
+      "shovel"
+    ],
+    "coarse_dirt": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "convertable_to_mud",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "foxes_spawnable_on",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "mycelium": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "mooshrooms_spawnable_on",
+      "moss_replaceable",
+      "mushroom_grow_block",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "rooted_dirt": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "convertable_to_mud",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "moss_block": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "small_dripleaf_placeable",
+      "hoe"
+    ],
+    "mud": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "frogs_spawnable_on",
+      "lush_ground_replaceable",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "snow_layer_can_survive_on",
+      "shovel"
+    ],
+    "muddy_mangrove_roots": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "big_dripleaf_placeable",
+      "dead_bush_may_place_on",
+      "dirt",
+      "enderman_holdable",
+      "frogs_spawnable_on",
+      "lush_ground_replaceable",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "sand": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "dead_bush_may_place_on",
+      "enderman_holdable",
+      "lush_ground_replaceable",
+      "overworld_carver_replaceables",
+      "rabbits_spawnable_on",
+      "sand",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "smelts_to_glass",
+      "shovel"
+    ],
+    "red_sand": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "dead_bush_may_place_on",
+      "enderman_holdable",
+      "overworld_carver_replaceables",
+      "sand",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "smelts_to_glass",
+      "shovel"
+    ],
+    "terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "white_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "orange_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "magenta_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "light_blue_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "yellow_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "lime_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "pink_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "gray_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "light_gray_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "cyan_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "purple_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "blue_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "brown_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "green_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "red_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "black_terracotta": [
+      "azalea_grows_on",
+      "azalea_root_replaceable",
+      "dead_bush_may_place_on",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "terracotta",
+      "pickaxe"
+    ],
+    "gravel": [
+      "azalea_root_replaceable",
+      "bamboo_plantable_on",
+      "enderman_holdable",
+      "goats_spawnable_on",
+      "lush_ground_replaceable",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "shovel"
+    ],
+    "stone": [
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "dripstone_replaceable_blocks",
+      "goats_spawnable_on",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "snaps_goat_horn",
+      "stone_ore_replaceables",
+      "pickaxe"
+    ],
+    "granite": [
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "dripstone_replaceable_blocks",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "stone_ore_replaceables",
+      "pickaxe"
+    ],
+    "diorite": [
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "dripstone_replaceable_blocks",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "stone_ore_replaceables",
+      "pickaxe"
+    ],
+    "andesite": [
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "dripstone_replaceable_blocks",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "stone_ore_replaceables",
+      "pickaxe"
+    ],
+    "tuff": [
+      "azalea_root_replaceable",
+      "base_stone_overworld",
+      "deepslate_ore_replaceables",
+      "dripstone_replaceable_blocks",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "nether_carver_replaceables",
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "bamboo": [
+      "bamboo_plantable_on",
+      "axe"
+    ],
+    "bamboo_sapling": [
+      "bamboo_plantable_on"
+    ],
+    "white_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "orange_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "magenta_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "light_blue_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "yellow_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "lime_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "pink_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "gray_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "light_gray_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "cyan_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "purple_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "blue_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "brown_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "green_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "red_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "black_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "white_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "orange_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "magenta_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "light_blue_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "yellow_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "lime_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "pink_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "gray_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "light_gray_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "cyan_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "purple_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "blue_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "brown_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "green_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "red_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "black_wall_banner": [
+      "banners",
+      "wall_post_override",
+      "axe"
+    ],
+    "netherrack": [
+      "base_stone_nether",
+      "infiniburn_end",
+      "infiniburn_nether",
+      "infiniburn_overworld",
+      "nether_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "basalt": [
+      "base_stone_nether",
+      "nether_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "blackstone": [
+      "base_stone_nether",
+      "nether_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "netherite_block": [
+      "beacon_base_blocks",
+      "needs_diamond_tool",
+      "pickaxe"
+    ],
+    "emerald_block": [
+      "beacon_base_blocks",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "diamond_block": [
+      "beacon_base_blocks",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "gold_block": [
+      "beacon_base_blocks",
+      "guarded_by_piglins",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "iron_block": [
+      "beacon_base_blocks",
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "red_bed": [
+      "beds"
+    ],
+    "black_bed": [
+      "beds"
+    ],
+    "blue_bed": [
+      "beds"
+    ],
+    "brown_bed": [
+      "beds"
+    ],
+    "cyan_bed": [
+      "beds"
+    ],
+    "gray_bed": [
+      "beds"
+    ],
+    "green_bed": [
+      "beds"
+    ],
+    "light_blue_bed": [
+      "beds"
+    ],
+    "light_gray_bed": [
+      "beds"
+    ],
+    "lime_bed": [
+      "beds"
+    ],
+    "magenta_bed": [
+      "beds"
+    ],
+    "orange_bed": [
+      "beds"
+    ],
+    "pink_bed": [
+      "beds"
+    ],
+    "purple_bed": [
+      "beds"
+    ],
+    "white_bed": [
+      "beds"
+    ],
+    "yellow_bed": [
+      "beds"
+    ],
+    "bee_nest": [
+      "beehives",
+      "axe"
+    ],
+    "beehive": [
+      "beehives",
+      "axe"
+    ],
+    "sweet_berry_bush": [
+      "bee_growables",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "cave_vines": [
+      "bee_growables",
+      "cave_vines",
+      "climbable",
+      "fall_damage_resetting",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "axe"
+    ],
+    "cave_vines_plant": [
+      "bee_growables",
+      "cave_vines",
+      "climbable",
+      "fall_damage_resetting",
+      "lush_ground_replaceable",
+      "moss_replaceable",
+      "axe"
+    ],
+    "beetroots": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "carrots": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "potatoes": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "wheat": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "melon_stem": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "pumpkin_stem": [
+      "bee_growables",
+      "crops",
+      "axe"
+    ],
+    "farmland": [
+      "big_dripleaf_placeable",
+      "shovel"
+    ],
+    "birch_log": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "birch_wood": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_birch_log": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_birch_wood": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stone_button": [
+      "buttons",
+      "pickaxe"
+    ],
+    "polished_blackstone_button": [
+      "buttons"
+    ],
+    "oak_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "spruce_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "birch_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "jungle_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "acacia_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "dark_oak_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "crimson_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "warped_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "mangrove_button": [
+      "buttons",
+      "wooden_buttons",
+      "axe"
+    ],
+    "campfire": [
+      "campfires",
+      "axe"
+    ],
+    "soul_campfire": [
+      "campfires",
+      "piglin_repellents",
+      "axe"
+    ],
+    "candle": [
+      "candles"
+    ],
+    "white_candle": [
+      "candles"
+    ],
+    "orange_candle": [
+      "candles"
+    ],
+    "magenta_candle": [
+      "candles"
+    ],
+    "light_blue_candle": [
+      "candles"
+    ],
+    "yellow_candle": [
+      "candles"
+    ],
+    "lime_candle": [
+      "candles"
+    ],
+    "pink_candle": [
+      "candles"
+    ],
+    "gray_candle": [
+      "candles"
+    ],
+    "light_gray_candle": [
+      "candles"
+    ],
+    "cyan_candle": [
+      "candles"
+    ],
+    "purple_candle": [
+      "candles"
+    ],
+    "blue_candle": [
+      "candles"
+    ],
+    "brown_candle": [
+      "candles"
+    ],
+    "green_candle": [
+      "candles"
+    ],
+    "red_candle": [
+      "candles"
+    ],
+    "black_candle": [
+      "candles"
+    ],
+    "candle_cake": [
+      "candle_cakes"
+    ],
+    "white_candle_cake": [
+      "candle_cakes"
+    ],
+    "orange_candle_cake": [
+      "candle_cakes"
+    ],
+    "magenta_candle_cake": [
+      "candle_cakes"
+    ],
+    "light_blue_candle_cake": [
+      "candle_cakes"
+    ],
+    "yellow_candle_cake": [
+      "candle_cakes"
+    ],
+    "lime_candle_cake": [
+      "candle_cakes"
+    ],
+    "pink_candle_cake": [
+      "candle_cakes"
+    ],
+    "gray_candle_cake": [
+      "candle_cakes"
+    ],
+    "light_gray_candle_cake": [
+      "candle_cakes"
+    ],
+    "cyan_candle_cake": [
+      "candle_cakes"
+    ],
+    "purple_candle_cake": [
+      "candle_cakes"
+    ],
+    "blue_candle_cake": [
+      "candle_cakes"
+    ],
+    "brown_candle_cake": [
+      "candle_cakes"
+    ],
+    "green_candle_cake": [
+      "candle_cakes"
+    ],
+    "red_candle_cake": [
+      "candle_cakes"
+    ],
+    "black_candle_cake": [
+      "candle_cakes"
+    ],
+    "cauldron": [
+      "cauldrons",
+      "pickaxe"
+    ],
+    "water_cauldron": [
+      "cauldrons",
+      "pickaxe"
+    ],
+    "lava_cauldron": [
+      "cauldrons",
+      "pickaxe"
+    ],
+    "powder_snow_cauldron": [
+      "cauldrons",
+      "pickaxe"
+    ],
+    "ladder": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "vine": [
+      "climbable",
+      "fall_damage_resetting",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "replaceable_plants",
+      "axe"
+    ],
+    "scaffolding": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "weeping_vines": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "weeping_vines_plant": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "twisting_vines": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "twisting_vines_plant": [
+      "climbable",
+      "fall_damage_resetting",
+      "axe"
+    ],
+    "coal_ore": [
+      "coal_ores",
+      "snaps_goat_horn",
+      "pickaxe"
+    ],
+    "deepslate_coal_ore": [
+      "coal_ores",
+      "pickaxe"
+    ],
+    "jungle_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "oak_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "spruce_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "dark_oak_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "acacia_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "birch_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "azalea_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "flowering_azalea_leaves": [
+      "completes_find_tree_tutorial",
+      "flowers",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "mangrove_leaves": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "leaves",
+      "mangrove_logs_can_grow_through",
+      "parrots_spawnable_on",
+      "hoe"
+    ],
+    "nether_wart_block": [
+      "completes_find_tree_tutorial",
+      "nether_carver_replaceables",
+      "wart_blocks",
+      "hoe"
+    ],
+    "warped_wart_block": [
+      "completes_find_tree_tutorial",
+      "nether_carver_replaceables",
+      "wart_blocks",
+      "hoe"
+    ],
+    "dark_oak_log": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "dark_oak_wood": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_dark_oak_log": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_dark_oak_wood": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "oak_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "oak_logs",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "oak_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "oak_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_oak_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "oak_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_oak_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "oak_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "jungle_log": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "jungle_wood": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_jungle_log": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_jungle_wood": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "spruce_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "spruce_logs",
+      "axe"
+    ],
+    "spruce_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "spruce_logs",
+      "axe"
+    ],
+    "stripped_spruce_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "spruce_logs",
+      "axe"
+    ],
+    "stripped_spruce_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "parrots_spawnable_on",
+      "spruce_logs",
+      "axe"
+    ],
+    "mangrove_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs",
+      "mangrove_logs_can_grow_through",
+      "overworld_natural_logs",
+      "parrots_spawnable_on",
+      "snaps_goat_horn",
+      "axe"
+    ],
+    "mangrove_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_mangrove_log": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_mangrove_wood": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "crimson_stem": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_crimson_stem": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "crimson_hyphae": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "stripped_crimson_hyphae": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "axe"
+    ],
+    "warped_stem": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "warped_stems",
+      "axe"
+    ],
+    "stripped_warped_stem": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "warped_stems",
+      "axe"
+    ],
+    "warped_hyphae": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "warped_stems",
+      "axe"
+    ],
+    "stripped_warped_hyphae": [
+      "completes_find_tree_tutorial",
+      "lava_pool_stone_cannot_replace",
+      "logs",
+      "parrots_spawnable_on",
+      "warped_stems",
+      "axe"
+    ],
+    "copper_ore": [
+      "copper_ores",
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "snaps_goat_horn",
+      "pickaxe"
+    ],
+    "deepslate_copper_ore": [
+      "copper_ores",
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "pickaxe"
+    ],
+    "tube_coral_fan": [
+      "corals",
+      "underwater_bonemeals"
+    ],
+    "brain_coral_fan": [
+      "corals",
+      "underwater_bonemeals"
+    ],
+    "bubble_coral_fan": [
+      "corals",
+      "underwater_bonemeals"
+    ],
+    "fire_coral_fan": [
+      "corals",
+      "underwater_bonemeals"
+    ],
+    "horn_coral_fan": [
+      "corals",
+      "underwater_bonemeals"
+    ],
+    "tube_coral": [
+      "corals",
+      "coral_plants",
+      "underwater_bonemeals"
+    ],
+    "brain_coral": [
+      "corals",
+      "coral_plants",
+      "underwater_bonemeals"
+    ],
+    "bubble_coral": [
+      "corals",
+      "coral_plants",
+      "underwater_bonemeals"
+    ],
+    "fire_coral": [
+      "corals",
+      "coral_plants",
+      "underwater_bonemeals"
+    ],
+    "horn_coral": [
+      "corals",
+      "coral_plants",
+      "underwater_bonemeals"
+    ],
+    "tube_coral_block": [
+      "coral_blocks",
+      "pickaxe"
+    ],
+    "brain_coral_block": [
+      "coral_blocks",
+      "pickaxe"
+    ],
+    "bubble_coral_block": [
+      "coral_blocks",
+      "pickaxe"
+    ],
+    "fire_coral_block": [
+      "coral_blocks",
+      "pickaxe"
+    ],
+    "horn_coral_block": [
+      "coral_blocks",
+      "pickaxe"
+    ],
+    "amethyst_block": [
+      "crystal_sound_blocks",
+      "pickaxe"
+    ],
+    "budding_amethyst": [
+      "crystal_sound_blocks",
+      "pickaxe"
+    ],
+    "white_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "orange_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "magenta_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "light_blue_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "yellow_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "lime_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "pink_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "light_gray_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "cyan_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "purple_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "blue_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "brown_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "green_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "red_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "black_wool": [
+      "dampens_vibrations",
+      "occludes_vibration_signals",
+      "wool"
+    ],
+    "white_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "orange_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "magenta_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "light_blue_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "yellow_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "lime_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "pink_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "gray_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "light_gray_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "cyan_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "purple_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "blue_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "brown_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "green_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "red_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "black_carpet": [
+      "dampens_vibrations",
+      "inside_step_sound_blocks",
+      "wool_carpets"
+    ],
+    "diamond_ore": [
+      "diamond_ores",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "deepslate_diamond_ore": [
+      "diamond_ores",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "iron_door": [
+      "doors",
+      "pickaxe"
+    ],
+    "oak_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "spruce_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "birch_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "jungle_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "acacia_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "dark_oak_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "crimson_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "warped_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "mangrove_door": [
+      "doors",
+      "wooden_doors",
+      "axe"
+    ],
+    "barrier": [
+      "dragon_immune",
+      "snow_layer_cannot_survive_on",
+      "wither_immune"
+    ],
+    "bedrock": [
+      "dragon_immune",
+      "features_cannot_replace",
+      "geode_invalid_blocks",
+      "infiniburn_end",
+      "lava_pool_stone_cannot_replace",
+      "wither_immune"
+    ],
+    "end_portal": [
+      "dragon_immune",
+      "invalid_spawn_inside",
+      "portals",
+      "wither_immune"
+    ],
+    "end_portal_frame": [
+      "dragon_immune",
+      "features_cannot_replace",
+      "lava_pool_stone_cannot_replace",
+      "wither_immune"
+    ],
+    "end_gateway": [
+      "dragon_immune",
+      "invalid_spawn_inside",
+      "portals",
+      "wither_immune"
+    ],
+    "command_block": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "repeating_command_block": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "chain_command_block": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "structure_block": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "jigsaw": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "moving_piston": [
+      "dragon_immune",
+      "wither_immune"
+    ],
+    "obsidian": [
+      "dragon_immune",
+      "needs_diamond_tool",
+      "pickaxe"
+    ],
+    "crying_obsidian": [
+      "dragon_immune",
+      "needs_diamond_tool",
+      "pickaxe"
+    ],
+    "end_stone": [
+      "dragon_immune",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "iron_bars": [
+      "dragon_immune",
+      "pickaxe"
+    ],
+    "respawn_anchor": [
+      "dragon_immune",
+      "hoglin_repellents",
+      "needs_diamond_tool",
+      "pickaxe"
+    ],
+    "reinforced_deepslate": [
+      "dragon_immune",
+      "features_cannot_replace",
+      "lava_pool_stone_cannot_replace",
+      "wither_immune"
+    ],
+    "light": [
+      "dragon_transparent",
+      "wither_immune"
+    ],
+    "fire": [
+      "dragon_transparent",
+      "fire"
+    ],
+    "soul_fire": [
+      "dragon_transparent",
+      "fire",
+      "piglin_repellents"
+    ],
+    "emerald_ore": [
+      "emerald_ores",
+      "needs_iron_tool",
+      "snaps_goat_horn",
+      "pickaxe"
+    ],
+    "deepslate_emerald_ore": [
+      "emerald_ores",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "brown_mushroom": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "red_mushroom": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "tnt": [
+      "enderman_holdable"
+    ],
+    "cactus": [
+      "enderman_holdable"
+    ],
+    "pumpkin": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "carved_pumpkin": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "melon": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "crimson_fungus": [
+      "enderman_holdable",
+      "axe"
+    ],
+    "crimson_nylium": [
+      "enderman_holdable",
+      "mushroom_grow_block",
+      "nether_carver_replaceables",
+      "nylium",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "crimson_roots": [
+      "enderman_holdable",
+      "inside_step_sound_blocks"
+    ],
+    "warped_fungus": [
+      "enderman_holdable",
+      "hoglin_repellents",
+      "axe"
+    ],
+    "warped_nylium": [
+      "enderman_holdable",
+      "mushroom_grow_block",
+      "nether_carver_replaceables",
+      "nylium",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "warped_roots": [
+      "enderman_holdable",
+      "inside_step_sound_blocks"
+    ],
+    "dandelion": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "poppy": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "blue_orchid": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "allium": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "azure_bluet": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "red_tulip": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "orange_tulip": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "white_tulip": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "pink_tulip": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "oxeye_daisy": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "cornflower": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "lily_of_the_valley": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "wither_rose": [
+      "enderman_holdable",
+      "flowers",
+      "small_flowers"
+    ],
+    "cobweb": [
+      "fall_damage_resetting"
+    ],
+    "spawner": [
+      "features_cannot_replace",
+      "lava_pool_stone_cannot_replace",
+      "pickaxe"
+    ],
+    "chest": [
+      "features_cannot_replace",
+      "guarded_by_piglins",
+      "lava_pool_stone_cannot_replace",
+      "axe"
+    ],
+    "nether_brick_fence": [
+      "fences",
+      "pickaxe"
+    ],
+    "oak_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "acacia_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "dark_oak_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "spruce_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "birch_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "jungle_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "crimson_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "warped_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "mangrove_fence": [
+      "fences",
+      "wooden_fences",
+      "axe"
+    ],
+    "acacia_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "birch_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "dark_oak_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "jungle_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "oak_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "spruce_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "crimson_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "warped_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "mangrove_fence_gate": [
+      "fence_gates",
+      "unstable_bottom_center",
+      "axe"
+    ],
+    "flowering_azalea": [
+      "flowers",
+      "saplings",
+      "axe"
+    ],
+    "mangrove_propagule": [
+      "flowers",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "saplings",
+      "axe"
+    ],
+    "sunflower": [
+      "flowers",
+      "replaceable_plants",
+      "tall_flowers"
+    ],
+    "lilac": [
+      "flowers",
+      "replaceable_plants",
+      "tall_flowers"
+    ],
+    "peony": [
+      "flowers",
+      "replaceable_plants",
+      "tall_flowers"
+    ],
+    "rose_bush": [
+      "flowers",
+      "replaceable_plants",
+      "tall_flowers"
+    ],
+    "flower_pot": [
+      "flower_pots"
+    ],
+    "potted_poppy": [
+      "flower_pots"
+    ],
+    "potted_blue_orchid": [
+      "flower_pots"
+    ],
+    "potted_allium": [
+      "flower_pots"
+    ],
+    "potted_azure_bluet": [
+      "flower_pots"
+    ],
+    "potted_red_tulip": [
+      "flower_pots"
+    ],
+    "potted_orange_tulip": [
+      "flower_pots"
+    ],
+    "potted_white_tulip": [
+      "flower_pots"
+    ],
+    "potted_pink_tulip": [
+      "flower_pots"
+    ],
+    "potted_oxeye_daisy": [
+      "flower_pots"
+    ],
+    "potted_dandelion": [
+      "flower_pots"
+    ],
+    "potted_oak_sapling": [
+      "flower_pots"
+    ],
+    "potted_spruce_sapling": [
+      "flower_pots"
+    ],
+    "potted_birch_sapling": [
+      "flower_pots"
+    ],
+    "potted_jungle_sapling": [
+      "flower_pots"
+    ],
+    "potted_acacia_sapling": [
+      "flower_pots"
+    ],
+    "potted_dark_oak_sapling": [
+      "flower_pots"
+    ],
+    "potted_red_mushroom": [
+      "flower_pots"
+    ],
+    "potted_brown_mushroom": [
+      "flower_pots"
+    ],
+    "potted_dead_bush": [
+      "flower_pots"
+    ],
+    "potted_fern": [
+      "flower_pots"
+    ],
+    "potted_cactus": [
+      "flower_pots"
+    ],
+    "potted_cornflower": [
+      "flower_pots"
+    ],
+    "potted_lily_of_the_valley": [
+      "flower_pots"
+    ],
+    "potted_wither_rose": [
+      "flower_pots"
+    ],
+    "potted_bamboo": [
+      "flower_pots"
+    ],
+    "potted_crimson_fungus": [
+      "flower_pots"
+    ],
+    "potted_warped_fungus": [
+      "flower_pots",
+      "hoglin_repellents"
+    ],
+    "potted_crimson_roots": [
+      "flower_pots"
+    ],
+    "potted_warped_roots": [
+      "flower_pots"
+    ],
+    "potted_azalea_bush": [
+      "flower_pots"
+    ],
+    "potted_flowering_azalea_bush": [
+      "flower_pots"
+    ],
+    "potted_mangrove_propagule": [
+      "flower_pots"
+    ],
+    "snow": [
+      "foxes_spawnable_on",
+      "goats_spawnable_on",
+      "inside_step_sound_blocks",
+      "mangrove_roots_can_grow_through",
+      "overworld_carver_replaceables",
+      "rabbits_spawnable_on",
+      "snow",
+      "wolves_spawnable_on",
+      "shovel"
+    ],
+    "mangrove_roots": [
+      "frogs_spawnable_on",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "axe"
+    ],
+    "lily_pad": [
+      "frog_prefer_jump_to",
+      "inside_step_sound_blocks",
+      "axe"
+    ],
+    "big_dripleaf": [
+      "frog_prefer_jump_to",
+      "axe"
+    ],
+    "water": [
+      "geode_invalid_blocks",
+      "overworld_carver_replaceables"
+    ],
+    "lava": [
+      "geode_invalid_blocks",
+      "strider_warm_blocks"
+    ],
+    "ice": [
+      "geode_invalid_blocks",
+      "ice",
+      "polar_bears_spawnable_on_alternate",
+      "snow_layer_cannot_survive_on",
+      "pickaxe"
+    ],
+    "packed_ice": [
+      "geode_invalid_blocks",
+      "goats_spawnable_on",
+      "ice",
+      "overworld_carver_replaceables",
+      "snaps_goat_horn",
+      "snow_layer_cannot_survive_on",
+      "pickaxe"
+    ],
+    "blue_ice": [
+      "geode_invalid_blocks",
+      "ice",
+      "pickaxe"
+    ],
+    "gold_ore": [
+      "gold_ores",
+      "guarded_by_piglins",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "nether_gold_ore": [
+      "gold_ores",
+      "guarded_by_piglins",
+      "pickaxe"
+    ],
+    "deepslate_gold_ore": [
+      "gold_ores",
+      "guarded_by_piglins",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "barrel": [
+      "guarded_by_piglins",
+      "axe"
+    ],
+    "ender_chest": [
+      "guarded_by_piglins",
+      "pickaxe"
+    ],
+    "gilded_blackstone": [
+      "guarded_by_piglins",
+      "pickaxe"
+    ],
+    "trapped_chest": [
+      "guarded_by_piglins",
+      "axe"
+    ],
+    "raw_gold_block": [
+      "guarded_by_piglins",
+      "needs_iron_tool",
+      "pickaxe"
+    ],
+    "shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "black_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "blue_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "brown_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "cyan_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "gray_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "green_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "light_blue_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "light_gray_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "lime_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "magenta_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "orange_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "pink_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "purple_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "red_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "white_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "yellow_shulker_box": [
+      "guarded_by_piglins",
+      "shulker_boxes",
+      "pickaxe"
+    ],
+    "nether_portal": [
+      "hoglin_repellents",
+      "portals"
+    ],
+    "frosted_ice": [
+      "ice"
+    ],
+    "glass": [
+      "impermeable"
+    ],
+    "white_stained_glass": [
+      "impermeable"
+    ],
+    "orange_stained_glass": [
+      "impermeable"
+    ],
+    "magenta_stained_glass": [
+      "impermeable"
+    ],
+    "light_blue_stained_glass": [
+      "impermeable"
+    ],
+    "yellow_stained_glass": [
+      "impermeable"
+    ],
+    "lime_stained_glass": [
+      "impermeable"
+    ],
+    "pink_stained_glass": [
+      "impermeable"
+    ],
+    "gray_stained_glass": [
+      "impermeable"
+    ],
+    "light_gray_stained_glass": [
+      "impermeable"
+    ],
+    "cyan_stained_glass": [
+      "impermeable"
+    ],
+    "purple_stained_glass": [
+      "impermeable"
+    ],
+    "blue_stained_glass": [
+      "impermeable"
+    ],
+    "brown_stained_glass": [
+      "impermeable"
+    ],
+    "green_stained_glass": [
+      "impermeable"
+    ],
+    "red_stained_glass": [
+      "impermeable"
+    ],
+    "black_stained_glass": [
+      "impermeable"
+    ],
+    "tinted_glass": [
+      "impermeable"
+    ],
+    "magma_block": [
+      "infiniburn_end",
+      "infiniburn_nether",
+      "infiniburn_overworld",
+      "pickaxe"
+    ],
+    "sculk_vein": [
+      "inside_step_sound_blocks",
+      "hoe"
+    ],
+    "nether_sprouts": [
+      "inside_step_sound_blocks"
+    ],
+    "glow_lichen": [
+      "inside_step_sound_blocks",
+      "replaceable_plants",
+      "axe"
+    ],
+    "small_amethyst_bud": [
+      "inside_step_sound_blocks",
+      "pickaxe"
+    ],
+    "moss_carpet": [
+      "inside_step_sound_blocks",
+      "mangrove_logs_can_grow_through",
+      "mangrove_roots_can_grow_through",
+      "hoe"
+    ],
+    "iron_ore": [
+      "iron_ores",
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "snaps_goat_horn",
+      "pickaxe"
+    ],
+    "deepslate_iron_ore": [
+      "iron_ores",
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "pickaxe"
+    ],
+    "lapis_ore": [
+      "lapis_ores",
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "deepslate_lapis_ore": [
+      "lapis_ores",
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "ancient_debris": [
+      "needs_diamond_tool",
+      "pickaxe"
+    ],
+    "redstone_ore": [
+      "needs_iron_tool",
+      "redstone_ores",
+      "pickaxe"
+    ],
+    "deepslate_redstone_ore": [
+      "needs_iron_tool",
+      "redstone_ores",
+      "pickaxe"
+    ],
+    "raw_iron_block": [
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "pickaxe"
+    ],
+    "lapis_block": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "copper_block": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "raw_copper_block": [
+      "needs_stone_tool",
+      "overworld_carver_replaceables",
+      "pickaxe"
+    ],
+    "cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "weathered_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "weathered_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "weathered_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "weathered_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "oxidized_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "oxidized_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "oxidized_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "oxidized_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "exposed_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "exposed_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "exposed_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "exposed_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_copper_block": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "waxed_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "waxed_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_weathered_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_weathered_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "waxed_weathered_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "waxed_weathered_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_exposed_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_exposed_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "waxed_exposed_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "waxed_exposed_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_oxidized_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "waxed_oxidized_cut_copper_slab": [
+      "needs_stone_tool",
+      "slabs",
+      "pickaxe"
+    ],
+    "waxed_oxidized_cut_copper_stairs": [
+      "needs_stone_tool",
+      "stairs",
+      "pickaxe"
+    ],
+    "waxed_oxidized_cut_copper": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "lightning_rod": [
+      "needs_stone_tool",
+      "pickaxe"
+    ],
+    "soul_sand": [
+      "nether_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "snow_layer_can_survive_on",
+      "soul_fire_base_blocks",
+      "soul_speed_blocks",
+      "wither_summon_base_blocks",
+      "shovel"
+    ],
+    "soul_soil": [
+      "nether_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "soul_fire_base_blocks",
+      "soul_speed_blocks",
+      "wither_summon_base_blocks",
+      "shovel"
+    ],
+    "sandstone": [
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "red_sandstone": [
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "calcite": [
+      "overworld_carver_replaceables",
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "air": [
+      "parrots_spawnable_on"
+    ],
+    "soul_torch": [
+      "piglin_repellents",
+      "wall_post_override"
+    ],
+    "soul_lantern": [
+      "piglin_repellents",
+      "pickaxe"
+    ],
+    "soul_wall_torch": [
+      "piglin_repellents"
+    ],
+    "oak_planks": [
+      "planks",
+      "axe"
+    ],
+    "spruce_planks": [
+      "planks",
+      "axe"
+    ],
+    "birch_planks": [
+      "planks",
+      "axe"
+    ],
+    "jungle_planks": [
+      "planks",
+      "axe"
+    ],
+    "acacia_planks": [
+      "planks",
+      "axe"
+    ],
+    "dark_oak_planks": [
+      "planks",
+      "axe"
+    ],
+    "crimson_planks": [
+      "planks",
+      "axe"
+    ],
+    "warped_planks": [
+      "planks",
+      "axe"
+    ],
+    "mangrove_planks": [
+      "planks",
+      "axe"
+    ],
+    "light_weighted_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "pickaxe"
+    ],
+    "heavy_weighted_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "pickaxe"
+    ],
+    "oak_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "spruce_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "birch_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "jungle_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "acacia_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "dark_oak_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "crimson_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "warped_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "mangrove_pressure_plate": [
+      "pressure_plates",
+      "wall_post_override",
+      "wooden_pressure_plates",
+      "axe"
+    ],
+    "stone_pressure_plate": [
+      "pressure_plates",
+      "stone_pressure_plates",
+      "wall_post_override",
+      "pickaxe"
+    ],
+    "polished_blackstone_pressure_plate": [
+      "pressure_plates",
+      "stone_pressure_plates",
+      "wall_post_override",
+      "pickaxe"
+    ],
+    "rail": [
+      "prevent_mob_spawning_inside",
+      "rails",
+      "pickaxe"
+    ],
+    "powered_rail": [
+      "prevent_mob_spawning_inside",
+      "rails",
+      "pickaxe"
+    ],
+    "detector_rail": [
+      "prevent_mob_spawning_inside",
+      "rails",
+      "pickaxe"
+    ],
+    "activator_rail": [
+      "prevent_mob_spawning_inside",
+      "rails",
+      "pickaxe"
+    ],
+    "grass": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "fern": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "dead_bush": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "tall_grass": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "large_fern": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "hanging_roots": [
+      "replaceable_plants",
+      "axe"
+    ],
+    "oak_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "spruce_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "birch_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "jungle_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "acacia_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "dark_oak_sapling": [
+      "saplings",
+      "axe"
+    ],
+    "azalea": [
+      "saplings",
+      "axe",
+      "axe"
+    ],
+    "smooth_basalt": [
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "dripstone_block": [
+      "sculk_replaceable",
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "polished_deepslate": [
+      "sculk_replaceable_world_gen",
+      "pickaxe"
+    ],
+    "stone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "smooth_stone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "stone_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "purpur_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "quartz_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "red_sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "cobblestone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "nether_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "petrified_oak_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "prismarine_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "prismarine_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "dark_prismarine_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_granite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "smooth_red_sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "mossy_stone_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_diorite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "mossy_cobblestone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "end_stone_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "smooth_sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "smooth_quartz_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "granite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "andesite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "red_nether_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_andesite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "diorite_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "cut_sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "cut_red_sandstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "blackstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_blackstone_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_blackstone_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "cobbled_deepslate_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "polished_deepslate_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "mud_brick_slab": [
+      "slabs",
+      "pickaxe"
+    ],
+    "oak_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "spruce_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "birch_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "jungle_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "acacia_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "dark_oak_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "crimson_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "warped_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "mangrove_slab": [
+      "slabs",
+      "wooden_slabs",
+      "axe"
+    ],
+    "honey_block": [
+      "snow_layer_can_survive_on"
+    ],
+    "cobblestone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "sandstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "nether_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "stone_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "purpur_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "quartz_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "red_sandstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "prismarine_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "prismarine_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "dark_prismarine_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_granite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "smooth_red_sandstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "mossy_stone_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_diorite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "mossy_cobblestone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "end_stone_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "stone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "smooth_sandstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "smooth_quartz_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "granite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "andesite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "red_nether_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_andesite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "diorite_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "blackstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_blackstone_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_blackstone_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "cobbled_deepslate_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "polished_deepslate_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "deepslate_tile_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "mud_brick_stairs": [
+      "stairs",
+      "pickaxe"
+    ],
+    "oak_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "spruce_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "birch_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "jungle_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "acacia_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "dark_oak_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "crimson_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "warped_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "mangrove_stairs": [
+      "stairs",
+      "wooden_stairs",
+      "axe"
+    ],
+    "stone_bricks": [
+      "stone_bricks",
+      "pickaxe"
+    ],
+    "mossy_stone_bricks": [
+      "stone_bricks",
+      "pickaxe"
+    ],
+    "cracked_stone_bricks": [
+      "stone_bricks",
+      "pickaxe"
+    ],
+    "chiseled_stone_bricks": [
+      "stone_bricks",
+      "pickaxe"
+    ],
+    "iron_trapdoor": [
+      "trapdoors",
+      "pickaxe"
+    ],
+    "acacia_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "birch_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "dark_oak_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "jungle_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "oak_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "spruce_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "crimson_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "warped_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "mangrove_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors",
+      "axe"
+    ],
+    "seagrass": [
+      "underwater_bonemeals"
+    ],
+    "tube_coral_wall_fan": [
+      "underwater_bonemeals",
+      "wall_corals"
+    ],
+    "brain_coral_wall_fan": [
+      "underwater_bonemeals",
+      "wall_corals"
+    ],
+    "bubble_coral_wall_fan": [
+      "underwater_bonemeals",
+      "wall_corals"
+    ],
+    "fire_coral_wall_fan": [
+      "underwater_bonemeals",
+      "wall_corals"
+    ],
+    "horn_coral_wall_fan": [
+      "underwater_bonemeals",
+      "wall_corals"
+    ],
+    "cobblestone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "mossy_cobblestone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "prismarine_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "red_sandstone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "mossy_stone_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "granite_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "stone_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "nether_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "andesite_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "red_nether_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "sandstone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "end_stone_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "diorite_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "blackstone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "polished_blackstone_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "polished_blackstone_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "cobbled_deepslate_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "polished_deepslate_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "mud_brick_wall": [
+      "walls",
+      "pickaxe"
+    ],
+    "torch": [
+      "wall_post_override"
+    ],
+    "redstone_torch": [
+      "wall_post_override"
+    ],
+    "tripwire": [
+      "wall_post_override"
+    ],
+    "note_block": [
+      "axe"
+    ],
+    "attached_melon_stem": [
+      "axe"
+    ],
+    "attached_pumpkin_stem": [
+      "axe"
+    ],
+    "big_dripleaf_stem": [
+      "axe"
+    ],
+    "bookshelf": [
+      "axe"
+    ],
+    "brown_mushroom_block": [
+      "axe"
+    ],
+    "cartography_table": [
+      "axe"
+    ],
+    "chorus_flower": [
+      "axe"
+    ],
+    "chorus_plant": [
+      "axe"
+    ],
+    "cocoa": [
+      "axe"
+    ],
+    "composter": [
+      "axe"
+    ],
+    "crafting_table": [
+      "axe"
+    ],
+    "daylight_detector": [
+      "axe"
+    ],
+    "fletching_table": [
+      "axe"
+    ],
+    "jack_o_lantern": [
+      "axe"
+    ],
+    "jukebox": [
+      "axe"
+    ],
+    "lectern": [
+      "axe"
+    ],
+    "loom": [
+      "axe"
+    ],
+    "mushroom_stem": [
+      "axe"
+    ],
+    "nether_wart": [
+      "axe"
+    ],
+    "red_mushroom_block": [
+      "axe"
+    ],
+    "small_dripleaf": [
+      "axe"
+    ],
+    "smithing_table": [
+      "axe"
+    ],
+    "spore_blossom": [
+      "axe"
+    ],
+    "sugar_cane": [
+      "axe"
+    ],
+    "hay_block": [
+      "hoe"
+    ],
+    "dried_kelp_block": [
+      "hoe"
+    ],
+    "target": [
+      "hoe"
+    ],
+    "shroomlight": [
+      "hoe"
+    ],
+    "sponge": [
+      "hoe"
+    ],
+    "wet_sponge": [
+      "hoe"
+    ],
+    "sculk_sensor": [
+      "hoe"
+    ],
+    "sculk": [
+      "hoe"
+    ],
+    "sculk_catalyst": [
+      "hoe"
+    ],
+    "sculk_shrieker": [
+      "hoe"
+    ],
+    "polished_granite": [
+      "pickaxe"
+    ],
+    "polished_diorite": [
+      "pickaxe"
+    ],
+    "polished_andesite": [
+      "pickaxe"
+    ],
+    "cobblestone": [
+      "pickaxe"
+    ],
+    "dispenser": [
+      "pickaxe"
+    ],
+    "chiseled_sandstone": [
+      "pickaxe"
+    ],
+    "cut_sandstone": [
+      "pickaxe"
+    ],
+    "bricks": [
+      "pickaxe"
+    ],
+    "mossy_cobblestone": [
+      "pickaxe"
+    ],
+    "furnace": [
+      "pickaxe"
+    ],
+    "polished_basalt": [
+      "pickaxe"
+    ],
+    "chain": [
+      "pickaxe"
+    ],
+    "nether_bricks": [
+      "pickaxe"
+    ],
+    "enchanting_table": [
+      "pickaxe"
+    ],
+    "brewing_stand": [
+      "pickaxe"
+    ],
+    "redstone_block": [
+      "pickaxe"
+    ],
+    "nether_quartz_ore": [
+      "pickaxe"
+    ],
+    "hopper": [
+      "pickaxe"
+    ],
+    "quartz_block": [
+      "pickaxe"
+    ],
+    "chiseled_quartz_block": [
+      "pickaxe"
+    ],
+    "quartz_pillar": [
+      "pickaxe"
+    ],
+    "dropper": [
+      "pickaxe"
+    ],
+    "prismarine": [
+      "pickaxe"
+    ],
+    "prismarine_bricks": [
+      "pickaxe"
+    ],
+    "dark_prismarine": [
+      "pickaxe"
+    ],
+    "coal_block": [
+      "pickaxe"
+    ],
+    "chiseled_red_sandstone": [
+      "pickaxe"
+    ],
+    "cut_red_sandstone": [
+      "pickaxe"
+    ],
+    "smooth_stone": [
+      "pickaxe"
+    ],
+    "smooth_sandstone": [
+      "pickaxe"
+    ],
+    "smooth_quartz": [
+      "pickaxe"
+    ],
+    "smooth_red_sandstone": [
+      "pickaxe"
+    ],
+    "purpur_block": [
+      "pickaxe"
+    ],
+    "purpur_pillar": [
+      "pickaxe"
+    ],
+    "end_stone_bricks": [
+      "pickaxe"
+    ],
+    "red_nether_bricks": [
+      "pickaxe"
+    ],
+    "bone_block": [
+      "pickaxe"
+    ],
+    "observer": [
+      "pickaxe"
+    ],
+    "white_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "orange_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "magenta_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "light_blue_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "yellow_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "lime_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "pink_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "gray_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "light_gray_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "cyan_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "purple_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "blue_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "brown_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "green_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "red_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "black_glazed_terracotta": [
+      "pickaxe"
+    ],
+    "white_concrete": [
+      "pickaxe"
+    ],
+    "orange_concrete": [
+      "pickaxe"
+    ],
+    "magenta_concrete": [
+      "pickaxe"
+    ],
+    "light_blue_concrete": [
+      "pickaxe"
+    ],
+    "yellow_concrete": [
+      "pickaxe"
+    ],
+    "lime_concrete": [
+      "pickaxe"
+    ],
+    "pink_concrete": [
+      "pickaxe"
+    ],
+    "gray_concrete": [
+      "pickaxe"
+    ],
+    "light_gray_concrete": [
+      "pickaxe"
+    ],
+    "cyan_concrete": [
+      "pickaxe"
+    ],
+    "purple_concrete": [
+      "pickaxe"
+    ],
+    "blue_concrete": [
+      "pickaxe"
+    ],
+    "brown_concrete": [
+      "pickaxe"
+    ],
+    "green_concrete": [
+      "pickaxe"
+    ],
+    "red_concrete": [
+      "pickaxe"
+    ],
+    "black_concrete": [
+      "pickaxe"
+    ],
+    "dead_tube_coral_block": [
+      "pickaxe"
+    ],
+    "dead_brain_coral_block": [
+      "pickaxe"
+    ],
+    "dead_bubble_coral_block": [
+      "pickaxe"
+    ],
+    "dead_fire_coral_block": [
+      "pickaxe"
+    ],
+    "dead_horn_coral_block": [
+      "pickaxe"
+    ],
+    "dead_tube_coral": [
+      "pickaxe"
+    ],
+    "dead_brain_coral": [
+      "pickaxe"
+    ],
+    "dead_bubble_coral": [
+      "pickaxe"
+    ],
+    "dead_fire_coral": [
+      "pickaxe"
+    ],
+    "dead_horn_coral": [
+      "pickaxe"
+    ],
+    "dead_tube_coral_fan": [
+      "pickaxe"
+    ],
+    "dead_brain_coral_fan": [
+      "pickaxe"
+    ],
+    "dead_bubble_coral_fan": [
+      "pickaxe"
+    ],
+    "dead_fire_coral_fan": [
+      "pickaxe"
+    ],
+    "dead_horn_coral_fan": [
+      "pickaxe"
+    ],
+    "dead_tube_coral_wall_fan": [
+      "pickaxe"
+    ],
+    "dead_brain_coral_wall_fan": [
+      "pickaxe"
+    ],
+    "dead_bubble_coral_wall_fan": [
+      "pickaxe"
+    ],
+    "dead_fire_coral_wall_fan": [
+      "pickaxe"
+    ],
+    "dead_horn_coral_wall_fan": [
+      "pickaxe"
+    ],
+    "smoker": [
+      "pickaxe"
+    ],
+    "blast_furnace": [
+      "pickaxe"
+    ],
+    "grindstone": [
+      "pickaxe"
+    ],
+    "stonecutter": [
+      "pickaxe"
+    ],
+    "bell": [
+      "pickaxe"
+    ],
+    "lantern": [
+      "pickaxe"
+    ],
+    "lodestone": [
+      "pickaxe"
+    ],
+    "polished_blackstone": [
+      "pickaxe"
+    ],
+    "polished_blackstone_bricks": [
+      "pickaxe"
+    ],
+    "cracked_polished_blackstone_bricks": [
+      "pickaxe"
+    ],
+    "chiseled_polished_blackstone": [
+      "pickaxe"
+    ],
+    "chiseled_nether_bricks": [
+      "pickaxe"
+    ],
+    "cracked_nether_bricks": [
+      "pickaxe"
+    ],
+    "quartz_bricks": [
+      "pickaxe"
+    ],
+    "pointed_dripstone": [
+      "pickaxe"
+    ],
+    "chiseled_deepslate": [
+      "pickaxe"
+    ],
+    "piston": [
+      "pickaxe"
+    ],
+    "sticky_piston": [
+      "pickaxe"
+    ],
+    "piston_head": [
+      "pickaxe"
+    ],
+    "amethyst_cluster": [
+      "pickaxe"
+    ],
+    "medium_amethyst_bud": [
+      "pickaxe"
+    ],
+    "large_amethyst_bud": [
+      "pickaxe"
+    ],
+    "infested_cobblestone": [
+      "pickaxe"
+    ],
+    "infested_chiseled_stone_bricks": [
+      "pickaxe"
+    ],
+    "infested_cracked_stone_bricks": [
+      "pickaxe"
+    ],
+    "infested_deepslate": [
+      "pickaxe"
+    ],
+    "infested_stone": [
+      "pickaxe"
+    ],
+    "infested_mossy_stone_bricks": [
+      "pickaxe"
+    ],
+    "infested_stone_bricks": [
+      "pickaxe"
+    ],
+    "conduit": [
+      "pickaxe"
+    ],
+    "mud_bricks": [
+      "pickaxe"
+    ],
+    "packed_mud": [
+      "pickaxe"
+    ],
+    "dirt_path": [
+      "shovel"
+    ],
+    "white_concrete_powder": [
+      "shovel"
+    ],
+    "orange_concrete_powder": [
+      "shovel"
+    ],
+    "magenta_concrete_powder": [
+      "shovel"
+    ],
+    "light_blue_concrete_powder": [
+      "shovel"
+    ],
+    "yellow_concrete_powder": [
+      "shovel"
+    ],
+    "lime_concrete_powder": [
+      "shovel"
+    ],
+    "pink_concrete_powder": [
+      "shovel"
+    ],
+    "gray_concrete_powder": [
+      "shovel"
+    ],
+    "light_gray_concrete_powder": [
+      "shovel"
+    ],
+    "cyan_concrete_powder": [
+      "shovel"
+    ],
+    "purple_concrete_powder": [
+      "shovel"
+    ],
+    "blue_concrete_powder": [
+      "shovel"
+    ],
+    "brown_concrete_powder": [
+      "shovel"
+    ],
+    "green_concrete_powder": [
+      "shovel"
+    ],
+    "red_concrete_powder": [
+      "shovel"
+    ],
+    "black_concrete_powder": [
+      "shovel"
+    ]
+  },
+  "items": {
+    "acacia_log": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "acacia_wood": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_acacia_log": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_acacia_wood": [
+      "acacia_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "anvil": [
+      "anvil"
+    ],
+    "chipped_anvil": [
+      "anvil"
+    ],
+    "damaged_anvil": [
+      "anvil"
+    ],
+    "arrow": [
+      "arrows"
+    ],
+    "tipped_arrow": [
+      "arrows"
+    ],
+    "spectral_arrow": [
+      "arrows"
+    ],
+    "diamond_axe": [
+      "axes",
+      "tools"
+    ],
+    "stone_axe": [
+      "axes",
+      "tools"
+    ],
+    "golden_axe": [
+      "axes",
+      "piglin_loved",
+      "tools"
+    ],
+    "netherite_axe": [
+      "axes",
+      "tools"
+    ],
+    "wooden_axe": [
+      "axes",
+      "tools"
+    ],
+    "iron_axe": [
+      "axes",
+      "tools"
+    ],
+    "tropical_fish_bucket": [
+      "axolotl_tempt_items"
+    ],
+    "white_banner": [
+      "banners"
+    ],
+    "orange_banner": [
+      "banners"
+    ],
+    "magenta_banner": [
+      "banners"
+    ],
+    "light_blue_banner": [
+      "banners"
+    ],
+    "yellow_banner": [
+      "banners"
+    ],
+    "lime_banner": [
+      "banners"
+    ],
+    "pink_banner": [
+      "banners"
+    ],
+    "gray_banner": [
+      "banners"
+    ],
+    "light_gray_banner": [
+      "banners"
+    ],
+    "cyan_banner": [
+      "banners"
+    ],
+    "purple_banner": [
+      "banners"
+    ],
+    "blue_banner": [
+      "banners"
+    ],
+    "brown_banner": [
+      "banners"
+    ],
+    "green_banner": [
+      "banners"
+    ],
+    "red_banner": [
+      "banners"
+    ],
+    "black_banner": [
+      "banners"
+    ],
+    "netherite_ingot": [
+      "beacon_payment_items"
+    ],
+    "emerald": [
+      "beacon_payment_items"
+    ],
+    "diamond": [
+      "beacon_payment_items"
+    ],
+    "gold_ingot": [
+      "beacon_payment_items",
+      "piglin_loved"
+    ],
+    "iron_ingot": [
+      "beacon_payment_items"
+    ],
+    "red_bed": [
+      "beds"
+    ],
+    "black_bed": [
+      "beds"
+    ],
+    "blue_bed": [
+      "beds"
+    ],
+    "brown_bed": [
+      "beds"
+    ],
+    "cyan_bed": [
+      "beds"
+    ],
+    "gray_bed": [
+      "beds"
+    ],
+    "green_bed": [
+      "beds"
+    ],
+    "light_blue_bed": [
+      "beds"
+    ],
+    "light_gray_bed": [
+      "beds"
+    ],
+    "lime_bed": [
+      "beds"
+    ],
+    "magenta_bed": [
+      "beds"
+    ],
+    "orange_bed": [
+      "beds"
+    ],
+    "pink_bed": [
+      "beds"
+    ],
+    "purple_bed": [
+      "beds"
+    ],
+    "white_bed": [
+      "beds"
+    ],
+    "yellow_bed": [
+      "beds"
+    ],
+    "birch_log": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "birch_wood": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_birch_log": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_birch_wood": [
+      "birch_logs",
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn"
+    ],
+    "oak_boat": [
+      "boats"
+    ],
+    "spruce_boat": [
+      "boats"
+    ],
+    "birch_boat": [
+      "boats"
+    ],
+    "jungle_boat": [
+      "boats"
+    ],
+    "acacia_boat": [
+      "boats"
+    ],
+    "dark_oak_boat": [
+      "boats"
+    ],
+    "mangrove_boat": [
+      "boats"
+    ],
+    "oak_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "spruce_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "birch_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "jungle_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "acacia_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "dark_oak_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "mangrove_chest_boat": [
+      "boats",
+      "chest_boats"
+    ],
+    "stone_button": [
+      "buttons"
+    ],
+    "polished_blackstone_button": [
+      "buttons"
+    ],
+    "oak_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "spruce_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "birch_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "jungle_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "acacia_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "dark_oak_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "crimson_button": [
+      "buttons",
+      "non_flammable_wood",
+      "wooden_buttons"
+    ],
+    "warped_button": [
+      "buttons",
+      "non_flammable_wood",
+      "wooden_buttons"
+    ],
+    "mangrove_button": [
+      "buttons",
+      "wooden_buttons"
+    ],
+    "candle": [
+      "candles"
+    ],
+    "white_candle": [
+      "candles"
+    ],
+    "orange_candle": [
+      "candles"
+    ],
+    "magenta_candle": [
+      "candles"
+    ],
+    "light_blue_candle": [
+      "candles"
+    ],
+    "yellow_candle": [
+      "candles"
+    ],
+    "lime_candle": [
+      "candles"
+    ],
+    "pink_candle": [
+      "candles"
+    ],
+    "gray_candle": [
+      "candles"
+    ],
+    "light_gray_candle": [
+      "candles"
+    ],
+    "cyan_candle": [
+      "candles"
+    ],
+    "purple_candle": [
+      "candles"
+    ],
+    "blue_candle": [
+      "candles"
+    ],
+    "brown_candle": [
+      "candles"
+    ],
+    "green_candle": [
+      "candles"
+    ],
+    "red_candle": [
+      "candles"
+    ],
+    "black_candle": [
+      "candles"
+    ],
+    "diamond_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "tools"
+    ],
+    "golden_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "piglin_loved",
+      "tools"
+    ],
+    "iron_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "tools"
+    ],
+    "netherite_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "tools"
+    ],
+    "stone_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "tools"
+    ],
+    "wooden_pickaxe": [
+      "cluster_max_harvestables",
+      "pickaxes",
+      "tools"
+    ],
+    "coal": [
+      "coals"
+    ],
+    "charcoal": [
+      "coals"
+    ],
+    "coal_ore": [
+      "coal_ores"
+    ],
+    "deepslate_coal_ore": [
+      "coal_ores"
+    ],
+    "compass": [
+      "compasses"
+    ],
+    "recovery_compass": [
+      "compasses"
+    ],
+    "jungle_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "oak_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "spruce_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "dark_oak_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "acacia_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "birch_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "azalea_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "flowering_azalea_leaves": [
+      "completes_find_tree_tutorial",
+      "flowers",
+      "leaves"
+    ],
+    "mangrove_leaves": [
+      "completes_find_tree_tutorial",
+      "leaves"
+    ],
+    "nether_wart_block": [
+      "completes_find_tree_tutorial",
+      "wart_blocks"
+    ],
+    "warped_wart_block": [
+      "completes_find_tree_tutorial",
+      "wart_blocks"
+    ],
+    "dark_oak_log": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "dark_oak_wood": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_dark_oak_log": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_dark_oak_wood": [
+      "completes_find_tree_tutorial",
+      "dark_oak_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "oak_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "oak_logs"
+    ],
+    "oak_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "oak_logs"
+    ],
+    "stripped_oak_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "oak_logs"
+    ],
+    "stripped_oak_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "oak_logs"
+    ],
+    "jungle_log": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "jungle_wood": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_jungle_log": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "stripped_jungle_wood": [
+      "completes_find_tree_tutorial",
+      "jungle_logs",
+      "logs",
+      "logs_that_burn"
+    ],
+    "spruce_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "spruce_logs"
+    ],
+    "spruce_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "spruce_logs"
+    ],
+    "stripped_spruce_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "spruce_logs"
+    ],
+    "stripped_spruce_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "spruce_logs"
+    ],
+    "mangrove_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs"
+    ],
+    "mangrove_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs"
+    ],
+    "stripped_mangrove_log": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs"
+    ],
+    "stripped_mangrove_wood": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "logs_that_burn",
+      "mangrove_logs"
+    ],
+    "crimson_stem": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "logs",
+      "non_flammable_wood"
+    ],
+    "stripped_crimson_stem": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "logs",
+      "non_flammable_wood"
+    ],
+    "crimson_hyphae": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "logs",
+      "non_flammable_wood"
+    ],
+    "stripped_crimson_hyphae": [
+      "completes_find_tree_tutorial",
+      "crimson_stems",
+      "logs",
+      "non_flammable_wood"
+    ],
+    "warped_stem": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "non_flammable_wood",
+      "warped_stems"
+    ],
+    "stripped_warped_stem": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "non_flammable_wood",
+      "warped_stems"
+    ],
+    "warped_hyphae": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "non_flammable_wood",
+      "warped_stems"
+    ],
+    "stripped_warped_hyphae": [
+      "completes_find_tree_tutorial",
+      "logs",
+      "non_flammable_wood",
+      "warped_stems"
+    ],
+    "copper_ore": [
+      "copper_ores"
+    ],
+    "deepslate_copper_ore": [
+      "copper_ores"
+    ],
+    "music_disc_13": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_cat": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_blocks": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_chirp": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_far": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_mall": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_mellohi": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_stal": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_strad": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_ward": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_11": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "music_disc_wait": [
+      "creeper_drop_music_discs",
+      "music_discs"
+    ],
+    "flint_and_steel": [
+      "creeper_igniters"
+    ],
+    "fire_charge": [
+      "creeper_igniters"
+    ],
+    "white_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "orange_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "magenta_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "light_blue_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "yellow_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "lime_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "pink_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "gray_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "light_gray_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "cyan_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "purple_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "blue_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "brown_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "green_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "red_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "black_wool": [
+      "dampens_vibrations",
+      "wool"
+    ],
+    "white_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "orange_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "magenta_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "light_blue_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "yellow_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "lime_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "pink_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "gray_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "light_gray_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "cyan_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "purple_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "blue_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "brown_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "green_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "red_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "black_carpet": [
+      "dampens_vibrations",
+      "wool_carpets"
+    ],
+    "diamond_ore": [
+      "diamond_ores"
+    ],
+    "deepslate_diamond_ore": [
+      "diamond_ores"
+    ],
+    "dirt": [
+      "dirt"
+    ],
+    "grass_block": [
+      "dirt"
+    ],
+    "podzol": [
+      "dirt"
+    ],
+    "coarse_dirt": [
+      "dirt"
+    ],
+    "mycelium": [
+      "dirt"
+    ],
+    "rooted_dirt": [
+      "dirt"
+    ],
+    "moss_block": [
+      "dirt"
+    ],
+    "mud": [
+      "dirt"
+    ],
+    "muddy_mangrove_roots": [
+      "dirt"
+    ],
+    "iron_door": [
+      "doors"
+    ],
+    "oak_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "spruce_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "birch_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "jungle_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "acacia_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "dark_oak_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "crimson_door": [
+      "doors",
+      "non_flammable_wood",
+      "wooden_doors"
+    ],
+    "warped_door": [
+      "doors",
+      "non_flammable_wood",
+      "wooden_doors"
+    ],
+    "mangrove_door": [
+      "doors",
+      "wooden_doors"
+    ],
+    "emerald_ore": [
+      "emerald_ores"
+    ],
+    "deepslate_emerald_ore": [
+      "emerald_ores"
+    ],
+    "nether_brick_fence": [
+      "fences"
+    ],
+    "oak_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "acacia_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "dark_oak_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "spruce_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "birch_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "jungle_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "crimson_fence": [
+      "fences",
+      "non_flammable_wood",
+      "wooden_fences"
+    ],
+    "warped_fence": [
+      "fences",
+      "non_flammable_wood",
+      "wooden_fences"
+    ],
+    "mangrove_fence": [
+      "fences",
+      "wooden_fences"
+    ],
+    "acacia_fence_gate": [
+      "fence_gates"
+    ],
+    "birch_fence_gate": [
+      "fence_gates"
+    ],
+    "dark_oak_fence_gate": [
+      "fence_gates"
+    ],
+    "jungle_fence_gate": [
+      "fence_gates"
+    ],
+    "oak_fence_gate": [
+      "fence_gates"
+    ],
+    "spruce_fence_gate": [
+      "fence_gates"
+    ],
+    "crimson_fence_gate": [
+      "fence_gates",
+      "non_flammable_wood"
+    ],
+    "warped_fence_gate": [
+      "fence_gates",
+      "non_flammable_wood"
+    ],
+    "mangrove_fence_gate": [
+      "fence_gates"
+    ],
+    "cod": [
+      "fishes"
+    ],
+    "cooked_cod": [
+      "fishes"
+    ],
+    "salmon": [
+      "fishes"
+    ],
+    "cooked_salmon": [
+      "fishes"
+    ],
+    "pufferfish": [
+      "fishes"
+    ],
+    "tropical_fish": [
+      "fishes"
+    ],
+    "flowering_azalea": [
+      "flowers",
+      "saplings"
+    ],
+    "mangrove_propagule": [
+      "flowers",
+      "saplings"
+    ],
+    "dandelion": [
+      "flowers",
+      "small_flowers"
+    ],
+    "poppy": [
+      "flowers",
+      "small_flowers"
+    ],
+    "blue_orchid": [
+      "flowers",
+      "small_flowers"
+    ],
+    "allium": [
+      "flowers",
+      "small_flowers"
+    ],
+    "azure_bluet": [
+      "flowers",
+      "small_flowers"
+    ],
+    "red_tulip": [
+      "flowers",
+      "small_flowers"
+    ],
+    "orange_tulip": [
+      "flowers",
+      "small_flowers"
+    ],
+    "white_tulip": [
+      "flowers",
+      "small_flowers"
+    ],
+    "pink_tulip": [
+      "flowers",
+      "small_flowers"
+    ],
+    "oxeye_daisy": [
+      "flowers",
+      "small_flowers"
+    ],
+    "cornflower": [
+      "flowers",
+      "small_flowers"
+    ],
+    "lily_of_the_valley": [
+      "flowers",
+      "small_flowers"
+    ],
+    "wither_rose": [
+      "flowers",
+      "small_flowers"
+    ],
+    "sunflower": [
+      "flowers",
+      "tall_flowers"
+    ],
+    "lilac": [
+      "flowers",
+      "tall_flowers"
+    ],
+    "peony": [
+      "flowers",
+      "tall_flowers"
+    ],
+    "rose_bush": [
+      "flowers",
+      "tall_flowers"
+    ],
+    "sweet_berries": [
+      "fox_food"
+    ],
+    "glow_berries": [
+      "fox_food"
+    ],
+    "leather_boots": [
+      "freeze_immune_wearables"
+    ],
+    "leather_leggings": [
+      "freeze_immune_wearables"
+    ],
+    "leather_chestplate": [
+      "freeze_immune_wearables"
+    ],
+    "leather_helmet": [
+      "freeze_immune_wearables"
+    ],
+    "leather_horse_armor": [
+      "freeze_immune_wearables"
+    ],
+    "gold_ore": [
+      "gold_ores",
+      "piglin_loved"
+    ],
+    "nether_gold_ore": [
+      "gold_ores",
+      "piglin_loved"
+    ],
+    "deepslate_gold_ore": [
+      "gold_ores",
+      "piglin_loved"
+    ],
+    "diamond_hoe": [
+      "hoes",
+      "tools"
+    ],
+    "stone_hoe": [
+      "hoes",
+      "tools"
+    ],
+    "golden_hoe": [
+      "hoes",
+      "piglin_loved",
+      "tools"
+    ],
+    "netherite_hoe": [
+      "hoes",
+      "tools"
+    ],
+    "wooden_hoe": [
+      "hoes",
+      "tools"
+    ],
+    "iron_hoe": [
+      "hoes",
+      "tools"
+    ],
+    "leather": [
+      "ignored_by_piglin_babies"
+    ],
+    "iron_ore": [
+      "iron_ores"
+    ],
+    "deepslate_iron_ore": [
+      "iron_ores"
+    ],
+    "lapis_ore": [
+      "lapis_ores"
+    ],
+    "deepslate_lapis_ore": [
+      "lapis_ores"
+    ],
+    "written_book": [
+      "lectern_books"
+    ],
+    "writable_book": [
+      "lectern_books"
+    ],
+    "music_disc_pigstep": [
+      "music_discs"
+    ],
+    "music_disc_otherside": [
+      "music_discs"
+    ],
+    "music_disc_5": [
+      "music_discs"
+    ],
+    "crimson_planks": [
+      "non_flammable_wood",
+      "planks"
+    ],
+    "warped_planks": [
+      "non_flammable_wood",
+      "planks"
+    ],
+    "crimson_slab": [
+      "non_flammable_wood",
+      "slabs",
+      "wooden_slabs"
+    ],
+    "warped_slab": [
+      "non_flammable_wood",
+      "slabs",
+      "wooden_slabs"
+    ],
+    "crimson_pressure_plate": [
+      "non_flammable_wood",
+      "wooden_pressure_plates"
+    ],
+    "warped_pressure_plate": [
+      "non_flammable_wood",
+      "wooden_pressure_plates"
+    ],
+    "crimson_trapdoor": [
+      "non_flammable_wood",
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "warped_trapdoor": [
+      "non_flammable_wood",
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "crimson_stairs": [
+      "non_flammable_wood",
+      "stairs",
+      "wooden_stairs"
+    ],
+    "warped_stairs": [
+      "non_flammable_wood",
+      "stairs",
+      "wooden_stairs"
+    ],
+    "crimson_sign": [
+      "non_flammable_wood",
+      "signs"
+    ],
+    "warped_sign": [
+      "non_flammable_wood",
+      "signs"
+    ],
+    "porkchop": [
+      "piglin_food"
+    ],
+    "cooked_porkchop": [
+      "piglin_food"
+    ],
+    "gold_block": [
+      "piglin_loved"
+    ],
+    "gilded_blackstone": [
+      "piglin_loved"
+    ],
+    "light_weighted_pressure_plate": [
+      "piglin_loved"
+    ],
+    "bell": [
+      "piglin_loved"
+    ],
+    "clock": [
+      "piglin_loved"
+    ],
+    "golden_carrot": [
+      "piglin_loved"
+    ],
+    "glistering_melon_slice": [
+      "piglin_loved"
+    ],
+    "golden_apple": [
+      "piglin_loved"
+    ],
+    "enchanted_golden_apple": [
+      "piglin_loved"
+    ],
+    "golden_helmet": [
+      "piglin_loved"
+    ],
+    "golden_chestplate": [
+      "piglin_loved"
+    ],
+    "golden_leggings": [
+      "piglin_loved"
+    ],
+    "golden_boots": [
+      "piglin_loved"
+    ],
+    "golden_horse_armor": [
+      "piglin_loved"
+    ],
+    "golden_sword": [
+      "piglin_loved",
+      "swords",
+      "tools"
+    ],
+    "golden_shovel": [
+      "piglin_loved",
+      "shovels",
+      "tools"
+    ],
+    "raw_gold": [
+      "piglin_loved"
+    ],
+    "raw_gold_block": [
+      "piglin_loved"
+    ],
+    "soul_torch": [
+      "piglin_repellents"
+    ],
+    "soul_lantern": [
+      "piglin_repellents"
+    ],
+    "soul_campfire": [
+      "piglin_repellents"
+    ],
+    "oak_planks": [
+      "planks"
+    ],
+    "spruce_planks": [
+      "planks"
+    ],
+    "birch_planks": [
+      "planks"
+    ],
+    "jungle_planks": [
+      "planks"
+    ],
+    "acacia_planks": [
+      "planks"
+    ],
+    "dark_oak_planks": [
+      "planks"
+    ],
+    "mangrove_planks": [
+      "planks"
+    ],
+    "rail": [
+      "rails"
+    ],
+    "powered_rail": [
+      "rails"
+    ],
+    "detector_rail": [
+      "rails"
+    ],
+    "activator_rail": [
+      "rails"
+    ],
+    "redstone_ore": [
+      "redstone_ores"
+    ],
+    "deepslate_redstone_ore": [
+      "redstone_ores"
+    ],
+    "sand": [
+      "sand",
+      "smelts_to_glass"
+    ],
+    "red_sand": [
+      "sand",
+      "smelts_to_glass"
+    ],
+    "oak_sapling": [
+      "saplings"
+    ],
+    "spruce_sapling": [
+      "saplings"
+    ],
+    "birch_sapling": [
+      "saplings"
+    ],
+    "jungle_sapling": [
+      "saplings"
+    ],
+    "acacia_sapling": [
+      "saplings"
+    ],
+    "dark_oak_sapling": [
+      "saplings"
+    ],
+    "azalea": [
+      "saplings"
+    ],
+    "diamond_shovel": [
+      "shovels",
+      "tools"
+    ],
+    "stone_shovel": [
+      "shovels",
+      "tools"
+    ],
+    "netherite_shovel": [
+      "shovels",
+      "tools"
+    ],
+    "wooden_shovel": [
+      "shovels",
+      "tools"
+    ],
+    "iron_shovel": [
+      "shovels",
+      "tools"
+    ],
+    "oak_sign": [
+      "signs"
+    ],
+    "spruce_sign": [
+      "signs"
+    ],
+    "birch_sign": [
+      "signs"
+    ],
+    "acacia_sign": [
+      "signs"
+    ],
+    "jungle_sign": [
+      "signs"
+    ],
+    "dark_oak_sign": [
+      "signs"
+    ],
+    "mangrove_sign": [
+      "signs"
+    ],
+    "stone_slab": [
+      "slabs"
+    ],
+    "smooth_stone_slab": [
+      "slabs"
+    ],
+    "stone_brick_slab": [
+      "slabs"
+    ],
+    "sandstone_slab": [
+      "slabs"
+    ],
+    "purpur_slab": [
+      "slabs"
+    ],
+    "quartz_slab": [
+      "slabs"
+    ],
+    "red_sandstone_slab": [
+      "slabs"
+    ],
+    "brick_slab": [
+      "slabs"
+    ],
+    "cobblestone_slab": [
+      "slabs"
+    ],
+    "nether_brick_slab": [
+      "slabs"
+    ],
+    "petrified_oak_slab": [
+      "slabs"
+    ],
+    "prismarine_slab": [
+      "slabs"
+    ],
+    "prismarine_brick_slab": [
+      "slabs"
+    ],
+    "dark_prismarine_slab": [
+      "slabs"
+    ],
+    "polished_granite_slab": [
+      "slabs"
+    ],
+    "smooth_red_sandstone_slab": [
+      "slabs"
+    ],
+    "mossy_stone_brick_slab": [
+      "slabs"
+    ],
+    "polished_diorite_slab": [
+      "slabs"
+    ],
+    "mossy_cobblestone_slab": [
+      "slabs"
+    ],
+    "end_stone_brick_slab": [
+      "slabs"
+    ],
+    "smooth_sandstone_slab": [
+      "slabs"
+    ],
+    "smooth_quartz_slab": [
+      "slabs"
+    ],
+    "granite_slab": [
+      "slabs"
+    ],
+    "andesite_slab": [
+      "slabs"
+    ],
+    "red_nether_brick_slab": [
+      "slabs"
+    ],
+    "polished_andesite_slab": [
+      "slabs"
+    ],
+    "diorite_slab": [
+      "slabs"
+    ],
+    "cut_sandstone_slab": [
+      "slabs"
+    ],
+    "cut_red_sandstone_slab": [
+      "slabs"
+    ],
+    "blackstone_slab": [
+      "slabs"
+    ],
+    "polished_blackstone_brick_slab": [
+      "slabs"
+    ],
+    "polished_blackstone_slab": [
+      "slabs"
+    ],
+    "cobbled_deepslate_slab": [
+      "slabs"
+    ],
+    "polished_deepslate_slab": [
+      "slabs"
+    ],
+    "deepslate_tile_slab": [
+      "slabs"
+    ],
+    "deepslate_brick_slab": [
+      "slabs"
+    ],
+    "waxed_weathered_cut_copper_slab": [
+      "slabs"
+    ],
+    "waxed_exposed_cut_copper_slab": [
+      "slabs"
+    ],
+    "waxed_cut_copper_slab": [
+      "slabs"
+    ],
+    "oxidized_cut_copper_slab": [
+      "slabs"
+    ],
+    "weathered_cut_copper_slab": [
+      "slabs"
+    ],
+    "exposed_cut_copper_slab": [
+      "slabs"
+    ],
+    "cut_copper_slab": [
+      "slabs"
+    ],
+    "waxed_oxidized_cut_copper_slab": [
+      "slabs"
+    ],
+    "mud_brick_slab": [
+      "slabs"
+    ],
+    "oak_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "spruce_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "birch_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "jungle_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "acacia_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "dark_oak_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "mangrove_slab": [
+      "slabs",
+      "wooden_slabs"
+    ],
+    "soul_sand": [
+      "soul_fire_base_blocks"
+    ],
+    "soul_soil": [
+      "soul_fire_base_blocks"
+    ],
+    "cobblestone_stairs": [
+      "stairs"
+    ],
+    "sandstone_stairs": [
+      "stairs"
+    ],
+    "nether_brick_stairs": [
+      "stairs"
+    ],
+    "stone_brick_stairs": [
+      "stairs"
+    ],
+    "brick_stairs": [
+      "stairs"
+    ],
+    "purpur_stairs": [
+      "stairs"
+    ],
+    "quartz_stairs": [
+      "stairs"
+    ],
+    "red_sandstone_stairs": [
+      "stairs"
+    ],
+    "prismarine_brick_stairs": [
+      "stairs"
+    ],
+    "prismarine_stairs": [
+      "stairs"
+    ],
+    "dark_prismarine_stairs": [
+      "stairs"
+    ],
+    "polished_granite_stairs": [
+      "stairs"
+    ],
+    "smooth_red_sandstone_stairs": [
+      "stairs"
+    ],
+    "mossy_stone_brick_stairs": [
+      "stairs"
+    ],
+    "polished_diorite_stairs": [
+      "stairs"
+    ],
+    "mossy_cobblestone_stairs": [
+      "stairs"
+    ],
+    "end_stone_brick_stairs": [
+      "stairs"
+    ],
+    "stone_stairs": [
+      "stairs"
+    ],
+    "smooth_sandstone_stairs": [
+      "stairs"
+    ],
+    "smooth_quartz_stairs": [
+      "stairs"
+    ],
+    "granite_stairs": [
+      "stairs"
+    ],
+    "andesite_stairs": [
+      "stairs"
+    ],
+    "red_nether_brick_stairs": [
+      "stairs"
+    ],
+    "polished_andesite_stairs": [
+      "stairs"
+    ],
+    "diorite_stairs": [
+      "stairs"
+    ],
+    "blackstone_stairs": [
+      "stairs"
+    ],
+    "polished_blackstone_brick_stairs": [
+      "stairs"
+    ],
+    "polished_blackstone_stairs": [
+      "stairs"
+    ],
+    "cobbled_deepslate_stairs": [
+      "stairs"
+    ],
+    "polished_deepslate_stairs": [
+      "stairs"
+    ],
+    "deepslate_tile_stairs": [
+      "stairs"
+    ],
+    "deepslate_brick_stairs": [
+      "stairs"
+    ],
+    "oxidized_cut_copper_stairs": [
+      "stairs"
+    ],
+    "weathered_cut_copper_stairs": [
+      "stairs"
+    ],
+    "exposed_cut_copper_stairs": [
+      "stairs"
+    ],
+    "cut_copper_stairs": [
+      "stairs"
+    ],
+    "waxed_weathered_cut_copper_stairs": [
+      "stairs"
+    ],
+    "waxed_exposed_cut_copper_stairs": [
+      "stairs"
+    ],
+    "waxed_cut_copper_stairs": [
+      "stairs"
+    ],
+    "waxed_oxidized_cut_copper_stairs": [
+      "stairs"
+    ],
+    "mud_brick_stairs": [
+      "stairs"
+    ],
+    "oak_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "spruce_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "birch_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "jungle_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "acacia_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "dark_oak_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "mangrove_stairs": [
+      "stairs",
+      "wooden_stairs"
+    ],
+    "stone_bricks": [
+      "stone_bricks"
+    ],
+    "mossy_stone_bricks": [
+      "stone_bricks"
+    ],
+    "cracked_stone_bricks": [
+      "stone_bricks"
+    ],
+    "chiseled_stone_bricks": [
+      "stone_bricks"
+    ],
+    "cobblestone": [
+      "stone_crafting_materials",
+      "stone_tool_materials"
+    ],
+    "blackstone": [
+      "stone_crafting_materials",
+      "stone_tool_materials"
+    ],
+    "cobbled_deepslate": [
+      "stone_crafting_materials",
+      "stone_tool_materials"
+    ],
+    "diamond_sword": [
+      "swords",
+      "tools"
+    ],
+    "stone_sword": [
+      "swords",
+      "tools"
+    ],
+    "netherite_sword": [
+      "swords",
+      "tools"
+    ],
+    "wooden_sword": [
+      "swords",
+      "tools"
+    ],
+    "iron_sword": [
+      "swords",
+      "tools"
+    ],
+    "terracotta": [
+      "terracotta"
+    ],
+    "white_terracotta": [
+      "terracotta"
+    ],
+    "orange_terracotta": [
+      "terracotta"
+    ],
+    "magenta_terracotta": [
+      "terracotta"
+    ],
+    "light_blue_terracotta": [
+      "terracotta"
+    ],
+    "yellow_terracotta": [
+      "terracotta"
+    ],
+    "lime_terracotta": [
+      "terracotta"
+    ],
+    "pink_terracotta": [
+      "terracotta"
+    ],
+    "gray_terracotta": [
+      "terracotta"
+    ],
+    "light_gray_terracotta": [
+      "terracotta"
+    ],
+    "cyan_terracotta": [
+      "terracotta"
+    ],
+    "purple_terracotta": [
+      "terracotta"
+    ],
+    "blue_terracotta": [
+      "terracotta"
+    ],
+    "brown_terracotta": [
+      "terracotta"
+    ],
+    "green_terracotta": [
+      "terracotta"
+    ],
+    "red_terracotta": [
+      "terracotta"
+    ],
+    "black_terracotta": [
+      "terracotta"
+    ],
+    "trident": [
+      "tools"
+    ],
+    "iron_trapdoor": [
+      "trapdoors"
+    ],
+    "acacia_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "birch_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "dark_oak_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "jungle_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "oak_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "spruce_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "mangrove_trapdoor": [
+      "trapdoors",
+      "wooden_trapdoors"
+    ],
+    "cobblestone_wall": [
+      "walls"
+    ],
+    "mossy_cobblestone_wall": [
+      "walls"
+    ],
+    "brick_wall": [
+      "walls"
+    ],
+    "prismarine_wall": [
+      "walls"
+    ],
+    "red_sandstone_wall": [
+      "walls"
+    ],
+    "mossy_stone_brick_wall": [
+      "walls"
+    ],
+    "granite_wall": [
+      "walls"
+    ],
+    "stone_brick_wall": [
+      "walls"
+    ],
+    "nether_brick_wall": [
+      "walls"
+    ],
+    "andesite_wall": [
+      "walls"
+    ],
+    "red_nether_brick_wall": [
+      "walls"
+    ],
+    "sandstone_wall": [
+      "walls"
+    ],
+    "end_stone_brick_wall": [
+      "walls"
+    ],
+    "diorite_wall": [
+      "walls"
+    ],
+    "blackstone_wall": [
+      "walls"
+    ],
+    "polished_blackstone_brick_wall": [
+      "walls"
+    ],
+    "polished_blackstone_wall": [
+      "walls"
+    ],
+    "cobbled_deepslate_wall": [
+      "walls"
+    ],
+    "polished_deepslate_wall": [
+      "walls"
+    ],
+    "deepslate_tile_wall": [
+      "walls"
+    ],
+    "deepslate_brick_wall": [
+      "walls"
+    ],
+    "mud_brick_wall": [
+      "walls"
+    ],
+    "oak_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "spruce_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "birch_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "jungle_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "acacia_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "dark_oak_pressure_plate": [
+      "wooden_pressure_plates"
+    ],
+    "mangrove_pressure_plate": [
+      "wooden_pressure_plates"
+    ]
+  }
+}
