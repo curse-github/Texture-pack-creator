@@ -14,6 +14,7 @@
         "/minecraft/assets/textures/block/lily_of_the_valley.png",
         "/minecraft/assets/textures/block/torchflower.png"
     ],
+
     "ore":[
         "/minecraft/assets/textures/block/coal_ore.png",
         "/minecraft/assets/textures/block/copper_ore.png",
@@ -27,6 +28,7 @@
         "/minecraft/assets/textures/block/nether_quartz_ore.png",
         "/minecraft/assets/textures/block/ancient_debris.png"
     ],
+
     "tool":[
         "/minecraft/assets/textures/item/wooden_pickaxe.png",
         "/minecraft/assets/textures/item/stone_pickaxe.png",
@@ -181,6 +183,7 @@
         "/minecraft/assets/textures/item/recovery_compass_30.png",
         "/minecraft/assets/textures/item/recovery_compass_31.png"
     ],
+
     "redstone":[
         "/minecraft/assets/textures/block/repeater.png",
         "/minecraft/assets/textures/item/repeater.png",
@@ -278,6 +281,7 @@
         "/minecraft/assets/textures/item/hopper_minecart.png",
         "/minecraft/assets/textures/block/tnt_minecart.png"
     ],
+
     "weapon":[
         "/minecraft/assets/textures/item/wooden_sword.png",
         "/minecraft/assets/textures/item/stone_sword.png",
@@ -300,6 +304,7 @@
         "/minecraft/assets/textures/item/tipped_arrow_base.png",
         "/minecraft/assets/textures/item/tipped_arrow_head.png"
     ],
+
     "armor":[
         "/minecraft/assets/textures/item/leather_boots.png",
         "/minecraft/assets/textures/item/leather_leggings.png",
@@ -326,17 +331,111 @@
         "/minecraft/assets/textures/item/netherite_chestplate.png",
         "/minecraft/assets/textures/item/netherite_helmet.png"
     ],
-    "nether":[],
-    "end":[],
-    "disc":[],
-    "plant":[],
-    "hostile":[],
-    "friendly":[],
-    "neuteral":[],
-    "dye":[],
-    "sculk":[],
-    "mob":[],
-    "vehicle":[],
-    "gui":[],
-    "sky":[]
+
+    "nether":[
+        "/minecraft/assets/textures/block/nether_gold_ore.png",
+        "/minecraft/assets/textures/block/nether_quartz_ore.png",
+        "/minecraft/assets/textures/block/ancient_debris.png",
+        "/minecraft/assets/textures/block/basalt_side.png",
+        "/minecraft/assets/textures/block/basalt_top.png",
+        "/minecraft/assets/textures/block/blackstone.png",
+        "/minecraft/assets/textures/block/gilded_blackstone.png",
+        "/minecraft/assets/textures/block/glowstone.png",
+        "/minecraft/assets/textures/item/glowstone_dust.png",
+        "/minecraft/assets/textures/block/nether_portal.png",
+        "/minecraft/assets/textures/block/quartz_block_bottom.png",
+        "/minecraft/assets/textures/block/quartz_block_side.png",
+        "/minecraft/assets/textures/block/quartz_block_top.png",
+        "/minecraft/assets/textures/block/nether_brick.png",
+        "/minecraft/assets/textures/block/nether_brick_slab_top.png",
+        "/minecraft/assets/textures/block/nether_wart_block.png",
+        "/minecraft/assets/textures/block/nether_wart_stage0.png",
+        "/minecraft/assets/textures/block/nether_wart_stage1.png",
+        "/minecraft/assets/textures/block/nether_wart_stage2.png"
+    ],
+
+    "end":[
+        "/minecraft/assets/textures/block/end_stone.png",
+        "/minecraft/assets/textures/block/end_stone_bricks.png",
+        "/minecraft/assets/textures/block/end_stone_brick_slab_top.png",
+        "/minecraft/assets/textures/environment/end_sky.png",
+        "/minecraft/assets/textures/entity/dragon.png",
+        "/minecraft/assets/textures/entity/dragon_exploding.png",
+        "/minecraft/assets/textures/entity/dragon_eyes.png",
+        "/minecraft/assets/textures/entity/dragon_fireball.png",
+        "/minecraft/assets/textures/block/.png",
+    ],
+
+    "music":[
+        "/minecraft/assets/textures/block/jukebox_side.png",
+        "/minecraft/assets/textures/block/jukebox_top.png",
+        "/minecraft/assets/textures/block/note_block.png",
+        "/minecraft/assets/textures/item/music_disc_11.png",
+        "/minecraft/assets/textures/item/music_disc_13.png",
+        "/minecraft/assets/textures/item/music_disc_5.png",
+        "/minecraft/assets/textures/item/music_disc_blocks.png",
+        "/minecraft/assets/textures/item/music_disc_cat.png",
+        "/minecraft/assets/textures/item/music_disc_chirp.png",
+        "/minecraft/assets/textures/item/music_disc_far.png",
+        "/minecraft/assets/textures/item/music_disc_mall.png",
+        "/minecraft/assets/textures/item/music_disc_mellohi.png",
+        "/minecraft/assets/textures/item/music_disc_otherside.png",
+        "/minecraft/assets/textures/item/music_disc_pigstep.png",
+        "/minecraft/assets/textures/item/music_disc_stal.png",
+        "/minecraft/assets/textures/item/music_disc_strad.png",
+        "/minecraft/assets/textures/item/music_disc_wait.png",
+        "/minecraft/assets/textures/item/music_disc_ward.png"
+    ],
+
+    "plant":[
+
+    ],
+
+    "hostile":[
+        "/minecraft/assets/textures/entity/dragon.png",
+        "/minecraft/assets/textures/entity/dragon_exploding.png",
+        "/minecraft/assets/textures/entity/dragon_eyes.png",
+        "/minecraft/assets/textures/entity/dragon_fireball.png",
+    ],
+
+    "friendly":[
+
+    ],
+
+    "neuteral":[
+
+    ],
+
+    "dye":[
+
+    ],
+
+    "sculk":[
+        "/minecraft/assets/textures/block/sculk_sensor_side.png",
+        "/minecraft/assets/textures/block/sculk_sensor_bottom.png",
+        "/minecraft/assets/textures/block/sculk_sensor_tendril_active.png",
+        "/minecraft/assets/textures/block/sculk_sensor_tendril_inactive.png",
+        "/minecraft/assets/textures/block/sculk_sensor_top.png",
+    ],
+
+    "mob":[
+        "/minecraft/assets/textures/entity/dragon.png",
+        "/minecraft/assets/textures/entity/dragon_exploding.png",
+        "/minecraft/assets/textures/entity/dragon_eyes.png",
+        "/minecraft/assets/textures/entity/dragon_fireball.png",
+    ],
+
+    "vehicle":[
+        "/minecraft/assets/textures/item/command_block_minecart.png",
+        "/minecraft/assets/textures/item/hopper_minecart.png",
+        "/minecraft/assets/textures/block/tnt_minecart.png"
+    ],
+
+    "gui":[
+        
+    ],
+
+    "sky":[
+        "/minecraft/assets/textures/environment/end_sky.png",
+    ]
 }
