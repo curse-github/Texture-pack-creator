@@ -106,7 +106,7 @@ async function openFile(file) {
     const {name,path,extention,properties} = file;
     //checks that the file is not already open
     for (let i = 0; i < opened.length; i++) {
-        const openedFile = changedData[opened[i]];
+        const openedFile = proccessedImages[opened[i]];
         if (openedFile.name == name && openedFile.path == path && openedFile.extention == extention && 
             openedFile.properties.width == properties.width && openedFile.properties.height == properties.height) {
             //if it find a tab matching the file switch to that tab
@@ -127,7 +127,7 @@ async function openFile(file) {
         const path = file.path;
         opened.push(path);
         file.properties.modified = false;
-        changedData[path] = file;
+        proccessedImages[path] = file;
         //create tab html element
         tab = document.createElement("blk"); tab.className = "tab"; tab.id = encodeURIComponent(path); tab.setAttribute("selected",false);
         let text = document.createElement("blk"); text.innerHTML = spaces.two+name+spaces.one; text.setAttribute("onclick","selectTab(this.parentElement)");
@@ -159,7 +159,7 @@ function selectTab(tab) {
     tab.setAttribute("selected",true);
     //set the activeIndex variable correctly
     for(let i = 0; i < opened.length; i++) {
-        const openedFile = changedData[opened[i]];
+        const openedFile = proccessedImages[opened[i]];
         if (openedFile.path == decodeURIComponent(tab.id)) {
             activeIndex = i; break;
         }
@@ -178,7 +178,7 @@ function closeTab(tab) {
     //loop through currently opened files
     const id = decodeURIComponent(tab.id);
     for(let i = 0; i < opened.length; i++) {
-        const openedFile = changedData[opened[i]];
+        const openedFile = proccessedImages[opened[i]];
         //check if file matched element passed in
         if (openedFile.path == id) {
             delete opened[i];
@@ -206,7 +206,7 @@ function closeTab(tab) {
                         if (tempTab.getAttribute("selected")=="true") {
                             //find associated file with tab
                             for(let l = 0; l < opened.length; l++) {
-                                if(decodeURIComponent(tempTab.id) == changedData[opened[l]].path) {
+                                if(decodeURIComponent(tempTab.id) == proccessedImages[opened[l]].path) {
                                     //set activeIndex
                                     activeIndex=l;
                                     break;
@@ -238,7 +238,7 @@ async function downloadPack(packname) {
         packname = packname||"pack";
         var zip = new JSZip();
         var folders = {parent:zip};
-        changedEntries = Object.entries(changedData);
+        changedEntries = Object.entries(proccessedImages);
         for (let i = 0; i < changedEntries.length; i++) {
             const file = changedEntries[i][1];
             const {name,path,extention,properties} = file;
@@ -282,7 +282,7 @@ async function downloadPack(packname) {
 async function updateCanvas() {
     //if there is a file currently open
     if (activeIndex != -1) {
-        const file = changedData[opened[activeIndex]];
+        const file = proccessedImages[opened[activeIndex]];
         const properties = file.properties;
         let height;
         let width;
@@ -329,7 +329,7 @@ async function updateCanvas() {
 addEventListener("resize", updateCanvas);
 function onMouseUpdate(e) {
     if (activeIndex == -1) return;
-    const file = changedData[opened[activeIndex]];
+    const file = proccessedImages[opened[activeIndex]];
     const properties = file.properties;
 
     mouseX = parseInt(e.clientX - canvas.offsetLeft);
@@ -390,7 +390,7 @@ function onMouseUpdate(e) {
             properties.imgData = pixelsData;
         }
         file.properties = properties;
-        changedData[opened[activeIndex]] = file;
+        proccessedImages[opened[activeIndex]] = file;
         lastRightClick = 0;
     } else if (mouse[2]==2||mouse[2]==3) {
         if (lastRightClick==0) lastRightClickMousePos = [mouse[0],mouse[1]];
@@ -430,7 +430,7 @@ function setOption(tool, option, value) {
 }
 async function clearActiveImage() {
     if (activeIndex == -1) return;
-    const file = changedData[opened[activeIndex]];
+    const file = proccessedImages[opened[activeIndex]];
     const properties = file.properties;
     properties.modified = false;
     properties.imgData = await getImageData(file);
@@ -454,11 +454,11 @@ function matchesSearch(str,file) {
         const part = splt[i];
         var tempContains = false;
         if (part.startsWith("!")) {
-            tempContains = !str.includes(part.replace("!",""))
+            tempContains = !str.includes(part.replace("!",""));
         } else if (part.startsWith("#")) {
             tempContains = file.properties.tags!=null?(file.properties.tags.includes(part.replace("#",""))):(false);
         } else {
-            tempContains = str.includes(part)
+            tempContains = str.includes(part);
         }
         contains = contains&&tempContains;
     }
@@ -578,7 +578,7 @@ const spaces = {one:"&nbsp;",two:"&ensp;",four:"&emsp;"}
 const TAB=spaces.four+spaces.two;// equivilent to 6 spaces gap
 
 var opened = [];
-var changedData = {};
+var proccessedImages = {};
 var activeIndex = -1;
 var lastActiveIndex = -2;
 var structureType = "regular";

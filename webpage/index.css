@@ -88,11 +88,6 @@ div.collapsable[collapsed=false] > div > svg { display:inline-block; transform:r
 
 /*#endregion*/
 
-div#views   {
-    width:var(--viewsW);                                       height:calc(100vh - var(--toolBarH));
-    display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
-}
-
 /*#region editor*/
 
 div#editorParent {
@@ -119,24 +114,24 @@ div#editor { display:flex; flex: 1; justify-content: center; align-items: center
 
 div#toolBar {
     width:calc(100vw - var(--fileExpW));                       height:var(--toolBarH);
-    display:flex; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
-    align-items: center;
-    padding-left:1em; padding-right:1em;
+    background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
+    display:flex; align-items: center;
+    padding-left:calc(var(--toolBarH) / 6); padding-right:calc(var(--toolBarH) / 6);
 }
 div#toolBar svg { height:50%; aspect-ratio: 1; }
 
 div#toolBar > button#download {
-    height:50%; aspect-ratio: 1;
+    height:calc(var(--toolBarH) / 2.353); aspect-ratio: 1;
     background-color: var(--borderColor); color:white;
-    margin-left:1em; margin-right:1em;
+    margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
 }
 div#toolBar > div#tools {
-    height:100%; aspect-ratio: calc(8 / 6);
+    height:var(--toolBarH); aspect-ratio: calc(8 / 6);
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
     display:flex; flex-direction: row; justify-content: space-between; align-items: center;
 }
 div#toolBar > div#tools > button {
-    height:33%; aspect-ratio: 1;
+    height:calc(var(--toolBarH) / 3); aspect-ratio: 1;
     background-color: var(--borderColor); color:white;
 }
 div#toolBar > div#tools > button[active="true"] { background-color: #101010; }
@@ -165,3 +160,16 @@ div#toolBar > div#toolOptions  input[type="number"] {
     display:block;
 }
 /*#endregion*/
+
+div#views   {
+    width:var(--viewsW); height:calc(100vh - var(--toolBarH));
+    background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
+    display:flex; align-items: center; flex-direction: column;
+    padding-top:calc(var(--toolBarH) / 6); padding-bottom:calc(var(--toolBarH) / 6);
+}
+div#views > button {
+    background-color: var(--borderColor); color:white;
+    height:calc(var(--toolBarH) / 3); aspect-ratio: 1;
+    margin-bottom:calc(var(--toolBarH) / 6);
+}
+div#views > button[active="true"] { background-color: #101010; }
