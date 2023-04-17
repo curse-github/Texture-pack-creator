@@ -7,6 +7,7 @@ Object.entries({
     "/index.html"      :(req:any,res:any,send:any)=>send("/webpage/index.html" ),
     "/index.css"       :(req:any,res:any,send:any)=>send("/webpage/index.css"  ),
     "/index.js"        :(req:any,res:any,send:any)=>send("/webpage/index.js"   ),
+    "/myCanvas.js"     :(req:any,res:any,send:any)=>send("/webpage/myCanvas.js"),
     "/MonocraftBetterBrackets.ttf" :(req:any,res:any,send:any)=>send(          ),
     "/jszip.js"        :(req:any,res:any,send:any)=>send("/js/jszip.js"        ),
     "/FileSaver.js"    :(req:any,res:any,send:any)=>send("/js/FileSaver.js"    ),

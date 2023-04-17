@@ -7,9 +7,10 @@
         <title>Texture pack creator</title>
         <link rel="icon" type="image/png" href="/minecraft/pack.png">
         <link rel="stylesheet" href="index.css">
-        <script src="/index.js"></script>
         <script src="/jszip.js"></script>
         <script src="/FileSaver.js"></script>
+        <script src="/myCanvas.js"></script>
+        <script src="/index.js"></script>
         <!--#region bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!--#endregion-->
@@ -35,39 +36,39 @@
         </div>
         <div id="container1">
             <div id="toolBar">
-                <button id="download" onclick="downloadPack('custom')" title="Download texture pack"><svg fill="currentColor" style="width:1em;height:1em;">
+                <button id="download" onclick="canvas.downloadPack('custom')" title="Download texture pack"><svg fill="currentColor" style="width:1em;height:1em;">
                     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
                 </svg></button>
                 <div id="tools">
-                    <button id="brush" active=true onclick="setTool(this.id);" title="Brush tool" ><svg fill="currentColor" style="width:1em;height:1em;">
+                    <button id="brush" active=true onclick="canvas.setTool(this.id);" title="Brush tool" ><svg fill="currentColor" style="width:1em;height:1em;">
                         <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
                     </svg></button>
-                    <button id="eraser" onclick="setTool(this.id);" title="Eraser tool"><svg fill="currentColor" style="width:1em;height:1em;">
+                    <button id="eraser" onclick="canvas.setTool(this.id);" title="Eraser tool"><svg fill="currentColor" style="width:1em;height:1em;">
                         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"></path>
                     </svg></button>
-                    <button id="clear"            onclick="clearActiveImage();" title="Clears all edits"><svg fill="currentColor" style="width:1em;height:1em;">
+                    <button id="clear"            onclick="canvas.clearActiveImage();" title="Clears all edits"><svg fill="currentColor" style="width:1em;height:1em;">
                         <path d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"></path>
                     </svg></button>
                 </div>
                 <div id="toolOptions">
                     <div id="brush">
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="penSize"style="margin-bottom:0">Pen size</label><input oninput="this.value = Math.max(1,this.value); setOption('brush','size',this.value);" type="number"id="penSize"value=1 pattern="^[1-9]\d*$">
+                            <label for="penSize"style="margin-bottom:0">Pen size</label><input oninput="this.value = Math.max(1,this.value); canvas.setOption('brush','size',this.value);" type="number"id="penSize"value=1 pattern="^[1-9]\d*$">
                         </div>
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="penTransparency"style="margin-bottom:0">Opacity</label><input oninput="this.value = Math.max(0,Math.min(100,this.value)); setOption('brush','penTransparency',this.value/100);" type="number"id="penTransparency"value=100 min="0" max="100" pattern="^[1-9]\d*$">
+                            <label for="penTransparency"style="margin-bottom:0">Opacity</label><input oninput="this.value = Math.max(0,Math.min(100,this.value)); canvas.setOption('brush','penTransparency',this.value/100);" type="number"id="penTransparency"value=100 min="0" max="100" pattern="^[1-9]\d*$">
                         </div>
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="brushColor"style="margin-bottom:0">Pen color</label><input oninput="setOption('brush','brushColor',this.value);" type="color"id="brushColor"value="#FF0000">
+                            <label for="brushColor"style="margin-bottom:0">Pen color</label><input oninput="canvas.setOption('brush','brushColor',this.value);" type="color"id="brushColor"value="#FF0000">
                         </div>
                     </div>
                     <div active=false id="eraser">
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="eraserSize"style="margin-bottom:0">Eraser size</label><input oninput="this.value = Math.max(1,this.value); setOption('eraser','size',this.value);" type="number"id="eraserSize"value=1>
+                            <label for="eraserSize"style="margin-bottom:0">Eraser size</label><input oninput="this.value = Math.max(1,this.value); canvas.setOption('eraser','size',this.value);" type="number"id="eraserSize"value=1>
                         </div>
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="eraserHardness"style="margin-bottom:0">Eraser hardness</label><input oninput="setOption('eraser','eraserHardness',this.value/100);" type="number"id="eraserHardness"value=100 min="0" max="100" pattern="^[1-9]\d*$">
+                            <label for="eraserHardness"style="margin-bottom:0">Eraser hardness</label><input oninput="canvas.setOption('eraser','eraserHardness',this.value/100);" type="number"id="eraserHardness"value=100 min="0" max="100" pattern="^[1-9]\d*$">
                         </div>
                     </div>
                 </div>

@@ -42,6 +42,9 @@ div#fileExpParent   {
 div#fileExp, div#fileExp * {
     overflow-x:clip;
 }
+/* modified marker */
+div#fileExp div.collapsable > div > a::before { content:"   "; }
+div#fileExp div.collapsable > div[modified="true"] > a::before { content:"M" !important; color:green; position: relative; left:-1em;}
 div#fileExpParent > div {
     width:var(--fileExpW);
     display:block; background-color:var(--backgroundColor); border-color:var(--borderColor); border-width:var(--borderWidth); border-style:double;
