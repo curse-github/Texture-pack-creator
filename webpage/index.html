@@ -16,7 +16,6 @@
         <!--#endregion-->
         <style>
             html {
-                --fileExpW:26vw;
                 --toolBarH:12vh;
                 --viewsW:var(--toolBarH);
                 --borderWidth:4px;
@@ -25,14 +24,27 @@
                 --searchBarH:3em;
             }
         </style>
+        <script>
+            function collapseFileExp() {
+                const el = document.getElementById('div1');
+                const val = el.getAttribute('collapsed')=='false';
+                console.log(val);
+                el.setAttribute('collapsed',val);
+                document.getElementById('collapser').value=val?'>':'<';
+                document.body.setAttribute("style","--fileExpW:"+(val?'0px':'26vh'));
+            }
+        </script>
     </head>
-    <body>
+    <body style="--fileExpW:26vh;">
         <div id="fileExpParent">
-            <div id="searchBar">
-                <input type="text" placeholder="search" spellcheck="false" title="Search for blocks">
-                <button onclick="structureType=((structureType=='regular')?'expanded':'regular'); run();" title="Expand file structure"></button>
+            <div id="div1" collapsed="false">
+                <div id="searchBar">
+                    <input type="text" placeholder="search" spellcheck="false" title="Search for blocks">
+                    <button onclick="structureType=((structureType=='regular')?'expanded':'regular'); run();" title="Expand file structure"></button>
+                </div>
+                <div id="fileExp"></div>
             </div>
-            <div id="fileExp"></div>
+            <input type="button" id="collapser" value="<" onclick="collapseFileExp()">
         </div>
         <div id="container1">
             <div id="toolBar">

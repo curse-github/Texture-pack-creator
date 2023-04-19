@@ -198,8 +198,8 @@ async function run() {
         
         //set html of file explorer
         //set icon on expand button
-        if (structureType=="expanded") document.querySelector("div#fileExpParent > div#searchBar > button").innerHTML = collapseIcon;
-        else                           document.querySelector("div#fileExpParent > div#searchBar > button").innerHTML = expandIcon;
+        if (structureType=="expanded") document.querySelector("div#fileExpParent > div#div1 > div#searchBar > button").innerHTML = collapseIcon;
+        else                           document.querySelector("div#fileExpParent > div#div1 > div#searchBar > button").innerHTML = expandIcon;
     });
 }
 
