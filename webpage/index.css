@@ -146,7 +146,7 @@ div#toolBar > button#download {
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
 }
 div#toolBar > div#tools {
-    height:var(--toolBarH); aspect-ratio: calc(8 / 6);
+    height:var(--toolBarH); aspect-ratio: calc(9.5 / 6);
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
     display:flex; flex-direction: row; justify-content: space-between; align-items: center;
 }

@@ -3,7 +3,6 @@ class myCanvas {
     //#region vars
     //constant
     self;
-    static validTools = ["brush","eraser"];
 
     //html elements
     editorParent;
@@ -11,8 +10,8 @@ class myCanvas {
     fileTabs;
     canvas;
     canvasContext;
-    tools;
-    toolOptions;
+    toolsHtml;
+    toolSettings;
 
     //opened files/data
     opened = [];
@@ -26,7 +25,6 @@ class myCanvas {
     lastRightMouse = this.rightMouse;
     //settings
     curTool;
-    toolSettings;
     currentStroke = [];
     reloadImage = false;
     canvasState = {
@@ -37,28 +35,18 @@ class myCanvas {
         top:0,
         left:0
     }
+    tools = {};
     //#endregion
 
     constructor() {
         self = this;
 
         this.curTool = "brush";
-        this.toolOptions = {
-            "brush":{
-                "size":1,
-                "brushColor":[127,0,127],
-                "penTransparency":1
-            },
-            "eraser":{
-                "size":1,
-                "eraserHardness":1
-            }
-        };
 
         window.addEventListener("load", (e) => {
             self.editorParent  = document.getElementById("editorParent" );
             self.fileTabs      = document.getElementById("fileTabs"     );
-            self.tools = document.getElementById("tools");
+            self.toolsHtml = document.getElementById("tools");
             self.toolSettings = document.getElementById("toolSettings");
 
             self.editor        = document.getElementById("editor"       );
@@ -88,11 +76,9 @@ class myCanvas {
 
             //set default values
             self.setTool(self.curTool);
-            document.getElementById("penSize").value         = self.toolOptions.brush.size;
-            document.getElementById("eraserSize").value      = self.toolOptions.eraser.size;
-            document.getElementById("brushColor").value      = util.RgbToHex(self.toolOptions.brush.brushColor);
-            document.getElementById("penTransparency").value = self.toolOptions.brush.penTransparency*100;
-            document.getElementById("eraserHardness").value  = self.toolOptions.eraser.eraserHardness*100;
+            self.tools["brush" ] = new Brush() ;
+            self.tools["eraser"] = new Eraser();
+            self.tools["bucket"] = new Bucket();
 
             //disables right click centext menu
             editorParent.addEventListener('contextmenu', event => event.preventDefault());
@@ -293,7 +279,7 @@ class myCanvas {
         const pixelsData = properties.imgData;
         if (pixelsData != null && pixelsData != undefined && pixelsData.length > 0) {
             //const start = new Date().getTime();
-            const toolSize = self.toolOptions[self.curTool].size;
+            const toolSize = self.tools[self.curTool].size||Math.max(properties.width,properties.height)*2;
             const toolWithinDist = Math.ceil(toolSize/2)+0.5;//distance to update within mouse
             const offset = ((toolSize+1)%2)/2;//slight optimization for moving mouse
             for (let x = 0; x < properties.width; x++) {
@@ -315,19 +301,10 @@ class myCanvas {
             //console.log((self.reloadImage?"reloadImage:":"regular    :"),((new Date().getTime())-start)/1000);
             self.reloadImage = false;
         }
-
-        //draw pixel outline around brush
-        const toolSize = self.toolOptions[self.curTool].size;
-        const subtract = Math.floor(toolSize/2-0.49);
-        self.canvasContext.strokeStyle = "#FFFFFF";
-        self.canvasContext.beginPath();
-        self.canvasContext.rect((self.mouse[0]-subtract)*pixelSize,(self.mouse[1]-subtract)*pixelSize,pixelSize*toolSize,pixelSize*toolSize);
-        self.canvasContext.stroke();
+        if (self.mouse[0]>=0&&self.mouse[1]>=0) self.tools[self.curTool].drawOutline(self.canvasContext,self.mouse,self.canvasState);
     }
     onMouse(e) {
         if (self.activeIndex == -1) return;
-        const file = self.proccessedImages[self.opened[self.activeIndex]];
-        const properties = file.properties;
         const {width,imgWidth,top,left} = self.canvasState;
         const pixelSize = width/imgWidth;
 
@@ -339,59 +316,15 @@ class myCanvas {
         ];
         //if mouse is down
         if (self.mouse[2]==1) {
-            if (self.curTool=="brush") {
-                //draw pixel at mouse pos
-                const pixelsData = properties.imgData;
-
-                //brush settings
-                const [bR,bG,bB] = self.toolOptions.brush.brushColor;
-                const bA = self.toolOptions.brush.penTransparency;
-                const brushSize = self.toolOptions.brush.size;
-
-                const subtract = Math.floor(brushSize/2-0.49);//amount to move left from mouse pos
-                const add = brushSize-subtract;//amount to move right
-                for (let x = self.mouse[0]-subtract; x < self.mouse[0]+add; x++) {
-                    if (x < 0 || x >= properties.width) continue;
-                    for (let y = self.mouse[1]-subtract; y < self.mouse[1]+add; y++) {
-                        if (y < 0 || y >= properties.height) continue;
-                        //make sure you dont draw the same spot over and over again
-                        if (self.currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
-                        self.currentStroke.push([x,y]);
-
-                        //get current pixel
-                        const [[r,g,b],a] = pixelsData[x][y];
-                        //overlay with different transparencies
-                        //round to nearest integer
-                        pixelsData[x][y] = [
-                            [Math.round( r*a*(1-bA)+bR*bA),
-                            Math.round( g*a*(1-bA)+bG*bA),
-                            Math.round( b*a*(1-bA)+bB*bA)],
-                            Math.round( a*(1-bA)+bA *255)/255
-                        ];
-                        console.log(pixelsData[x][y][0][2])
-                    }
-                }
+            const path = self.opened[self.activeIndex]
+            const file = self.proccessedImages[path];
+            const properties = file.properties;
+            const [success, pixelsData] = self.tools[self.curTool].Draw(self.mouse, properties,self.currentStroke);
+            if (success) {
                 //if not already, set modified to true and set modified flag in file explorer
-                if (!properties.modified) { properties.modified = true; document.getElementById(file.path).setAttribute("modified","true"); }
+                if (!properties.modified) { properties.modified = true; document.getElementById(path).setAttribute("modified","true"); }
                 properties.imgData = pixelsData;
-            } else if (self.curTool=="eraser") {
-                const pixelsData = properties.imgData;
-                const eraserSize = self.toolOptions.eraser.size;
-                const hardness = 1-self.toolOptions.eraser.eraserHardness;
-
-                const subtract = Math.floor(eraserSize/2-0.49);//amount to move left from mouse pos
-                const add = eraserSize - subtract;//amount to move right
-                for (let x = self.mouse[0]-subtract; x < self.mouse[0]+add; x++) {
-                    for (let y = self.mouse[1]-subtract; y < self.mouse[1]+add; y++) {
-                        //make sure you dont erase the same spot over and over again
-                        if (self.currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
-                        self.currentStroke.push([x,y]);
-                        pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*hardness*255)/255;
-                    }
-                }
-                //if not already, set modified to true and set modified flag in file explorer
-                if (!properties.modified) { properties.modified = true; document.getElementById(file.path).setAttribute("modified","true"); }
-                properties.imgData = pixelsData;
+                self.proccessedImages[path].properties = properties;
             }
         } else self.currentStroke=[];//end stroke
         self.update();
@@ -459,12 +392,12 @@ class myCanvas {
 
     //#region tools
     setTool(tool) {
-        if (myCanvas.validTools.includes(tool)) {
-            const children = tools.children;
+        if (self.tools[tool] != null) {
+            const children = self.toolsHtml.children;
             for (let i = 0; i < children.length; i++) {
                 children[i].setAttribute("active",(children[i].id==tool));
             }
-            const settingsChildren = toolSettings.children;
+            const settingsChildren = self.toolSettings.children;
             for (let i = 0; i < settingsChildren.length; i++) {
                 settingsChildren[i].setAttribute("active",(settingsChildren[i].id==tool));
             }
@@ -472,13 +405,7 @@ class myCanvas {
         self.curTool=tool;
     }
     setOption(tool, option, value) {
-        //convert #FF0000 to [255,0,0]
-        if ((typeof value) == "string" && value.startsWith("#") && value.length==7) {
-            value=value.replace("#","0x");
-            self.toolOptions[tool][option] = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
-        } else {
-            self.toolOptions[tool][option] = Number.parseFloat(value);
-        }
+        if (self.tools[tool] != null) self.tools[tool].setOption(option,value);
     }
     async clearActiveImage() {
         if (self.activeIndex == -1) return;
@@ -566,3 +493,189 @@ class myCanvas {
     }
     //#endregion
 }
+//#region tool classes
+function NotImplementedError(message = "") {
+    this.name = "NotImplementedError";
+    this.message = message;
+}
+NotImplementedError.prototype = new Error();
+class Tool {
+    constructor(){}
+    drawOutline(canvasContext,mouse,canvasState) {
+        throw NotImplementedError("\"drawOutline\" method not implemented yet"); 
+    }
+    setOption(option,value) {
+        throw NotImplementedError("\"setOption\" method not implemented yet");
+    }
+    Draw() {
+        throw NotImplementedError("\"setOption\" method not implemented yet");
+    }
+}
+class Brush extends Tool {
+    size = 1;
+    transparency = 1;
+    color = [127,0,127];
+    constructor() {
+        super();
+        document.getElementById("brushSize").value         = this.size;
+        document.getElementById("brushTransparency").value = this.transparency*100;
+        document.getElementById("brushColor").value      = util.RgbToHex(this.color);
+    }
+    drawOutline(canvasContext,mouse,canvasState) {
+        const {width,imgWidth} = canvasState;
+        const pixelSize = width/imgWidth;
+        const subtract = Math.floor(this.size/2-0.49);
+
+        canvasContext.strokeStyle = "#FFFFFF";
+        canvasContext.beginPath();
+        canvasContext.rect((mouse[0]-subtract)*pixelSize,(mouse[1]-subtract)*pixelSize, pixelSize*this.size, pixelSize*this.size);
+        canvasContext.stroke();
+    }
+    setOption(option,value) {
+        const mySwitch = {
+            "size":(value)=>{
+                value = document.getElementById("brushSize").value = Math.max(1,Number.parseInt(value));
+                this.size = value;
+            },
+            "transparency":(value)=>{
+                value = document.getElementById("brushTransparency").value = Math.max(0,Math.min(100,value));
+                this.transparency = Number.parseInt(value)/100;
+            },
+            "color":(value)=>{
+                document.getElementById("brushColor").value = value;
+                value=value.replace("#","0x");
+                this.color = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+            }
+        };
+        (mySwitch[option]||(()=>{}))(value);
+    }
+    Draw(pos,properties,currentStroke) {
+        const pixelsData = properties.imgData;
+
+        const [bR,bG,bB] = this.color;
+        const bA = this.transparency;
+
+        const subtract = Math.floor(this.size/2-0.49);//amount to move left from mouse pos
+        const add = this.size-subtract;//amount to move right
+        for (let x = pos[0]-subtract; x < pos[0]+add; x++) {
+            if (x < 0 || x >= properties.width) continue;
+            for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
+                if (y < 0 || y >= properties.height) continue;
+                //make sure you dont draw the same spot over and over again
+                if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
+                currentStroke.push([x,y]);
+
+                //get current pixel
+                const [[r,g,b],a] = pixelsData[x][y];
+                //overlay with different transparencies
+                //round to nearest integer
+                pixelsData[x][y] = [
+                    [Math.round((r*a*(1-bA)+bR*bA)),
+                    Math.round( (g*a*(1-bA)+bG*bA)),
+                    Math.round( (b*a*(1-bA)+bB*bA))],
+                    Math.round( (a  *(1-bA)+bA   )*255)/255
+                ];
+            }
+        }
+        return [true,pixelsData];
+    }
+}
+class Eraser extends Tool {
+    size = 1;
+    hardness = 1;
+    constructor() {
+        super();
+        document.getElementById("eraserSize").value      = this.size;
+        document.getElementById("eraserHardness").value  = (this.hardness*100);
+    }
+    drawOutline(canvasContext,mouse,canvasState) {
+        const {width,imgWidth} = canvasState;
+        const pixelSize = width/imgWidth;
+        const subtract = Math.floor(this.size/2-0.49);
+
+        canvasContext.strokeStyle = "#FFFFFF";
+        canvasContext.beginPath();
+        canvasContext.rect((mouse[0]-subtract)*pixelSize,(mouse[1]-subtract)*pixelSize, pixelSize*this.size, pixelSize*this.size);
+        canvasContext.stroke();
+    }
+    setOption(option,value) {
+        const mySwitch = {
+            "size":(value)=>{
+                value = document.getElementById("penTransparency").value = Math.max(1,Number.parseInt(value));
+                this.size = value;
+            },
+            "hardness":(value)=>{
+                value = document.getElementById("eraserHardness").value = Math.max(0,Math.min(100,Number.parseInt(value)));
+                this.hardness = value/100;
+            }
+        };
+        (mySwitch[option]||(()=>{}))(value);
+    }
+    Draw(pos,properties,currentStroke) {
+        var pixelsData = properties.imgData;
+        const subtract = Math.floor(this.size/2-0.49);//amount to move left from mouse pos
+        const add = this.size - subtract;//amount to move right
+
+        for (let x = Math.min(pos[0]-subtract); x < pos[0]+add; x++) {
+            if (x < 0 || x >= properties.width) continue;
+            for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
+                if (y < 0 || y >= properties.height) continue;
+                //make sure you dont erase the same spot over and over again
+                if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
+                currentStroke.push([x,y]);
+                pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*(1-this.hardness)*255)/255;
+            }
+        }
+        return [true,pixelsData];
+    }
+}
+class Bucket extends Tool {
+    color = [127,0,127];
+    constructor() {
+        super();
+        document.getElementById("bucketColor").value      = util.RgbToHex(this.color);
+    }
+    drawOutline(canvasContext,mouse,canvasState) {}
+    setOption(option,value) {
+        const mySwitch = {
+            "color":(value)=>{
+                document.getElementById("bucketColor").value = value;
+                value=value.replace("#","0x");
+                this.color = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+            }
+        };
+        (mySwitch[option]||(()=>{}))(value);
+    }
+    Draw(pos,properties,currentStroke,parentPixel) {
+        var pixelsData = properties.imgData;
+        const [x,y] = pos;
+        if (x < 0 || x >= properties.width) return [false,pixelsData];
+        if (y < 0 || y >= properties.height) return [false,pixelsData];
+        //make sure you dont draw the same spot over and over again
+        if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) return [false,pixelsData];
+        currentStroke.push([x,y]);
+
+        const prevPixel = pixelsData[x][y];
+        //get current pixel
+        const [bR,bG,bB] = this.color;
+        if (prevPixel[0][0]==bR&&prevPixel[0][1]==bG&&prevPixel[0][2]==bB&&prevPixel[1]==1) return [true,pixelsData];
+        if (parentPixel) {
+            const [[Pr,Pg,Pb],Pa] = parentPixel;
+            const [[r,g,b],a] = pixelsData[x][y];
+            if (Pr!=r||Pg!=g||Pb!=b||Pa!=a){ return [false,pixelsData]; }
+            else { pixelsData[x][y] = [[Math.round(bR),Math.round(bG),Math.round(bB)],1]; }
+        } else {
+            pixelsData[x][y] = [[Math.round(bR),Math.round(bG),Math.round(bB)],1];
+        }
+
+        //overlay with different transparencies
+        //round to nearest integer
+        
+        var [success,pixelsDataTmp] = this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
+            [success,pixelsDataTmp] = this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
+            [success,pixelsDataTmp] = this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
+            [success,pixelsDataTmp] = this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
+        return [true,pixelsData];
+    }
+}
+//#endregion
