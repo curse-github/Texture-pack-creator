@@ -230,7 +230,6 @@ var structureType = "regular";
 var fileExpParent;
 var searchBar;
 var fileExp;
-var fileTabs;
 
 var canvas = new myCanvas();
 

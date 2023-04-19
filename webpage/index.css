@@ -109,7 +109,12 @@ div#fileTabs > blk.tab {
 div#fileTabs > blk.tab[selected="true"], div#fileTabs > blk.tab[selected="true"] > blk { background-color:var(--borderColor); }
 div#fileTabs > blk.tab > button.closeButton        { background-color:rgba(255,255,255,0); border:none; }
 div#fileTabs > blk.tab > button.closeButton:active { border:none; }
-div#editor { display:flex; flex: 1; justify-content: center; align-items: center; overflow:hidden; }
+div#editor {
+    width:100%;height:100%;
+    overflow:hidden;
+    position: relative;
+}
+div#editor > canvas { position:absolute; }
 
 /*#endregion*/
 
@@ -140,25 +145,25 @@ div#toolBar > div#tools > button {
 div#toolBar > div#tools > button[active="true"] { background-color: #101010; }
 
 
-div#toolBar > div#toolOptions {
+div#toolBar > div#toolSettings {
     height:var(--toolBarH); width:50%; margin-left:auto;
     border-left: double var(--borderWidth) var(--borderColor);
     display:flex; align-items: center;
     padding-left:calc(var(--toolBarH) / 3); padding-right:calc(var(--toolBarH) / 6);
 }
 
-div#toolBar > div#toolOptions > div {width:100%;
+div#toolBar > div#toolSettings > div {width:100%;
     display:flex;flex-direction: row; }
-div#toolBar > div#toolOptions > div > * { margin-right:1em; }
-div#toolBar > div#toolOptions > div[active=false] { width:0px; max-width:0px; overflow-x:hidden;}
+div#toolBar > div#toolSettings > div > * { margin-right:1em; }
+div#toolBar > div#toolSettings > div[active=false] { width:0px; max-width:0px; overflow-x:hidden;}
 
-div#toolBar > div#toolOptions  input[type="color"] {
+div#toolBar > div#toolSettings  input[type="color"] {
     height:calc(var(--toolBarH) / 4);
     width :calc(var(--toolBarH) / 4);
     background-color: var(--borderColor);
     display:block;
 }
-div#toolBar > div#toolOptions  input[type="number"] {
+div#toolBar > div#toolSettings  input[type="number"] {
     width :calc(var(--toolBarH) * 0.666);
     display:block;
 }

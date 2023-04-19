@@ -51,7 +51,7 @@
                         <path d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"></path>
                     </svg></button>
                 </div>
-                <div id="toolOptions">
+                <div id="toolSettings">
                     <div id="brush">
                         <div style="display:flex;flex-direction:column;align-items:center;">
                             <label for="penSize"style="margin-bottom:0">Pen size</label><input oninput="this.value = Math.max(1,this.value); canvas.setOption('brush','size',this.value);" type="number"id="penSize"value=1 pattern="^[1-9]\d*$">
@@ -88,7 +88,6 @@
                 <div id="editorParent">
                     <div id="fileTabs"></div>
                     <div id="editor">
-                        <img id="canvas2"></img>
                         <canvas id="canvas"></canvas>
                     </div>
                 </div>

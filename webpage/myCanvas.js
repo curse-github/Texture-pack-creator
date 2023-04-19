@@ -1,30 +1,43 @@
 class myCanvas {
+
+    //#region vars
     //constant
+    self;
     static validTools = ["brush","eraser"];
 
     //html elements
     editorParent;
     editor;
+    fileTabs;
     canvas;
     canvasContext;
+    tools;
+    toolOptions;
 
     //opened files/data
     opened = [];
     proccessedImages = {};
     activeIndex = -1;
-    lastActiveIndex = -2;
+    lastActivePath = "";
 
     mouse=[-2,-2,0];
+    lastMouse = this.mouse;
+    rightMouse=[-2,-2,0];
+    lastRightMouse = this.rightMouse;
     //settings
     curTool;
-    toolOptions;
-    lastClick = 0;
-    lastRcScreenPos = [-1,-1];
-    lastMouse = this.mouse;
+    toolSettings;
     currentStroke = [];
     reloadImage = false;
-
-    self;
+    canvasState = {
+        width:0,
+        height:0,
+        imgWidth:0,
+        imgHeight:0,
+        top:0,
+        left:0
+    }
+    //#endregion
 
     constructor() {
         self = this;
@@ -45,15 +58,33 @@ class myCanvas {
         window.addEventListener("load", (e) => {
             self.editorParent  = document.getElementById("editorParent" );
             self.fileTabs      = document.getElementById("fileTabs"     );
+            self.tools = document.getElementById("tools");
+            self.toolSettings = document.getElementById("toolSettings");
+
             self.editor        = document.getElementById("editor"       );
-            self.editor.addEventListener("wheel", (e)=>{if (e.deltaY!=0){self.canvasZoom(e.deltaY/Math.abs(e.deltaY))}});
+            self.editor.addEventListener("wheel", self.canvasZoom);
+            self.editor.onmousemove = self.editorOnMouse;
+            self.editor.onmousedown = self.editorOnMouse;
+            self.editor.onmouseup   = self.editorOnMouse;
+            self.editor.onmouseleave = ((e)=>{
+                self.reloadImage=true;
+                const {width,imgWidth,left,top} = self.canvasState;
+                const pixelSize = width/imgWidth;
+                const x = (self.rightMouse[0]||0)+0.5;
+                const y = (self.rightMouse[1]||0)+0.5;
+                self.editorOnMouse({
+                    clientX: x*pixelSize+left+self.editor.offsetLeft,
+                    clientY: y*pixelSize+top +self.editor.offsetTop ,
+                    buttons: e.buttons
+                });
+            });
+
             self.canvas        = document.getElementById("canvas"       );
             self.canvas.onmousemove = self.onMouse;
             self.canvas.onmousedown = self.onMouse;
             self.canvas.onmouseup   = self.onMouse;
-            self.canvas.onmouseleave = ((e)=>{self.reloadImage=true; self.onMouse({ClientX:-2,ClientY:-2,buttons:e.buttons});});
+            self.canvas.onmouseleave = ((e)=>{self.reloadImage=true; self.onMouse({clientX:-2,clientY:-2,buttons:e.buttons});});
             self.canvasContext = self.canvas.getContext('2d', { willReadFrequently: true });
-            document.addEventListener("resize", self.update);
 
             //set default values
             self.setTool(self.curTool);
@@ -104,8 +135,8 @@ class myCanvas {
                 return;
             }
         }
-        //if file extention is a png
         var tab;
+        //if file extention is a png
         if (extention == ".png") {
             //add file to opened list
             const path = file.path;
@@ -121,14 +152,12 @@ class myCanvas {
             let text = document.createElement("blk"); text.innerHTML = spaces.two+name+spaces.one; text.setAttribute("onclick","canvas.selectTab(this.parentElement)");
             let button = document.createElement("button"); button.setAttribute("type","button"); button.className  = "closeButton"; button.setAttribute("onclick","canvas.closeTab(this.parentElement)");  button.innerHTML = Xicon;
             text = tab.appendChild(text); button = tab.appendChild(button);
-            //append it to parent
-            tab  = self.fileTabs.appendChild(tab);
         } else {
             console.log("currently unsupported \""+extention+"\" file");
         }
         self.mouse=[-2,-2,0];
-        //set tab as current active tab
-        if (tab) { self.selectTab(tab); }
+        //append tab and set it as current open tab
+        if (tab) { self.fileTabs.appendChild(tab); self.selectTab(tab); }
     }
     /**
      *  given a "blk.tab" element it selects the 
@@ -187,7 +216,6 @@ class myCanvas {
                         }
                         self.opened = self.opened.filter((el)=>(el!=null&&el!=undefined));
                         self.selectTab(newChild);
-                        console.log(newChild)
                     } else {
                         //if it was not the selected tab just update activeIndex
                         self.opened = self.opened.filter((el)=>(el!=null&&el!=undefined));
@@ -209,7 +237,7 @@ class myCanvas {
                     }
                 } else {
                     //if it is the last file open set activeIndex to -1
-                    self.activeIndex=-1;self.lastActiveIndex=-2;self.opened = self.opened.filter((el)=>(el!=null&&el!=undefined));
+                    self.activeIndex=-1;self.opened = self.opened.filter((el)=>(el!=null&&el!=undefined));
                     this.update();
                 }
             }
@@ -220,62 +248,69 @@ class myCanvas {
     }
     //#endregion
 
+    //#region canvas
     /**
      *  updated the canvas to the state of the currently opened file
      *  @date 4/7/2023
      */ 
     async update() {
         //if there is a file currently open
-        if (self.activeIndex == -1) { self.canvasContext.clearRect(0, 0, self.canvas.width, self.canvas.height); return; }
-        const file = self.proccessedImages[self.opened[self.activeIndex]];
-        if (!file) console.log(self.opened)
-        const properties = file.properties;
-        var pixelSize = 1;
+        if (self.activeIndex == -1) { self.canvasContext.clearRect(0, 0, self.canvasState.width, self.canvasState.height); return; }
+        const path = self.opened[self.activeIndex];
+        const properties = self.proccessedImages[path].properties;
+        var pixelSize;
+
         //set the smaller side of texture to 256 and scale the other side to correct aspect ratio
-        //unless the texture takes up too much of the screen in which case scale it to not go off screen
-        if (self.lastActiveIndex != self.activeIndex) {
-            self.lastActiveIndex = self.activeIndex;
-            if (properties.width >= properties.height) {
-                pixelSize = Math.ceil(Math.min(256,self.editor.clientWidth /properties.width *properties.height-7.5)/properties.height);
-            } else {// properties.height > properties.width
-                pixelSize = Math.ceil(Math.min(256,self.editor.clientHeight/properties.height*properties.width -7.5)/properties.width );
+        //unless the texture takes up too much of the screen in which case scale it down to not go off screen
+        if (self.lastActivePath != path) {//if new file is opened
+            self.lastActivePath = path;
+            const imgWidth = self.canvasState.imgWidth = properties.width;
+            const imgHeight = self.canvasState.imgHeight = properties.height;
+            if (imgWidth >= imgHeight) {// width > height
+                pixelSize = Math.min(256,(self.editor.clientWidth -32)/imgWidth *imgHeight)/imgHeight;
+            } else {//                     height > width
+                pixelSize = Math.min(256,(self.editor.clientHeight-32)/imgHeight*imgWidth )/imgWidth ;
             }
-            self.canvas.width  = properties.width *pixelSize;
-            self.canvas.height = properties.height*pixelSize;
-        } else { pixelSize = self.canvas.width/properties.width };
-        const pixelSizeCeil = Math.ceil(pixelSize);
-        //clear canvas
+            pixelSize = Math.ceil(pixelSize*10)/10;
+            const width = self.canvasState.width = self.canvas.width = imgWidth *pixelSize;
+            const height = self.canvasState.height = self.canvas.height = imgHeight *pixelSize;
+
+            //set in center of screen
+            const left = self.canvasState.left = self.editor.clientWidth /2-width /2;
+            const top  = self.canvasState.top  = self.editor.clientHeight/2-height/2;
+            self.canvas.setAttribute("style","top:"+top+"px;left:"+left+"px;");
+            self.reloadImage=true;
+        } else { pixelSize = self.canvasState.width/properties.width };
         
         const pixelsData = properties.imgData;
         if (pixelsData != null && pixelsData != undefined && pixelsData.length > 0) {
-            let count = 0;
-            const start = new Date().getTime();
+            //const start = new Date().getTime();
+            const toolSize = self.toolOptions[self.curTool].size;
+            const toolWithinDist = Math.ceil(toolSize/2)+0.5;//distance to update within mouse
+            const offset = ((toolSize+1)%2)/2;//slight optimization for moving mouse
             for (let x = 0; x < properties.width; x++) {
                 for (let y = 0; y < properties.height; y++) {
-                    const newX = x*pixelSize;
-                    const newY = y*pixelSize;
-                    const pixel = pixelsData[x][y];
-                    const opacity = pixel[1];
-                    const color = "rgba("+pixel[0].join(",")+","+opacity+")";
-                    //draw pixels individually from data
-                    const withinDist = (Math.ceil(self.toolOptions[self.curTool].size/2)+1);
-                    const withinMousePos = (Math.abs(self.mouse[0]-x)<=withinDist && Math.abs(self.mouse[1]-y)<=withinDist)
-                    const withinLastMousePos = (Math.abs(self.lastMouse[0]-x)<=withinDist && Math.abs(self.lastMouse[1]-y)<=withinDist)
-                    if (self.reloadImage || withinMousePos || withinLastMousePos) {
-                        count++;
-                        if (opacity < 1) { self.canvasContext.clearRect(newX,newY,pixelSizeCeil,pixelSizeCeil); }
-                        self.canvasContext.fillStyle = color;
-                        self.canvasContext.fillRect(newX,newY,pixelSizeCeil,pixelSizeCeil);
+                    //only refresh pixels around where the mouse is/was
+                    const mouseDist     = [Math.abs(x-self.mouse[0]-offset    ), Math.abs(y-self.mouse[1]-offset    )];
+                    const lastMouseDist = [Math.abs(x-self.lastMouse[0]-offset), Math.abs(y-self.lastMouse[1]-offset)];
+                    if (self.reloadImage || (mouseDist[0]<=toolWithinDist && mouseDist[1]<=toolWithinDist) || (lastMouseDist[0]<=toolWithinDist && lastMouseDist[1]<=toolWithinDist)) {
+                        const [newX, newY] = [x*pixelSize, y*pixelSize];
+                        var [color,opacity] = pixelsData[x][y];
+                        //only clear pixel if needed
+                        if (opacity < 1) { self.canvasContext.clearRect(newX,newY,pixelSize,pixelSize); }
+                        //draw pixel
+                        self.canvasContext.fillStyle = "rgba("+color.join(",")+","+opacity+")";
+                        self.canvasContext.fillRect(newX,newY,pixelSize,pixelSize);
                     }
                 }
             }
-            //console.log("count:" + count);
-            console.log((self.reloadImage?"reloadImage:":"regular    :"),((new Date().getTime())-start)/1000);
+            //console.log((self.reloadImage?"reloadImage:":"regular    :"),((new Date().getTime())-start)/1000);
             self.reloadImage = false;
         }
+
+        //draw pixel outline around brush
         const toolSize = self.toolOptions[self.curTool].size;
         const subtract = Math.floor(toolSize/2-0.49);
-        //draw pixel outline around brush
         self.canvasContext.strokeStyle = "#FFFFFF";
         self.canvasContext.beginPath();
         self.canvasContext.rect((self.mouse[0]-subtract)*pixelSize,(self.mouse[1]-subtract)*pixelSize,pixelSize*toolSize,pixelSize*toolSize);
@@ -285,97 +320,143 @@ class myCanvas {
         if (self.activeIndex == -1) return;
         const file = self.proccessedImages[self.opened[self.activeIndex]];
         const properties = file.properties;
-    
-        var mouseX = parseInt(e.clientX - self.canvas.offsetLeft);
-        var mouseY = parseInt(e.clientY - self.canvas.offsetTop);
+        const {width,imgWidth,top,left} = self.canvasState;
+        const pixelSize = width/imgWidth;
+
         self.lastMouse=self.mouse;
-        self.mouse = [Math.floor(mouseX/self.canvas.width*properties.width),Math.floor(mouseY/self.canvas.height*properties.height),e.buttons];
+        self.mouse = [
+            Math.floor(parseInt(e.clientX - self.editor.offsetLeft - left)/pixelSize),
+            Math.floor(parseInt(e.clientY - self.editor.offsetTop - top)/pixelSize),
+            e.buttons
+        ];
         //if mouse is down
         if (self.mouse[2]==1) {
             if (self.curTool=="brush") {
                 //draw pixel at mouse pos
-                const subtract = Math.floor(self.toolOptions.brush.size/2-0.49);
-                const add = self.toolOptions.brush.size-subtract;
                 const pixelsData = properties.imgData;
+
+                //brush settings
+                const [bR,bG,bB] = self.toolOptions.brush.brushColor;
+                const bA = self.toolOptions.brush.penTransparency;
+                const brushSize = self.toolOptions.brush.size;
+
+                const subtract = Math.floor(brushSize/2-0.49);//amount to move left from mouse pos
+                const add = brushSize-subtract;//amount to move right
                 for (let x = self.mouse[0]-subtract; x < self.mouse[0]+add; x++) {
                     if (x < 0 || x >= properties.width) continue;
                     for (let y = self.mouse[1]-subtract; y < self.mouse[1]+add; y++) {
                         if (y < 0 || y >= properties.height) continue;
-                        //make sure you dont erase the same spot over and over when youre not trying to
+                        //make sure you dont draw the same spot over and over again
                         if (self.currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
                         self.currentStroke.push([x,y]);
-                        
-                        //get brush settings
-                        const [bR,bG,bB] = self.toolOptions.brush.brushColor;
-                        const bA = self.toolOptions.brush.penTransparency;
-                        if (pixelsData[x][y] != null && pixelsData[x][y] != undefined) {
-                            //get current pixel
-                            var pixel = pixelsData[x][y];
-                            const [r,g,b] = pixel[0];
-                            const a = pixel[1];
-                            //overlay with different transparencies
-                            pixel = [[r*a*(1-bA)+bR*bA,g*a*(1-bA)+bG*bA,b*a*(1-bA)+bB*bA],a*(1-bA)+bA];
-                            //to the closest out of 255
-                            pixel[0].map(el=>Math.round(el*255)/255);
-                            pixel[1] = Math.round(pixel[1]*255)/255;
-                            pixelsData[x][y] = pixel;
-                            continue;
-                        }
-                        pixelsData[x][y] = [[bR,bG,bB],bA];
+
+                        //get current pixel
+                        const [[r,g,b],a] = pixelsData[x][y];
+                        //overlay with different transparencies
+                        //round to nearest integer
+                        pixelsData[x][y] = [
+                            [Math.round( r*a*(1-bA)+bR*bA),
+                            Math.round( g*a*(1-bA)+bG*bA),
+                            Math.round( b*a*(1-bA)+bB*bA)],
+                            Math.round( a*(1-bA)+bA *255)/255
+                        ];
+                        console.log(pixelsData[x][y][0][2])
                     }
                 }
+                //if not already, set modified to true and set modified flag in file explorer
                 if (!properties.modified) { properties.modified = true; document.getElementById(file.path).setAttribute("modified","true"); }
                 properties.imgData = pixelsData;
             } else if (self.curTool=="eraser") {
                 const pixelsData = properties.imgData;
-                const subtract = Math.floor(self.toolOptions.eraser.size/2-0.49);
-                const add = self.toolOptions.eraser.size - subtract;
+                const eraserSize = self.toolOptions.eraser.size;
                 const hardness = 1-self.toolOptions.eraser.eraserHardness;
+
+                const subtract = Math.floor(eraserSize/2-0.49);//amount to move left from mouse pos
+                const add = eraserSize - subtract;//amount to move right
                 for (let x = self.mouse[0]-subtract; x < self.mouse[0]+add; x++) {
                     for (let y = self.mouse[1]-subtract; y < self.mouse[1]+add; y++) {
-                        //make sure you dont erase the same spot over and over when youre not trying to
+                        //make sure you dont erase the same spot over and over again
                         if (self.currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
                         self.currentStroke.push([x,y]);
-    
-                        //to the closest out of 255
-                        if (pixelsData[x]!=null && pixelsData[x][y]!=null) { pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*hardness*255)/255; }
+                        pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*hardness*255)/255;
                     }
                 }
+                //if not already, set modified to true and set modified flag in file explorer
                 if (!properties.modified) { properties.modified = true; document.getElementById(file.path).setAttribute("modified","true"); }
                 properties.imgData = pixelsData;
             }
-            file.properties = properties;
-            self.proccessedImages[self.opened[self.activeIndex]] = file;
-            self.lastClick = 1;
-        } else if (self.mouse[2]==2||self.mouse[2]==3) {
-            //end stroke
-            self.currentStroke=[];
-            if (self.lastClick == 2) {
-                var delta = [self.mouse[0]-self.lastRcScreenPos[0],self.lastRcScreenPos[1]-self.mouse[1]];
-                if (delta[0]!=0||delta[1]!=0) console.log(delta);
-            }
-    
-            self.lastRcScreenPos = [self.mouse[0],self.mouse[1]]; self.lastClick = 2;
-        } else {
-            //end stroke and end drag
-            self.lastClick = 3; self.currentStroke=[];
-        }
+        } else self.currentStroke=[];//end stroke
         self.update();
     }
-    canvasZoom(dir) {
-        const aspect = self.canvas.height/self.canvas.width;
-        self.canvas.width -= dir*16;
-        self.canvas.height = self.canvas.width*aspect;
+    //#endregion
+
+    //#region editor
+    editorOnMouse(e) {
+        if (self.activeIndex == -1) return;
+        if (((e.buttons&2) == 2)) {
+            const {width,imgWidth,top,left} = self.canvasState;
+            const pixelSize = width/imgWidth;
+            self.lastRightMouse=self.rightMouse;
+            self.rightMouse = [
+                Math.floor(parseInt(e.clientX - self.editor.offsetLeft - left)/pixelSize),
+                Math.floor(parseInt(e.clientY - self.editor.offsetTop - top)/pixelSize),
+                2
+            ];
+            //if right click is down
+            if (((self.lastRightMouse[2]&2) == 2)) {
+                //calculate how far it has moved from last movement
+                const delta = [self.rightMouse[0]-self.lastRightMouse[0],self.lastRightMouse[1]-self.rightMouse[1]];
+                if (delta[0]!=0||delta[1]!=0) {
+                    self.canvasMove(delta);
+                    //adjust mouse position to be correct for screen
+                    self.rightMouse[0]-=delta[0];
+                    self.rightMouse[1]+=delta[1];
+                }
+            } else self.currentStroke=[];
+        } else self.rightMouse[2]=e.buttons;
+    }
+    canvasZoom(e) {
+        if (self.activeIndex==-1) return;
+        if (e.deltaY==0) return;
+        const dir = e.deltaY/Math.abs(e.deltaY);
+        var {width,height,imgWidth,top,left} = self.canvasState;
+        const change = dir*Math.max(width/imgWidth*2,8);//2 image pixels or 8 screen pixels
+        const aspect = height/width;
+        const mouse = [(e.clientX-self.editor.offsetLeft-left),(e.clientY-self.editor.offsetTop-top)];
+
+        //increase canvas width by "change" and make height match to aspect ratio
+        self.canvasState.width = self.canvas.width = width-change;
+        self.canvasState.height = self.canvas.height = (width-change)*aspect;
+        //move canvas so mouse position will stay static
+        left = self.canvasState.left = self.canvas.left = left+(change*mouse[0]/width);
+        top = self.canvasState.top = self.canvas.top = top+(change*mouse[1]/width);
+        self.canvas.setAttribute("style","top:"+top+"px;left:"+left+"px;");
+
         self.reloadImage=true;
         self.update();
     }
+    canvasMove(delta) {
+        if (self.activeIndex==-1) return;
+        var {width,imgWidth,top,left} = self.canvasState;
+        const pixelSize = width/imgWidth;
+        //move canvas let/right and up/down in image pixel increments
+        top = self.canvasState.top = (top-pixelSize*delta[1])||0;
+        left = self.canvasState.left = (left+pixelSize*delta[0])||0;
+        self.canvas.setAttribute("style","top:"+top+"px;left:"+left+"px;");
+
+        self.reloadImage=true;
+        self.update();
+    }
+    //#endregion
+
+    //#region tools
     setTool(tool) {
         if (myCanvas.validTools.includes(tool)) {
-            const children = document.getElementById("tools").children;
+            const children = tools.children;
             for (let i = 0; i < children.length; i++) {
                 children[i].setAttribute("active",(children[i].id==tool));
             }
-            const settingsChildren = document.getElementById("toolOptions").children;
+            const settingsChildren = toolSettings.children;
             for (let i = 0; i < settingsChildren.length; i++) {
                 settingsChildren[i].setAttribute("active",(settingsChildren[i].id==tool));
             }
@@ -386,22 +467,23 @@ class myCanvas {
         //convert #FF0000 to [255,0,0]
         if ((typeof value) == "string" && value.startsWith("#") && value.length==7) {
             value=value.replace("#","0x");
-            value = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+            self.toolOptions[tool][option] = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+        } else {
+            self.toolOptions[tool][option] = Number.parseFloat(value);
         }
-        self.toolOptions[tool][option] = value;
     }
     async clearActiveImage() {
         if (self.activeIndex == -1) return;
         const file = self.proccessedImages[self.opened[self.activeIndex]];
-        const properties = file.properties;
-        properties.modified = false;
-        properties.imgData = await util.getImagePixels(file);
+        file.properties.modified = false;
+        file.properties.imgData = await util.getImagePixels(file);
         self.reloadImage=true;
         document.getElementById(file.path).setAttribute("modified","false");
         self.update();
     }
+    //#endregion
 
-
+    //#region download
     /**
      * gets the dataUrl base64 data from an file
      * @date 4/12/2023
@@ -474,4 +556,5 @@ class myCanvas {
             const zipContent = await zip.generateAsync({type:"blob"});
             saveAs(zipContent, packname+".zip");
     }
+    //#endregion
 }
