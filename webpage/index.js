@@ -92,10 +92,13 @@ function matchesSearch(str,file) {
         const part = splt[i];
         var tempContains = false;
         if (part.startsWith("!")) {
+            //inverted
             tempContains = !str.includes(part.replace("!",""));
         } else if (part.startsWith("#")) {
+            //tag searching
             tempContains = file.properties.tags!=null?(file.properties.tags.includes(part.replace("#",""))):(false);
         } else if (part == "mod" || part == "modified") {
+            //list modified files
             if (canvas.proccessedImages[file.path]) tempContains = canvas.proccessedImages[file.path].properties.modified||false;
             else tempContains = false;
         } else {

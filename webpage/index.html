@@ -28,7 +28,6 @@
             function collapseFileExp() {
                 const el = document.getElementById('div1');
                 const val = el.getAttribute('collapsed')=='false';
-                console.log(val);
                 el.setAttribute('collapsed',val);
                 document.getElementById('collapser').value=val?'>':'<';
                 document.body.setAttribute("style","--fileExpW:"+(val?'0px':'26vh'));

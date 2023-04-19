@@ -106,6 +106,14 @@ class myCanvas {
                     self.setTool("brush");
                 } else if (e.key === "e") {
                     self.setTool("eraser");
+                } else if (e.key === "+" || e.key === "-" || e.key === "_" || e.key === "=") {
+                    if (self.activeIndex==-1) return;
+                    const {width,height,left,top} = self.canvasState;
+                    self.canvasZoom({
+                        clientX: self.editor.offsetLeft+left+width /2,
+                        clientY: self.editor.offsetTop +top +height/2,
+                        deltaY:(e.key==="+"||e.key==="=")?-1:1
+                    });
                 }
             }, false);
         })
