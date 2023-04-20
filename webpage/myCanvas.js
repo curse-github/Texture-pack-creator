@@ -3,6 +3,7 @@ class myCanvas {
     //#region vars
     //constant
     self;
+    static defaultColor = [183,175,173];// ash- "Make it minecraft title gray."
 
     //html elements
     editorParent;
@@ -24,9 +25,6 @@ class myCanvas {
     rightMouse=[-2,-2,0];
     lastRightMouse = this.rightMouse;
     //settings
-    curTool;
-    currentStroke = [];
-    reloadImage = false;
     canvasState = {
         width:0,
         height:0,
@@ -35,7 +33,12 @@ class myCanvas {
         top:0,
         left:0
     }
+    reloadImage = false;
+    curTool;
     tools = {};
+    currentStroke = [];
+    strokeHistory = [];
+    strokeUndidHistory = [];
     //#endregion
 
     constructor() {
@@ -85,20 +88,37 @@ class myCanvas {
             
             //make ctr-s save resource pack
             document.addEventListener("keydown", function(e) {
-                if (e.key === "s" && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-                    e.preventDefault();
-                    self.downloadPack("custom");
-                } else if (e.key === "p" || e.key === "b") {
-                    self.setTool("brush");
-                } else if (e.key === "e") {
-                    self.setTool("eraser");
-                } else if (e.key === "+" || e.key === "-" || e.key === "_" || e.key === "=") {
+                if ((navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                    if (e.key === "s") {
+                        e.preventDefault();
+                        self.downloadPack("custom");
+                        return;
+                    } else if (e.key.toLowerCase() === "z") {
+                        if (e.shiftKey)       self.redo();//ctrl+shift+z  redo
+                        else                  self.undo();//ctrl+z        undo
+                    } else if (e.key === "y") self.redo();//ctrl+y        redo
+                    else if (e.key.toLowerCase() === "x" && e.shiftKey) self.clearActiveImage();
+                }
+                if (e.key === "p" || e.key === "b") self.setTool("brush");
+                else if (e.key === "e") self.setTool("eraser");
+                else if (e.key === "f") self.setTool("bucket");
+                else if (e.key === "+" || e.key === "=") {
+                    //zoom in
                     if (self.activeIndex==-1) return;
                     const {width,height,left,top} = self.canvasState;
                     self.canvasZoom({
                         clientX: self.editor.offsetLeft+left+width /2,
                         clientY: self.editor.offsetTop +top +height/2,
-                        deltaY:(e.key==="+"||e.key==="=")?-1:1
+                        deltaY:1
+                    });
+                } else if (e.key === "-" || e.key === "_") {
+                    //zoom out
+                    if (self.activeIndex==-1) return;
+                    const {width,height,left,top} = self.canvasState;
+                    self.canvasZoom({
+                        clientX: self.editor.offsetLeft+left+width /2,
+                        clientY: self.editor.offsetTop +top +height/2,
+                        deltaY:-1
                     });
                 }
             }, false);
@@ -139,6 +159,7 @@ class myCanvas {
                 //get imgData array to be used by canvas
                 properties.imgData = await util.getImagePixels(file);
                 file.properties.modified = false;
+                file.properties.strokes = 0;
                 self.proccessedImages[path] = file;
             }
             //create tab html element
@@ -254,12 +275,13 @@ class myCanvas {
         const properties = self.proccessedImages[path].properties;
         var pixelSize;
 
-        //set the smaller side of texture to 256 and scale the other side to correct aspect ratio
-        //unless the texture takes up too much of the screen in which case scale it down to not go off screen
         if (self.lastActivePath != path) {//if new file is opened
             self.lastActivePath = path;
+            //scale image correctly
             const imgWidth = self.canvasState.imgWidth = properties.width;
             const imgHeight = self.canvasState.imgHeight = properties.height;
+            //set the smaller side of texture to 256 and scale the other side to correct aspect ratio
+            //unless the texture takes up too much of the screen in which case scale it down to not go off screen
             if (imgWidth >= imgHeight) {// width > height
                 pixelSize = Math.min(256,(self.editor.clientWidth -32)/imgWidth *imgHeight)/imgHeight;
             } else {//                     height > width
@@ -273,6 +295,10 @@ class myCanvas {
             const left = self.canvasState.left = self.editor.clientWidth /2-width /2;
             const top  = self.canvasState.top  = self.editor.clientHeight/2-height/2;
             self.canvas.setAttribute("style","top:"+top+"px;left:"+left+"px;");
+            //reset history( (ctrl-z)/(ctrl-y) wont work)
+            self.strokeHistory     =[];
+            self.strokeUndidHistory=[];
+            //make image fully reload
             self.reloadImage=true;
         } else { pixelSize = self.canvasState.width/properties.width };
         
@@ -326,7 +352,7 @@ class myCanvas {
                 properties.imgData = pixelsData;
                 self.proccessedImages[path].properties = properties;
             }
-        } else self.currentStroke=[];//end stroke
+        } else self.endStroke();
         self.update();
     }
     //#endregion
@@ -334,6 +360,8 @@ class myCanvas {
     //#region editor
     editorOnMouse(e) {
         if (self.activeIndex == -1) return;
+        if (e.buttons != 1) self.endStroke();
+
         if (((e.buttons&2) == 2)) {
             const {width,imgWidth,top,left} = self.canvasState;
             const pixelSize = width/imgWidth;
@@ -353,8 +381,9 @@ class myCanvas {
                     self.rightMouse[0]-=delta[0];
                     self.rightMouse[1]+=delta[1];
                 }
-            } else self.currentStroke=[];
-        } else self.rightMouse[2]=e.buttons;
+            }
+        }
+        self.rightMouse[2]=e.buttons;
     }
     canvasZoom(e) {
         if (self.activeIndex==-1) return;
@@ -410,10 +439,91 @@ class myCanvas {
     async clearActiveImage() {
         if (self.activeIndex == -1) return;
         const file = self.proccessedImages[self.opened[self.activeIndex]];
-        file.properties.modified = false;
+        var properties = file.properties;
+        var stroke = [];
+        for (let x = 0; x < properties.width; x++) {
+            for (let y = 0; y < properties.height; y++) {
+                stroke.push([[x,y],file.properties.imgData[x][y]]);
+            }
+        }
+        self.strokeHistory.push(stroke);
+        self.strokeUndidHistory=[];
+        properties.strokes++;
+
         file.properties.imgData = await util.getImagePixels(file);
         self.reloadImage=true;
+        file.properties.modified = false;
         document.getElementById(file.path).setAttribute("modified","false");
+        self.update();
+    }
+
+    async endStroke() {
+        if (self.activeIndex == -1) return;
+        if (self.currentStroke.length <= 0) return;
+        //save stroke to array and clear "currentStroke" 
+        self.strokeHistory.push(self.currentStroke);
+        self.strokeUndidHistory=[];
+        self.currentStroke=[];
+        self.proccessedImages[self.opened[self.activeIndex]].properties.strokes++;
+    }
+    async undo() {
+        if (self.activeIndex == -1) return;
+        if (self.strokeHistory.length <= 0) return;
+        //get last made change
+        const stroke = self.strokeHistory.pop();
+        //get opened file data
+        var file = self.proccessedImages[self.opened[self.activeIndex]]
+        var properties = file.properties;
+        const pixelsData = properties.imgData;
+
+        //undo changes made
+        const undidStroke = [];
+        for(let i = 0; i < stroke.length; i++) {
+            const [[x,y],pixel] = stroke[i];
+            const prevPixel = pixelsData[x][y];
+            pixelsData[x][y] = pixel;
+            undidStroke.push([[x,y],prevPixel])
+        }
+        //save stroke so it can be "redone"
+        self.strokeUndidHistory.push(undidStroke)
+        properties.strokes--;
+        //set image as modified
+        properties.modified = (properties.strokes>0);
+        document.getElementById(file.path).setAttribute("modified",properties.modified);
+        //make image fully reload
+        properties.imgData = pixelsData;
+        self.reloadImage=true;
+        //update data in memory
+        self.update();
+    }
+    async redo() {
+        if (self.activeIndex == -1) return;
+        if (self.strokeUndidHistory.length <= 0) return;
+        //get last undo
+        const stroke = self.strokeUndidHistory.pop();
+        //get opened file data
+        var file = self.proccessedImages[self.opened[self.activeIndex]];
+        var properties = file.properties;
+        const pixelsData = properties.imgData;
+
+        //redo changes made
+        const redidStroke = [];
+        for(let i = 0; i < stroke.length; i++) {
+            const [[x,y],pixel] = stroke[i];
+            const prevPixel = pixelsData[x][y];
+            pixelsData[x][y] = pixel;
+            redidStroke.push([[x,y],prevPixel]);
+        }
+        //save stroke so it can be "undone" again
+        self.strokeHistory.push(redidStroke);
+        properties.strokes++;
+        //set image as modified
+        properties.modified = (properties.strokes>0);
+        document.getElementById(file.path).setAttribute("modified",properties.modified);
+        //make image fully reload
+        self.reloadImage=true;
+        properties.imgData = pixelsData;
+        //update data in memory
         self.update();
     }
     //#endregion
@@ -514,7 +624,7 @@ class Tool {
 class Brush extends Tool {
     size = 1;
     transparency = 1;
-    color = [127,0,127];
+    color = myCanvas.defaultColor;
     constructor() {
         super();
         document.getElementById("brushSize").value         = this.size;
@@ -539,7 +649,7 @@ class Brush extends Tool {
             },
             "transparency":(value)=>{
                 value = document.getElementById("brushTransparency").value = Math.max(0,Math.min(100,value));
-                this.transparency = Number.parseInt(value)/100;
+                this.transparency = Math.round(Number.parseInt(value)/100*255)/255;
             },
             "color":(value)=>{
                 document.getElementById("brushColor").value = value;
@@ -554,6 +664,7 @@ class Brush extends Tool {
 
         const [bR,bG,bB] = this.color;
         const bA = this.transparency;
+        if (bA <= 0) [false,pixelsData];
 
         const subtract = Math.floor(this.size/2-0.49);//amount to move left from mouse pos
         const add = this.size-subtract;//amount to move right
@@ -562,8 +673,7 @@ class Brush extends Tool {
             for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
                 if (y < 0 || y >= properties.height) continue;
                 //make sure you dont draw the same spot over and over again
-                if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
-                currentStroke.push([x,y]);
+                if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) continue;
 
                 //get current pixel
                 const [[r,g,b],a] = pixelsData[x][y];
@@ -575,6 +685,7 @@ class Brush extends Tool {
                     Math.round( (b*a*(1-bA)+bB*bA))],
                     Math.round( (a  *(1-bA)+bA   )*255)/255
                 ];
+                currentStroke.push([[x,y],[[r,g,b],a]]);
             }
         }
         return [true,pixelsData];
@@ -621,19 +732,23 @@ class Eraser extends Tool {
             for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
                 if (y < 0 || y >= properties.height) continue;
                 //make sure you dont erase the same spot over and over again
-                if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) continue;
-                currentStroke.push([x,y]);
-                pixelsData[x][y][1] = Math.round(pixelsData[x][y][1]*(1-this.hardness)*255)/255;
+                if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) continue;
+
+                const [color,alpha] = pixelsData[x][y];
+                pixelsData[x][y][1] = Math.round(alpha*(1-this.hardness)*255)/255;
+                currentStroke.push([[x,y],[color,alpha]]);
             }
         }
         return [true,pixelsData];
     }
 }
 class Bucket extends Tool {
-    color = [127,0,127];
+    color = myCanvas.defaultColor;
+    transparency = 1;
     constructor() {
         super();
         document.getElementById("bucketColor").value      = util.RgbToHex(this.color);
+        document.getElementById("bucketTransparency").value = this.transparency*100;
     }
     drawOutline(canvasContext,mouse,canvasState) {}
     setOption(option,value) {
@@ -642,6 +757,10 @@ class Bucket extends Tool {
                 document.getElementById("bucketColor").value = value;
                 value=value.replace("#","0x");
                 this.color = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+            },
+            "transparency":(value)=>{
+                value = document.getElementById("bucketTransparency").value = Math.max(0,Math.min(100,value));
+                this.transparency = Math.round(Number.parseInt(value)/100*255)/255;
             }
         };
         (mySwitch[option]||(()=>{}))(value);
@@ -652,29 +771,35 @@ class Bucket extends Tool {
         if (x < 0 || x >= properties.width) return [false,pixelsData];
         if (y < 0 || y >= properties.height) return [false,pixelsData];
         //make sure you dont draw the same spot over and over again
-        if (currentStroke.filter(el=>(el[0]==x&&el[1]==y)).length > 0) return [false,pixelsData];
-        currentStroke.push([x,y]);
-
-        const prevPixel = pixelsData[x][y];
-        //get current pixel
+        if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) return [false,pixelsData];
+        //get bucket settings
         const [bR,bG,bB] = this.color;
-        if (prevPixel[0][0]==bR&&prevPixel[0][1]==bG&&prevPixel[0][2]==bB&&prevPixel[1]==1) return [true,pixelsData];
+        const bA = this.transparency;
+
+        const [[r,g,b],a] = pixelsData[x][y];
         if (parentPixel) {
             const [[Pr,Pg,Pb],Pa] = parentPixel;
-            const [[r,g,b],a] = pixelsData[x][y];
             if (Pr!=r||Pg!=g||Pb!=b||Pa!=a){ return [false,pixelsData]; }
-            else { pixelsData[x][y] = [[Math.round(bR),Math.round(bG),Math.round(bB)],1]; }
-        } else {
-            pixelsData[x][y] = [[Math.round(bR),Math.round(bG),Math.round(bB)],1];
         }
+        if (r==bR&&g==bG&&b==bB&&a==bA) return [true,pixelsData];//just return if bucket color and pixel color are the same
+        
+        //overlay with different transparencies
+        //round to nearest integer
+        pixelsData[x][y] = [
+            [Math.round((r*a*(1-bA)+bR*bA)),
+            Math.round( (g*a*(1-bA)+bG*bA)),
+            Math.round( (b*a*(1-bA)+bB*bA))],
+            Math.round( (a  *(1-bA)+bA   )*255)/255
+        ];
+        pixelsData[x][y] = [[Math.round(bR),Math.round(bG),Math.round(bB)],Math.round(bA*255)/255];
+        currentStroke.push([[x,y],[[r,g,b],a]]);
 
         //overlay with different transparencies
         //round to nearest integer
-        
-        var [success,pixelsDataTmp] = this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
-            [success,pixelsDataTmp] = this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
-            [success,pixelsDataTmp] = this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
-            [success,pixelsDataTmp] = this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,prevPixel); if (success) pixelsData = pixelsDataTmp;
+        pixelsData = this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,[[r,g,b],a])[1];
+        pixelsData = this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
+        pixelsData = this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,[[r,g,b],a])[1];
+        pixelsData = this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
         return [true,pixelsData];
     }
 }

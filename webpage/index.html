@@ -74,7 +74,7 @@
                             <label for="penTransparency"style="margin-bottom:0">Opacity</label><input oninput="canvas.setOption('brush','transparency',this.value);" type="number"id="brushTransparency"value=100 min="0" max="100" pattern="^[1-9]\d*$">
                         </div>
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="brushColor"style="margin-bottom:0">Pen color</label><input oninput="canvas.setOption('brush','color',this.value);" type="color"id="brushColor"value="#FF0000">
+                            <label for="brushColor"style="margin-bottom:0">Pen color</label><input oninput="canvas.setOption('brush','color',this.value);" type="color"id="brushColor"value="#FFFFFF">
                         </div>
                     </div>
                     <div active=false id="eraser">
@@ -87,7 +87,10 @@
                     </div>
                     <div active=false id="bucket">
                         <div style="display:flex;flex-direction:column;align-items:center;">
-                            <label for="bucketColor"style="margin-bottom:0">Fill color</label><input oninput="canvas.setOption('bucket','color',this.value);" type="color"id="bucketColor"value="#FF0000">
+                            <label for="bucketColor"style="margin-bottom:0">Fill color</label><input oninput="canvas.setOption('bucket','color',this.value);" type="color"id="bucketColor"value="#FFFFFF">
+                        </div>
+                        <div style="display:flex;flex-direction:column;align-items:center;">
+                            <label for="bucketTransparency"style="margin-bottom:0">Opacity</label><input oninput="canvas.setOption('bucket','transparency',this.value);" type="number"id="bucketTransparency"value=100 min="0" max="100" pattern="^[1-9]\d*$">
                         </div>
                     </div>
                 </div>
