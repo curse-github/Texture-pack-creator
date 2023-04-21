@@ -97,6 +97,7 @@ class myCanvas {
                         self.downloadPack("custom");
                         return;
                     } else if (e.key.toLowerCase() === "z") {
+                        e.preventDefault();
                         if (e.shiftKey)       self.redo();//ctrl+shift+z  redo
                         else                  self.undo();//ctrl+z        undo
                     } else if (e.key === "y") self.redo();//ctrl+y        redo
@@ -110,18 +111,18 @@ class myCanvas {
                     if (self.activeIndex==-1) return;
                     const {width,height,left,top} = self.canvasState;
                     self.canvasZoom({
-                        clientX: self.editor.offsetLeft+left+width /2,
-                        clientY: self.editor.offsetTop +top +height/2,
-                        deltaY:1
+                        clientX: self.editor.offsetLeft+left+width /2,//center of image
+                        clientY: self.editor.offsetTop +top +height/2,//center of image
+                        deltaY:-1//in
                     });
                 } else if (e.key === "-" || e.key === "_") {
                     //zoom out
                     if (self.activeIndex==-1) return;
                     const {width,height,left,top} = self.canvasState;
                     self.canvasZoom({
-                        clientX: self.editor.offsetLeft+left+width /2,
-                        clientY: self.editor.offsetTop +top +height/2,
-                        deltaY:-1
+                        clientX: self.editor.offsetLeft+left+width /2,//center of image
+                        clientY: self.editor.offsetTop +top +height/2,//center of image
+                        deltaY:1//out
                     });
                 }
             }, false);
