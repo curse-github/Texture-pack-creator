@@ -146,7 +146,7 @@ div#toolBar > button#download {
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
 }
 div#toolBar > div#tools {
-    height:var(--toolBarH); aspect-ratio: calc(9.5 / 6);
+    height:var(--toolBarH); aspect-ratio: calc(14.5 / 6);
     margin-left:calc(var(--toolBarH) / 6); margin-right:calc(var(--toolBarH) / 6);
     display:flex; flex-direction: row; justify-content: space-between; align-items: center;
 }
@@ -193,3 +193,33 @@ div#views > button {
     margin-bottom:calc(var(--toolBarH) / 6);
 }
 div#views > button[active="true"] { background-color: #101010; }
+
+
+
+div#colorHistory {
+    height:calc(var(--toolBarH) / 3); aspect-ratio: 1; position:relative;
+    background-color:var(--borderColor); 
+    border-width:var(--borderWidth); border-color:var(--backgroundColor); border-style:double;
+    display:block;
+}
+div#colorHistory > div#hoverCont {
+    display:flex; flex-flow:row wrap; justify-content: space-between;
+    width:0px; height:0px; overflow:hidden;
+    position:absolute;
+    background-color:var(--borderColor);
+    border:0px; padding:0px;
+    transform: translate(calc(calc(var(--toolBarH) / 6) - calc(var(--colorW) * 5 + calc(var(--colorSelectorSp) * 4) + calc(var(--borderWidth) * 2))),calc(var(--toolBarH) / 6));
+    padding-bottom:0px !important;
+    border-color:var(--backgroundColor); border-style:double;
+}
+div#colorHistory:hover > div#hoverCont {
+    padding:var(--colorSelectorSp);
+    border-width:var(--borderWidth);
+    width:calc(var(--colorW) * 5 + calc(var(--colorSelectorSp) * 4) + calc(var(--borderWidth) * 2));
+    height:calc(var(--colorW) + calc(var(--borderWidth) * 2) + calc(var(--colorSelectorSp) * 2));
+}
+div#colorHistory > div#hoverCont > button {
+    padding:0px;margin:0px;
+    width:var(--colorW);height:var(--colorW);
+    background-color:var(--color);
+}
