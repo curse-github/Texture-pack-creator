@@ -434,8 +434,13 @@
     "gui":[
         
     ],
-
+    
     "sky":[
         "/minecraft/assets/textures/environment/end_sky.png",
+        "/minecraft/assets/textures/environment/clouds.png",
+        "/minecraft/assets/textures/environment/moon_phases.png",
+        "/minecraft/assets/textures/environment/rain.png",
+        "/minecraft/assets/textures/environment/snow.png",
+        "/minecraft/assets/textures/environment/sun.png"
     ]
 }
