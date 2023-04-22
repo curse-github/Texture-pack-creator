@@ -333,7 +333,7 @@ class myCanvas {
         }
         if (self.mouse[0]>=0&&self.mouse[1]>=0) self.tools[self.curTool].drawOutline(self.canvasContext,self.mouse,self.canvasState);
     }
-    onMouse(e) {
+    async onMouse(e) {
         if (self.activeIndex == -1) return;
         const {width,imgWidth,top,left} = self.canvasState;
         const pixelSize = width/imgWidth;
@@ -349,7 +349,7 @@ class myCanvas {
             const path = self.opened[self.activeIndex]
             const file = self.proccessedImages[path];
             const properties = file.properties;
-            const [success, pixelsData] = self.tools[self.curTool].Draw(self.mouse, properties,self.currentStroke);
+            const [success, pixelsData] = await self.tools[self.curTool].Draw(self.mouse, properties,self.currentStroke);
             if (success) {
                 //if not already, set modified to true and set modified flag in file explorer
                 if (!properties.modified) { properties.modified = true; document.getElementById(path).setAttribute("modified","true"); }
@@ -606,5 +606,3 @@ class myCanvas {
     }
     //#endregion
 }
-
-//color history handler thing

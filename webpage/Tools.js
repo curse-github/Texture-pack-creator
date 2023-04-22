@@ -21,11 +21,13 @@ class Brush extends Tool {
     color = myCanvas.defaultColor;
     brushColorsDiv;
     colorHistory = ["#FFFFFF","#000000","#FF0000","#00FF00","#0000FF"];
+    colorMode = "color";
     constructor() {
         super();
         document.getElementById("brushSize").value         = this.size;
         document.getElementById("brushTransparency").value = this.transparency*100;
         document.getElementById("brushColor").value      = util.RgbToHex(this.color);
+        document.getElementById("brushMode").value = this.colorMode;
         this.brushColorsDiv = document.querySelector("div#toolSettings > div#brush div#colorHistory > div#hoverCont");
         this.brushColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('brush','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
     }
@@ -53,6 +55,9 @@ class Brush extends Tool {
                 document.getElementById("brushColor").value = value;
                 value=value.replace("#","0x");
                 this.color = [(value&0xFF0000)>>16,(value&0x00FF00)>>8,(value&0x0000FF)];
+            },
+            "mode":(value)=>{
+                this.colorMode = document.getElementById("brushMode").value = value;
             }
         };
         (mySwitch[option]||(()=>{}))(value);
@@ -61,6 +66,7 @@ class Brush extends Tool {
         const pixelsData = properties.imgData;
 
         const [bR,bG,bB] = this.color;
+        const [bH,bS,bV] = util.rgb2hsv(this.color);
         const bA = this.transparency;
         if (bA <= 0) [false,pixelsData];
 
@@ -75,14 +81,25 @@ class Brush extends Tool {
 
                 //get current pixel
                 const [[r,g,b],a] = pixelsData[x][y];
-                //overlay with different transparencies
-                //round to nearest integer
-                pixelsData[x][y] = [
-                    [Math.round((r*a*(1-bA)+bR*bA)),
-                    Math.round( (g*a*(1-bA)+bG*bA)),
-                    Math.round( (b*a*(1-bA)+bB*bA))],
-                    Math.round( (a  *(1-bA)+bA   )*255)/255
-                ];
+                if (this.colorMode == "color") {
+                    //overlay with different transparencies
+                    //round to nearest integer
+                    pixelsData[x][y] = [
+                        [Math.round((r*a*(1-bA)+bR*bA)),
+                        Math.round( (g*a*(1-bA)+bG*bA)),
+                        Math.round( (b*a*(1-bA)+bB*bA))],
+                        Math.round( (a  *(1-bA)+bA   )*255)/255
+                    ];
+                } else if (this.colorMode == "hue") {
+                    const [h,s,v] = util.rgb2hsv([r,g,b]);
+                    pixelsData[x][y] = [util.hsv2rgb([bH,s,v]),a]
+                } else if (this.colorMode == "saturation") {
+                    const [h,s,v] = util.rgb2hsv([r,g,b]);
+                    pixelsData[x][y] = [util.hsv2rgb([h,bS,v]),a]
+                } else if (this.colorMode == "value") {
+                    const [h,s,v] = util.rgb2hsv([r,g,b]);
+                    pixelsData[x][y] = [util.hsv2rgb([h,s,bV]),a]
+                }
                 currentStroke.push([[x,y],[[r,g,b],a]]);
                 this.saveColor(util.RgbToHex(this.color));
             }
@@ -93,10 +110,11 @@ class Brush extends Tool {
         if (this.colorHistory.includes(color)) {
             if (this.colorHistory[0] == color) return;
             delete this.colorHistory[this.colorHistory.indexOf(color)];
+            this.colorHistory = this.colorHistory.filter((__,i)=>i<4);
             this.colorHistory.unshift(color);
         } else {
             this.colorHistory.unshift(color);
-            this.colorHistory.pop();
+            this.colorHistory = this.colorHistory.filter((__,i)=>i<5);
         }
         this.brushColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('brush','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
     }
@@ -122,7 +140,7 @@ class Eraser extends Tool {
     setOption(option,value) {
         const mySwitch = {
             "size":(value)=>{
-                value = document.getElementById("penTransparency").value = Math.max(1,Number.parseInt(value));
+                value = document.getElementById("eraserSize").value = Math.max(1,Number.parseInt(value));
                 this.size = value;
             },
             "hardness":(value)=>{
@@ -157,10 +175,12 @@ class Bucket extends Tool {
     transparency = 1;
     bucketColorsDiv;
     colorHistory = ["#FFFFFF","#000000","#FF0000","#00FF00","#0000FF"];
+    colorMode = "color";
     constructor() {
         super();
         document.getElementById("bucketColor").value      = util.RgbToHex(this.color);
         document.getElementById("bucketTransparency").value = this.transparency*100;
+        document.getElementById("bucketMode").value = this.colorMode;
         this.bucketColorsDiv = document.querySelector("div#toolSettings > div#bucket div#colorHistory > div#hoverCont");
         this.bucketColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('bucket','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
     }
@@ -175,54 +195,74 @@ class Bucket extends Tool {
             "transparency":(value)=>{
                 value = document.getElementById("bucketTransparency").value = Math.max(0,Math.min(100,value));
                 this.transparency = Math.round(Number.parseInt(value)/100*255)/255;
+            },
+            "mode":(value)=>{
+                this.colorMode = document.getElementById("bucketMode").value = value;
             }
         };
         (mySwitch[option]||(()=>{}))(value);
     }
-    Draw(pos,properties,currentStroke,parentPixel) {
-        var pixelsData = properties.imgData;
-        const [x,y] = pos;
-        if (x < 0 || x >= properties.width) return [false,pixelsData];
-        if (y < 0 || y >= properties.height) return [false,pixelsData];
-        //make sure you dont draw the same spot over and over again
-        if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) return [false,pixelsData];
-        //get bucket settings
-        const [bR,bG,bB] = this.color;
-        const bA = this.transparency;
-
-        const [[r,g,b],a] = pixelsData[x][y];
-        if (parentPixel) {
-            const [[Pr,Pg,Pb],Pa] = parentPixel;
-            if ((Pr!=r||Pg!=g||Pb!=b||Pa!=a) && !(Pa==0&&a==0)) return [false,pixelsData];
-        }
-        if (r==bR&&g==bG&&b==bB&&a==bA) return [true,pixelsData];//just return if bucket color and pixel color are the same
-        
-        //overlay with different transparencies
-        //round to nearest integer
-        pixelsData[x][y] = [
-            [Math.round((r*a*(1-bA)+bR*bA)),
-            Math.round( (g*a*(1-bA)+bG*bA)),
-            Math.round( (b*a*(1-bA)+bB*bA))],
-            Math.round( (a  *(1-bA)+bA   )*255)/255
-        ];
-        currentStroke.push([[x,y],[[r,g,b],a]]);
-        this.saveColor(util.RgbToHex(this.color));
-        //overlay with different transparencies
-        //round to nearest integer
-        pixelsData = this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,[[r,g,b],a])[1];
-        pixelsData = this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
-        pixelsData = this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,[[r,g,b],a])[1];
-        pixelsData = this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
-        return [true,pixelsData];
+    async Draw(pos,properties,currentStroke,parentPixel) {
+        return new Promise(async(resolve)=>{
+            var pixelsData = properties.imgData;
+            const [x,y] = pos;
+            if (x < 0 || x >= properties.width) { resolve([false,pixelsData]); return; }
+            if (y < 0 || y >= properties.height) { resolve([false,pixelsData]); return; }
+            //make sure you dont draw the same spot over and over again
+            if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) { resolve([false,pixelsData]); return; }
+            //get bucket settings
+            const [bR,bG,bB] = this.color;
+            const bA = this.transparency;
+    
+            const [[r,g,b],a] = pixelsData[x][y];
+            const [bH,bS,bV] = util.rgb2hsv(this.color);
+            if (parentPixel) {
+                const [[Pr,Pg,Pb],Pa] = parentPixel;
+                if ((Pr!=r||Pg!=g||Pb!=b||Pa!=a) && !(Pa==0&&a==0)) { resolve([false,pixelsData]); return; }
+            }
+            if (r==bR&&g==bG&&b==bB&&a==bA) { resolve([true,pixelsData]); return; }//just return if bucket color and pixel color are the same
+            
+            //overlay with different transparencies
+            //round to nearest integer
+            if (this.colorMode == "color") {
+                //overlay with different transparencies
+                //round to nearest integer
+                pixelsData[x][y] = [
+                    [Math.round((r*a*(1-bA)+bR*bA)),
+                    Math.round( (g*a*(1-bA)+bG*bA)),
+                    Math.round( (b*a*(1-bA)+bB*bA))],
+                    Math.round( (a  *(1-bA)+bA   )*255)/255
+                ];
+            } else if (this.colorMode == "hue") {
+                const [h,s,v] = util.rgb2hsv([r,g,b]);
+                pixelsData[x][y] = [util.hsv2rgb([bH,s,v]),a]
+            } else if (this.colorMode == "saturation") {
+                const [h,s,v] = util.rgb2hsv([r,g,b]);
+                pixelsData[x][y] = [util.hsv2rgb([h,bS,v]),a]
+            } else if (this.colorMode == "value") {
+                const [h,s,v] = util.rgb2hsv([r,g,b]);
+                pixelsData[x][y] = [util.hsv2rgb([h,s,bV]),a]
+            }
+            currentStroke.push([[x,y],[[r,g,b],a]]);
+            this.saveColor(util.RgbToHex(this.color));
+            //overlay with different transparencies
+            //round to nearest integer
+            await this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,[[r,g,b],a])[1];
+            await this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
+            await this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,[[r,g,b],a])[1];
+            await this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
+            resolve([true,pixelsData]);
+        });
     }
     async saveColor(color) {
         if (this.colorHistory.includes(color)) {
             if (this.colorHistory[0] == color) return;
             delete this.colorHistory[this.colorHistory.indexOf(color)];
+            this.colorHistory = this.colorHistory.filter((__,i)=>i<4);
             this.colorHistory.unshift(color);
         } else {
             this.colorHistory.unshift(color);
-            this.colorHistory.pop();
+            this.colorHistory = this.colorHistory.filter((__,i)=>i<5);
         }
         this.bucketColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('brush','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
     }

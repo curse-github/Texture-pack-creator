@@ -62,6 +62,17 @@ class util {
         let b = color[2].toString(16).padStart(2,"0");
         return "#"+r+g+b;
     }
+    static rgb2hsv(color) {
+        const [r,g,b] = [color[0]/255,color[1]/255,color[2]/255];
+        let v=Math.max(r,g,b), c=v-Math.min(r,g,b);
+        let h= c && ((v==r) ? (g-b)/c : ((v==g) ? 2+(b-r)/c : 4+(r-g)/c));
+        return [Math.round(60*(h<0?h+6:h)), Math.round((v&&c/v)*1000)/1000, Math.round(v*1000)/1000];
+    }
+    static hsv2rgb(color) {
+        const [h,s,v] = color;
+        let f= (n,k=(n+h/60)%6) => v - v*s*Math.max( Math.min(k,4-k,1), 0);
+        return [Math.round(f(5)*255),Math.round(f(3)*255),Math.round(f(1)*255)];
+    }
 }
 
 /**
@@ -146,8 +157,8 @@ async function run() {
                     }); }
                 }
                 //if its the first folder given dont return extra data
-                if (final) resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
-                else resolve([Html+(final?("<br>".repeat(3)):"")+"</div>",foundAny]);
+                if (final) resolve(Html+"</div>");
+                else resolve([Html+"</div>",foundAny]);
             });},
             "expanded":async([dirname,dir],tabs,fullpath,final,parent)=>{return new Promise(async(resolve)=>{
                 final = (final||(final==null));
@@ -182,7 +193,7 @@ async function run() {
                 }
                 //if its the final add end div tag to close parent folder
                 if (final) {
-                    resolve(Html+(final?("<br>".repeat(3)):"")+"</div>");
+                    resolve(Html+"</div>");
                 } else {
                     resolve(Html);
                 }
@@ -190,7 +201,9 @@ async function run() {
         })
         //run Proccess function for coresponding structure type
         //pass in directory to process, number of tabs, and full path to directory
-        const out = (await Proccess[structureType](["textures",files.directories.assets.directories.minecraft.directories.textures],0,"/minecraft/assets/minecraft/textures"));
+        var out = (await Proccess[structureType](["textures",files.directories.assets.directories.minecraft.directories.textures],0,"/minecraft/assets/minecraft/textures"));
+        out += (await Proccess[structureType](["optifine",files.directories.assets.directories.minecraft.directories.optifine],0,"/minecraft/assets/minecraft/optifine"));
+        out += "<br>".repeat(3);
         fileExp.innerHTML = out;
         Object.entries(canvas.proccessedImages).forEach(([key,value])=>{
             if(value.properties.modified){
