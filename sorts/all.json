@@ -28003,6 +28003,23 @@
                 }
               }
             },
+            "optifine": {
+              "directories": {
+                "colormap": {
+                  "files": [
+                    {
+                      "name": "redstone.png",
+                      "path": "/minecraft/assets/minecraft/optifine/colormap/redstone.png",
+                      "extention": ".png",
+                      "properties": {
+                        "width": 16,
+                        "height": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            },
             "particles": {
               "files": [
                 {
