@@ -198,7 +198,8 @@ div#views > button[active="true"] { background-color: #101010; }
 
 div#colorHistory {
     height:calc(var(--toolBarH) / 3); aspect-ratio: 1; position:relative;
-    background-color:var(--borderColor); 
+    background-image:url("https://img.freepik.com/free-vector/colourful-rainbow-gradient-background_1308-77502.jpg?w=360"); 
+    background-size: cover;
     border-width:var(--borderWidth); border-color:var(--backgroundColor); border-style:double;
     display:block;
 }
