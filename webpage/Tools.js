@@ -62,7 +62,7 @@ class Brush extends Tool {
         };
         (mySwitch[option]||(()=>{}))(value);
     }
-    Draw(pos,properties,currentStroke) {
+    Draw(pos,properties,currentStroke,canvasState) {
         const pixelsData = properties.imgData;
 
         const [bR,bG,bB] = this.color;
@@ -73,18 +73,20 @@ class Brush extends Tool {
         const subtract = Math.floor(this.size/2-0.49);//amount to move left from mouse pos
         const add = this.size-subtract;//amount to move right
         for (let x = pos[0]-subtract; x < pos[0]+add; x++) {
-            if (x < 0 || x >= properties.width) continue;
+            var newX = x; if (canvasState.view=="tile") newX=(newX+properties.width)%properties.width;
+            if (newX < 0 || newX >= properties.width) continue;
             for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
-                if (y < 0 || y >= properties.height) continue;
+                var newY = y; if (canvasState.view=="tile") newY=(newY+properties.height)%properties.height;
+                if (newY < 0 || newY >= properties.height) continue;
                 //make sure you dont draw the same spot over and over again
                 if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) continue;
 
                 //get current pixel
-                const [[r,g,b],a] = pixelsData[x][y];
+                const [[r,g,b],a] = pixelsData[newX][newY];
                 if (this.colorMode == "color") {
                     //overlay with different transparencies
                     //round to nearest integer
-                    pixelsData[x][y] = [
+                    pixelsData[newX][newY] = [
                         [Math.round((r*a*(1-bA)+bR*bA)),
                         Math.round( (g*a*(1-bA)+bG*bA)),
                         Math.round( (b*a*(1-bA)+bB*bA))],
@@ -92,15 +94,15 @@ class Brush extends Tool {
                     ];
                 } else if (this.colorMode == "hue") {
                     const [h,s,v] = util.rgb2hsv([r,g,b]);
-                    pixelsData[x][y] = [util.hsv2rgb([bH,s,v]),a]
+                    pixelsData[newX][newY] = [util.hsv2rgb([bH,s,v]),a]
                 } else if (this.colorMode == "saturation") {
                     const [h,s,v] = util.rgb2hsv([r,g,b]);
-                    pixelsData[x][y] = [util.hsv2rgb([h,bS,v]),a]
+                    pixelsData[newX][newY] = [util.hsv2rgb([h,bS,v]),a]
                 } else if (this.colorMode == "value") {
                     const [h,s,v] = util.rgb2hsv([r,g,b]);
-                    pixelsData[x][y] = [util.hsv2rgb([h,s,bV]),a]
+                    pixelsData[newX][newY] = [util.hsv2rgb([h,s,bV]),a]
                 }
-                currentStroke.push([[x,y],[[r,g,b],a]]);
+                currentStroke.push([[newX,newY],[[r,g,b],a]]);
                 this.saveColor(util.RgbToHex(this.color));
             }
         }
@@ -150,21 +152,22 @@ class Eraser extends Tool {
         };
         (mySwitch[option]||(()=>{}))(value);
     }
-    Draw(pos,properties,currentStroke) {
+    Draw(pos,properties,currentStroke,canvasState) {
         var pixelsData = properties.imgData;
         const subtract = Math.floor(this.size/2-0.49);//amount to move left from mouse pos
         const add = this.size - subtract;//amount to move right
 
         for (let x = Math.min(pos[0]-subtract); x < pos[0]+add; x++) {
-            if (x < 0 || x >= properties.width) continue;
+            var newX = x; if (canvasState.view=="tile") newX=(newX+properties.width)%properties.width;
+            if (newX < 0 || newX >= properties.width) continue;
             for (let y = pos[1]-subtract; y < pos[1]+add; y++) {
-                if (y < 0 || y >= properties.height) continue;
+                var newY = y; if (canvasState.view=="tile") newY=(newY+properties.height)%properties.height;
+                if (newY < 0 || newY >= properties.height) continue;
                 //make sure you dont erase the same spot over and over again
-                if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) continue;
-
-                const [color,alpha] = pixelsData[x][y];
-                pixelsData[x][y][1] = Math.round(alpha*(1-this.hardness)*255)/255;
-                currentStroke.push([[x,y],[color,alpha]]);
+                if (currentStroke.filter(el=>(el[0][0]==newX&&el[0][1]==newY)).length > 0) continue;
+                const [color,alpha] = pixelsData[newX][newY];
+                pixelsData[newX][newY][1] = Math.round(alpha*(1-this.hardness)*255)/255;
+                currentStroke.push([[newX,newY],[color,alpha]]);
             }
         }
         return [true,pixelsData];
@@ -202,55 +205,60 @@ class Bucket extends Tool {
         };
         (mySwitch[option]||(()=>{}))(value);
     }
-    async Draw(pos,properties,currentStroke,parentPixel) {
+    async Draw(pos,properties,currentStroke,canvasState,parentPixel) {
         return new Promise(async(resolve)=>{
             var pixelsData = properties.imgData;
             const [x,y] = pos;
-            if (x < 0 || x >= properties.width) { resolve([false,pixelsData]); return; }
-            if (y < 0 || y >= properties.height) { resolve([false,pixelsData]); return; }
+            var newX = x;
+            var newY = y;
+            if (canvasState.view=="tile") {
+                newX=(newX+properties.width *2)%properties.width ;
+                newY=(newY+properties.height*2)%properties.height;
+            }
+            if (newX < 0 || newX >= properties.width) { resolve([false,pixelsData]); return; }
+            if (newY < 0 || newY >= properties.height) { resolve([false,pixelsData]); return; }
             //make sure you dont draw the same spot over and over again
-            if (currentStroke.filter(el=>(el[0][0]==x&&el[0][1]==y)).length > 0) { resolve([false,pixelsData]); return; }
+            if (currentStroke.filter(el=>(el[0][0]==newX&&el[0][1]==newY)).length > 0) { resolve([false,pixelsData]); return; }
             //get bucket settings
-            const [bR,bG,bB] = this.color;
-            const bA = this.transparency;
     
-            const [[r,g,b],a] = pixelsData[x][y];
-            const [bH,bS,bV] = util.rgb2hsv(this.color);
+            const [[r,g,b],a] = pixelsData[newX][newY];
             if (parentPixel) {
                 const [[Pr,Pg,Pb],Pa] = parentPixel;
                 if ((Pr!=r||Pg!=g||Pb!=b||Pa!=a) && !(Pa==0&&a==0)) { resolve([false,pixelsData]); return; }
             }
+            const [bR,bG,bB] = this.color;
             if (r==bR&&g==bG&&b==bB&&a==bA) { resolve([true,pixelsData]); return; }//just return if bucket color and pixel color are the same
             
-            //overlay with different transparencies
-            //round to nearest integer
             if (this.colorMode == "color") {
+                const bA = this.transparency;
                 //overlay with different transparencies
                 //round to nearest integer
-                pixelsData[x][y] = [
+                pixelsData[newX][newY] = [
                     [Math.round((r*a*(1-bA)+bR*bA)),
                     Math.round( (g*a*(1-bA)+bG*bA)),
                     Math.round( (b*a*(1-bA)+bB*bA))],
                     Math.round( (a  *(1-bA)+bA   )*255)/255
                 ];
             } else if (this.colorMode == "hue") {
-                const [h,s,v] = util.rgb2hsv([r,g,b]);
-                pixelsData[x][y] = [util.hsv2rgb([bH,s,v]),a]
+                const [_,s,v] = util.rgb2hsv([r,g,b]);
+                const bH = util.rgb2h(this.color);
+                pixelsData[newX][newY] = [util.hsv2rgb([bH,s,v]),a]
             } else if (this.colorMode == "saturation") {
-                const [h,s,v] = util.rgb2hsv([r,g,b]);
-                pixelsData[x][y] = [util.hsv2rgb([h,bS,v]),a]
+                const [h,_,v] = util.rgb2hsv([r,g,b]);
+                const bS = util.rgb2s(this.color);
+                pixelsData[newX][newY] = [util.hsv2rgb([h,bS,v]),a]
             } else if (this.colorMode == "value") {
-                const [h,s,v] = util.rgb2hsv([r,g,b]);
-                pixelsData[x][y] = [util.hsv2rgb([h,s,bV]),a]
-            }
-            currentStroke.push([[x,y],[[r,g,b],a]]);
+                const [h,s] = util.rgb2hsv([r,g,b]);
+                const bV = util.rgb2v(this.color);
+                pixelsData[newX][newY] = [util.hsv2rgb([h,s,bV]),a]
+            } else { return; }
+            currentStroke.push([[newX,newY],[[r,g,b],a]]);
             this.saveColor(util.RgbToHex(this.color));
-            //overlay with different transparencies
-            //round to nearest integer
-            await this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,[[r,g,b],a])[1];
-            await this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
-            await this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,[[r,g,b],a])[1];
-            await this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,[[r,g,b],a])[1];
+
+            await this.Draw([pos[0]  ,pos[1]+1],properties,currentStroke,canvasState,[[r,g,b],a])[1];
+            await this.Draw([pos[0]+1,pos[1]  ],properties,currentStroke,canvasState,[[r,g,b],a])[1];
+            await this.Draw([pos[0]  ,pos[1]-1],properties,currentStroke,canvasState,[[r,g,b],a])[1];
+            await this.Draw([pos[0]-1,pos[1]  ],properties,currentStroke,canvasState,[[r,g,b],a])[1];
             resolve([true,pixelsData]);
         });
     }
@@ -264,6 +272,6 @@ class Bucket extends Tool {
             this.colorHistory.unshift(color);
             this.colorHistory = this.colorHistory.filter((__,i)=>i<5);
         }
-        this.bucketColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('brush','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
+        this.bucketColorsDiv.innerHTML = this.colorHistory.map(el=>("<button class='colorButton:' onclick=\"canvas.setOption('bucket','color','" + el + "');\" style='--color:"+el+"'></button>")).join("");
     }
 }

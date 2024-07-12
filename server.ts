@@ -1,5 +1,5 @@
 const express = require("express");
-import fs from "fs";
+const fs = require("fs");
 
 var app:any = express();
 //by file
@@ -8,6 +8,7 @@ Object.entries({
     "/index.css"       :(req:any,res:any,send:any)=>send("/webpage/index.css"  ),
     "/index.js"        :(req:any,res:any,send:any)=>send("/webpage/index.js"   ),
     "/Tools.js"        :(req:any,res:any,send:any)=>send("/webpage/Tools.js"   ),
+    "/Views.js"        :(req:any,res:any,send:any)=>send("/webpage/Views.js"   ),
     "/myCanvas.js"     :(req:any,res:any,send:any)=>send("/webpage/myCanvas.js"),
     "/MonocraftBetterBrackets.ttf" :(req:any,res:any,send:any)=>send(          ),
     "/jszip.js"        :(req:any,res:any,send:any)=>send("/js/jszip.js"        ),

@@ -127,6 +127,7 @@ div#editor {
     position: relative;
 }
 div#editor > canvas { position:absolute; }
+div#editor > img { position:absolute; }
 
 /*#endregion*/
 

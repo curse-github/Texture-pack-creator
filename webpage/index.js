@@ -62,12 +62,29 @@ class util {
         let b = color[2].toString(16).padStart(2,"0");
         return "#"+r+g+b;
     }
+
     static rgb2hsv(color) {
         const [r,g,b] = [color[0]/255,color[1]/255,color[2]/255];
-        let v=Math.max(r,g,b), c=v-Math.min(r,g,b);
-        let h= c && ((v==r) ? (g-b)/c : ((v==g) ? 2+(b-r)/c : 4+(r-g)/c));
-        return [Math.round(60*(h<0?h+6:h)), Math.round((v&&c/v)*1000)/1000, Math.round(v*1000)/1000];
+        let v=Math.max(r,g,b), diff=v-Math.min(r,g,b);
+        let h= diff&&( (v==r) ? (g-b)/diff : ((v==g) ? 2+(b-r)/diff : 4+(r-g)/diff) );
+        return [Math.round(60*(h<0?h+6:h)), Math.round((v&&diff/v)*1000)/1000, Math.round(v*1000)/1000];
     }
+    static rgb2h(color) {
+        const [r,g,b] = [color[0]/255,color[1]/255,color[2]/255];
+        let v=Math.max(r,g,b), diff=v-Math.min(r,g,b);
+        let h= diff&&( (v==r) ? (g-b)/diff : ((v==g) ? 2+(b-r)/diff : 4+(r-g)/diff) );
+        return Math.round(60*(h<0?h+6:h));
+    }
+    static rgb2s(color) {
+        const [r,g,b] = [color[0]/255,color[1]/255,color[2]/255];
+        let v=Math.max(r,g,b), diff=v-Math.min(r,g,b);
+        return Math.round(((v&&diff)/v)*1000)/1000;
+    }
+    static rgb2v(color) {
+        const [r,g,b] = [color[0]/255,color[1]/255,color[2]/255];
+        return Math.round(Math.max(r,g,b)*1000)/1000;
+    }
+
     static hsv2rgb(color) {
         const [h,s,v] = color;
         let f= (n,k=(n+h/60)%6) => v - v*s*Math.max( Math.min(k,4-k,1), 0);
